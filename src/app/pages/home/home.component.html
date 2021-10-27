@@ -1,0 +1,67 @@
+<app-slider></app-slider>
+<section class="container">
+    <app-subscribe></app-subscribe>
+    <div class="empty-storage">
+        <span class="layer-1">01</span>
+        <div class="storage-title">
+            <h1>WELCOME TO <span>AUTOPARTS</span></h1>
+            <p>we have any part for any vehicle</p>
+        </div>
+    </div>
+</section>
+<app-home-category></app-home-category>
+<section>
+    <div class="vc-row">
+        <div class="title">
+            <span class="layer-1">02</span>
+            <h2 class="layer-2">PERFORM AND</h2>
+            <h2 class="layer-3">INSPIRE</h2>
+        </div>
+        <div class="image">
+            <img src="assets/images/img_vs.webp">
+            <h3>-20%</h3>
+        </div>
+    </div>
+</section>
+<section class="products">
+    <div class="pro-row">
+        <app-product-card></app-product-card>
+        <app-product-card></app-product-card>
+        <app-product-card></app-product-card>
+        <app-product-card></app-product-card>
+        <app-product-card></app-product-card>
+        <app-product-card></app-product-card>
+    </div>
+    <div class="button-wrapper">
+        <div class="row">
+            <app-button [buttonConfig]='button1'></app-button>
+            <app-button [buttonConfig]='button2'></app-button>
+        </div>
+    </div>
+    <div class="vc-empti-space"></div>
+</section>
+<section class="wpb-container">
+    <div class="wpb-row-1">
+        <div class="title">
+            <div class="empty-space"></div>
+            <span class="layer-1">03</span>
+            <p class="layer-2">FIND YOUR OWN</p>
+            <p class="layer-3">STYLE</p>
+        </div>
+        <div class="text">
+            <p>our professional team will help you</p> 
+            <p>choose perfect parts for</p>
+            <p>your vehicle</p>
+        </div>
+    </div>
+</section>
+<app-video-slider></app-video-slider>
+<app-home-news></app-home-news>
+<app-brands></app-brands>
+<app-review-slider></app-review-slider>
+<div class="order-callback">
+    <div class="row">
+        <p class="text">Order a Callback to Get a Free Professional Consultation</p>
+        <app-button [buttonConfig]="button3"></app-button>
+    </div>
+</div>

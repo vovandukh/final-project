@@ -1,0 +1,14 @@
+<section class="container">
+    <div class="empty-storage">
+        <span class="layer-1">04</span>
+        <div class="storage-title">
+            <h1>FEATURED <span>BRANDS</span></h1>
+            <p>trusted by thousands</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="brands-item" *ngFor="let brands of brands">
+            <img [src]="brands.imagePath" alt="" width="100%" height="100%">
+        </div>
+    </div>
+</section>

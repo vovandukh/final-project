@@ -1,0 +1,45 @@
+@import "../../shared/styles/mixin";
+@import "../../shared/styles/variables";
+.subscribe-wrapper {
+    @include flex(row,center,center);
+    position: relative;
+    height: 140px;
+    width: 1170px;
+    background-color: $primery-text-color;
+    margin: 0 auto;
+    .form-wrapper {
+        @include flex(row,flex-start,center);
+        span {
+            font-size: 26px;
+            color: $secondary-text-color;
+            font-family: $monserat-regular;
+            @media screen and (max-width: $media-xxl) {
+                font-size: 22px;
+            }
+        }
+        input {
+            width: 373px;
+            height: 49px;
+            border-radius: 50px;
+            margin: 0 20px 0 43px;
+            outline: none;
+            border: 1px solid rgb(222, 222, 222);
+            background-color: #f0f0f0;
+            color: $secondary-text-color;
+            padding: 0 23px;
+            font-family: $monserat-regular;
+            @media screen and (max-width: $media-xxl) {
+                width: 288px;
+            }
+            @media screen and (max-width: $media-xl) {
+                width: 256px;
+            }
+        }
+    }
+    @media screen and (max-width: $media-xxl){
+        width:1000px
+    }
+    @media screen and (max-width: $media-xl){
+        width:910px
+    }
+}

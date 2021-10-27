@@ -1,0 +1,12 @@
+@import '../../shared/styles/variables';
+button{
+    padding: 16px 24px;
+    border-radius: 50px;
+    font-family: $secondary-font;
+    color: $primery-text-color;
+    outline: none;
+    border: none;
+    @media screen and (max-width:$media-xl){
+        padding: 17px 18px;
+     }
+}

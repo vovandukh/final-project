@@ -1,0 +1,54 @@
+@import "../../../shared/styles/variables";
+@import "../../../shared/styles/mixin";
+.container {
+    margin: -90px auto 0;
+    width: 90%;
+    height: 626px;
+    .row {
+        text-align: center;
+        @include flex(row, space-around, normal);
+        .video-item {
+            height: 537px;
+            background-color: $primery-text-color;
+            h1 {
+                margin: 35px 0 0 0;
+                font-size: 22px;
+                color: $secondary-text-color;
+                font-family: $primary-font;
+            }
+            p {
+                margin: 35px 0;
+                font-size: 13px;
+                color: #b5b5b5;
+                font-family: $secondary-font;
+            }
+            @media screen and (max-width: $media-xxl) {
+                height: 420px;
+                img {
+                    width: 276px;
+                    height: 207px;
+                }
+                h1 {
+                    margin: 20px 0 0;
+                }
+                p {
+                    margin: 25px 0;
+                }
+            }
+        }
+    }
+    .button-page-wrapper {
+        @include flex(row, center, normal);
+        width: 90%;
+        margin: 50px auto 0;
+        .page {
+            margin: 0 20px 0 0;
+            width: 8px;
+            height: 8px;
+            outline: none;
+            border: none;
+            border-radius: 100px;
+            background-color: #b5b5b5;
+        }
+    }
+}

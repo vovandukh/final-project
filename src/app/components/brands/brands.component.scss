@@ -1,0 +1,63 @@
+@import "../../shared/styles/mixin";
+@import "../../shared/styles/variables";
+.container{
+    .empty-storage {
+        margin: 30px auto ;
+        width: 1170px;
+        position: relative;
+        .layer-1 {
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 300px;
+            font-family: $secondary-font;
+            color: #cacaca;
+        }
+        .storage-title {
+            width: 100%;
+            position: absolute;
+            top: 28%;
+            text-align: center;
+            font-size: 50px;
+            font-family: $secondary-font;
+            color: $secondary-text-color;
+            font-style: normal;
+            span {
+                color: $primery-color;
+            }
+            p {
+                font-family: $monserat-regular;
+                font-size: 25px;
+            }
+        }
+        @media screen and(max-width:$media-xxl) {
+            width: 1000px;  
+        }
+        @media screen and(max-width:$media-xl) {
+            width: 970px;  
+        }
+    }
+    .row{
+        @include flex(row,flex-start,normal);
+        flex-wrap: wrap;
+        width: 90%;
+        margin: 0 auto;
+        overflow: hidden;
+        .brands-item{
+            width: calc(100% / 5.1);
+            margin: 0.5px;
+            height: 155px;
+        }
+        @media screen and(max-width:$media-xxl) {
+            width: 1000px; 
+            .brands-item{
+                height: 132px;
+            } 
+        }
+        @media screen and(max-width:$media-xl) {
+            .brands-item{
+                height: 120px;
+            } 
+        }
+    }
+}

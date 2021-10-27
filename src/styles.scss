@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import './app/shared/styles/reset';
+@import './app/shared/styles/variables';
+@import './app/shared/styles/mixin';
+
+@font-face {
+    font-family: Montserrat-Light;
+    src: url(./assets/fonts/Montserrat/Montserrat-Light.ttf);
+}
+@font-face {
+    font-family:  Montserrat-Bold;
+    src: url("./assets/fonts/Montserrat/Montserrat-Bold.ttf");
+}
+@font-face {
+    font-family: Montserrat-Regular ;
+    src: url("./assets/fonts/Montserrat/Montserrat-Regular.ttf");
+}
+body{
+  background-color:#e7e7e7;
+}

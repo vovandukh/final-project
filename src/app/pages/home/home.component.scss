@@ -1,0 +1,221 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/mixin";
+.container {
+    .empty-storage {
+        margin: 30px auto;
+        width: 90%;
+        position: relative;
+        .layer-1 {
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 300px;
+            font-family: $secondary-font;
+            color: #cacaca;
+        }
+        .storage-title {
+            width: 100%;
+            position: absolute;
+            top: 28%;
+            text-align: center;
+            font-size: 50px;
+            font-family: $secondary-font;
+            color: $secondary-text-color;
+            font-style: normal;
+            span {
+                color: $primery-color;
+            }
+            p {
+                font-family: $monserat-regular;
+                font-size: 25px;
+            }
+        }
+        @media screen and (max-width: $media-xl) {
+            margin: 0 auto;
+            .title{
+                padding: 35px 0 0 0;
+            }
+            .layer-2 {
+                font-size: 74px;
+            }
+            .layer-3 {
+                font-size: 74px;
+            }
+        }
+    }
+}
+.vc-row {
+    height: 940px;
+    width: 100%;
+    background-image: url("../../../assets/images/bg-5-1.jpg");
+    background-position: center;
+    background-size: cover;
+    .title {
+        margin: 0 auto;
+        padding: 55px 0 0;
+        width: 90%;
+        position: relative;
+        .layer-1 {
+            font-size: 300px;
+            font-family: $secondary-font;
+            color: $primery-text-color;
+            opacity: 0.45;
+        }
+        .layer-2 {
+            font-size: 80px;
+            position: absolute;
+            color: $primery-text-color;
+            font-family: $secondary-font;
+            top: 37%;
+            z-index: 10;
+        }
+        .layer-3 {
+            top: 57%;
+            font-size: 110px;
+            position: absolute;
+            z-index: 10;
+            font-family: $secondary-font;
+            color: $secondary-color;
+        }
+        @media screen and (max-width: $media-xl) {
+            .layer-2{
+                font-size: 74px;
+            }
+            .layer-3{
+                top: 55%;
+                font-size: 102px;
+            }
+        }
+    }
+    .image {
+        margin: 30px auto 0;
+        width: 1170px;
+        img {
+            width: 332px;
+            height: 66px;
+        }
+        h3 {
+            font-size: 119px;
+            font-family: $primary-font;
+            line-height: 120px;
+            color: $primery-text-color;
+        }
+        @media screen and (max-width: $media-xxl) {
+            width: 1000px;
+        }
+        @media screen and (max-width: $media-xl) {
+            width: 910px;
+            h4{
+                font-size: 111px;
+            }
+        }
+    }
+    @media screen and (max-width: $media-xl) {
+        height: 870px;
+    }
+}
+.products {
+    .pro-row {
+        @include flex(row, center, normal);
+        width: 90%;
+        margin: -235px auto 0;
+        flex-wrap: wrap;
+        @media screen and (max-width: $media-xl) {
+            margin: -150px auto 0;
+        }
+    }
+    .button-wrapper {
+        margin: 1.5em, auto, 0;
+        .row {
+            margin: 0 auto;
+            width: 322px;
+            @include flex(row, space-between, normal);
+            @media screen and (max-width: $media-xxl) {
+                width: 290px;
+            }
+        }
+    }
+    .vc-empti-space {
+        height: 121px;
+    }
+}
+.wpb-container {
+    height: 930px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../../assets/images/bg-2-1.jpg");
+    .wpb-row-1 {
+        width: 90%;
+        margin: 0 auto;
+        background-position: center;
+        background-size: cover;
+        .title {
+            position: relative;
+            .empty-space {
+                height: 156px;
+                margin-bottom: -120px;
+            }
+            .layer-1 {
+                font-size: 300px;
+                font-family: $secondary-font;
+                color: $primery-text-color;
+                opacity: 0.15;
+            }
+            .layer-2 {
+                font-size: 80px;
+                font-family: $secondary-font;
+                position: absolute;
+                line-height: 96px;
+                top: 35%;
+                color: $primery-text-color;
+            }
+            .layer-3 {
+                position: absolute;
+                top: 56%;
+                font-family: $secondary-font;
+                font-size: 110px;
+                color: rgb(246, 198, 41);
+            }
+            @media screen and (max-width: $media-xl) {
+                .layer-2{
+                    font-size: 74px;
+                }
+                .layer-3{
+                    font-size: 100px;
+                }
+            }
+        }
+        .text {
+            font-size: 26px;
+            line-height: 35px;
+            font-family: $monserat-regular;
+            color: $primery-text-color;
+            @media screen and (max-width: $media-xxl) {
+                font-size: 22px;
+            }
+        }
+       
+    }
+}
+.order-callback {
+    @include flex(row, center, center);
+    width: 90%;
+    height: 140px;
+    margin: 0 auto -60px;
+    position: relative;
+    background-color: $primery-text-color;
+    .row {
+        width: 100%;
+        @include flex(row, space-around, center);
+        p {
+            width: 65%;
+            color: $secondary-text-color;
+            font-size: 26px;
+            font-family: $monserat-regular;
+            @media screen and (max-width: $media-xxl) {
+                font-size: 22px;
+            }
+        }
+    }
+}

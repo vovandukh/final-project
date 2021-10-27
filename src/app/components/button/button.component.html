@@ -1,0 +1,4 @@
+<ng-container *ngTemplateOutlet="buttonConfig['']"></ng-container>
+<button type= "{{ buttonConfig.type }}" [ngStyle]="{'background':  buttonConfig.color  }">
+    {{ buttonConfig.text | uppercase}}
+</button>

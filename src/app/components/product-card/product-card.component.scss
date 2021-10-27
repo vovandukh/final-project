@@ -1,0 +1,54 @@
+@import "../../shared/styles/mixin";
+@import "../../shared/styles/variables";
+.product-item{
+    height: 540px;
+    text-align: center;
+    .product-title{
+    font-family: $monserat-regular;
+    font-size: 18.2px;
+    line-height: 23.66px;
+    color: $secondary-text-color; 
+    }:hover{
+        transition: all 0.5s;
+        color: $secondary-color;
+    }
+    .rating{ 
+        margin: 18px 0;
+        span {
+        padding: 0;
+        font-size: 24px;
+        line-height: 0;
+        color: lightgrey;
+        }::before{
+            content: '★';
+        }
+        .active{
+            color: gold;
+        }
+    }
+    .price{
+        font-size: 25.2px;
+        font-family: $secondary-font;
+        color: $secondary-text-color;
+        @include flex(row,center,center);
+        .uil-dollar-alt{
+            font-size: 14px;
+        }
+    }
+    @media screen and(max-width:$media-xxl) {
+        height: 475px;
+        img{
+            width: 317px;
+            height: 317px;
+        }
+        
+    }
+    @media screen and(max-width:$media-xl) {
+        height: 435px;
+        img{
+            width: 285px;
+            height: 285px;
+        }
+        
+    }
+}

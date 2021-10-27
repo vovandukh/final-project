@@ -1,0 +1,64 @@
+<header class="top-panel" [ngClass]="topPanelElse" #topPanel>
+    <div class="top-row">
+        <div class="logo-nav-wrapper">
+            <div class="logo-wrapper">
+                <img class="logo-image" src="/assets/images/logo-header-retina.webp">
+            </div>
+            <nav class="nav-wrapper">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="for-nav-item" [routerLink]="[ '' ]" routerLinkActive="active">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="for-nav-item" [routerLink]="[ 'catalog' ]" routerLinkActive="active">CATALOG</a>
+                    </li>
+                    <li class="nav-item news-item">
+                        <a class="for-nav-item " href="#">
+                            NEWS
+                        </a>  
+                    </li>
+                    <li class="nav-item">
+                        <a class="for-nav-item" href="#">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="for-nav-item" href="#">FEATURES</a>
+                        <i class="uil uil-angle-down"></i>
+                    </li>
+                    <li class="nav-item-last drop-down-menu">
+                        <span href="#" class="for-last-item">
+                            <i class="uil uil-ellipsis-h"></i>
+                        </span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="wbp-wrapper">
+            <div class="info-wrapper">
+                <div class="phone-number">
+                    <i class="uil uil-phone"></i>
+                    <span>38 (067) 987 654 32</span>
+                </div>
+                <div class="social">
+                    <i class="uil uil-facebook"></i>
+                    <i class="uil uil-twitter"></i>
+                    <i class="uil uil-instagram-alt"></i>
+                </div>
+                <div class="search">
+                    <div class="search-wrapper">
+
+                        <form class="seach-form">
+                            <button type="submit">
+                                <i class="uil uil-search-alt"></i>
+                            </button>
+                                <input type="text" placeholder="Search">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="basket-wrapper">
+                <i class="uil uil-shopping-basket"></i>
+                <span>$ 0.00</span>
+            </div>
+        </div>
+    </div>
+</header>
