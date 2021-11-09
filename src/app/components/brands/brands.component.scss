@@ -3,7 +3,7 @@
 .container{
     .empty-storage {
         margin: 30px auto ;
-        width: 1170px;
+        width: 100%;
         position: relative;
         .layer-1 {
             display: block;
@@ -30,15 +30,39 @@
                 font-size: 25px;
             }
         }
-        @media screen and(max-width:$media-xxl) {
-            width: 1000px;  
+        @media screen and (max-width: $media-xl) {
+            margin: 0 auto;
+            .title {
+                padding: 35px 0 0 0;
+            }
+            .layer-2 {
+                font-size: 74px;
+            }
+            .layer-3 {
+                font-size: 74px;
+            }
         }
-        @media screen and(max-width:$media-xl) {
-            width: 970px;  
+        @media screen and (max-width: $media-lg) {
+           .layer-1{
+               font-size: 280px;
+           }
+        }
+        @media screen and (max-width: $media-md) {
+           .layer-1{
+               font-size: 208px;
+           }
+           .storage-title{
+               h1{
+                   font-size: 48px;
+               }
+               span{
+                   font-size: 48px;
+               }
+           }
         }
     }
     .row{
-        @include flex(row,flex-start,normal);
+        @include flex(row,center,normal);
         flex-wrap: wrap;
         width: 90%;
         margin: 0 auto;
@@ -49,7 +73,6 @@
             height: 155px;
         }
         @media screen and(max-width:$media-xxl) {
-            width: 1000px; 
             .brands-item{
                 height: 132px;
             } 
@@ -58,6 +81,15 @@
             .brands-item{
                 height: 120px;
             } 
+        }
+        @media screen and(max-width:$media-md) {
+            .brands-item{
+                width: calc(100% /2.1);
+                height: 200px;
+            } 
+        }
+        @media screen and(max-width:$media-md) {
+          width: 95vw;
         }
     }
 }

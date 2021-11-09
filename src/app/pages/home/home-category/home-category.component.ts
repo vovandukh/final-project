@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICategoryRequest } from 'src/app/shared/interfaces/category/category.interface';
+import { ICategoryRequest, ICategoryResponce } from 'src/app/shared/interfaces/category/category.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CategoryService } from 'src/app/shared/services/category/category.servi
   styleUrls: ['./home-category.component.scss']
 })
 export class HomeCategoryComponent implements OnInit {
-  public category: ICategoryRequest[] = []
+  public category: ICategoryResponce[] = []
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void {
@@ -16,7 +16,9 @@ export class HomeCategoryComponent implements OnInit {
   }
  
   loadCategory(){
-    this.category = this.categoryService.loadCategory()
+    this.categoryService.loadCategory().subscribe(category =>{
+      this.category = category;   
+    })
   }
 
 }

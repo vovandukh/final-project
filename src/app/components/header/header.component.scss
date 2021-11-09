@@ -1,18 +1,18 @@
 @import "../../shared/styles/variables";
-@import '../../shared/styles/mixin';
+@import "../../shared/styles/mixin";
 .top-panel {
-    @include flex(row,center,center);
+    @include flex(row, center, center);
     width: 100%;
     padding: 20px 45px;
     background-color: transparent;
     position: fixed;
-    z-index: 10000;
+    z-index: 100;
     transition: all 0.5s;
     .top-row {
-        @include flex(row,flex-start,normal);
+        @include flex(row, flex-start, normal);
         width: 100%;
         .logo-nav-wrapper {
-            @include flex(row,space-evenly,normal);
+            @include flex(row, space-evenly, normal);
             height: 60px;
             width: 60%;
             margin: 20px 0 0;
@@ -23,11 +23,18 @@
             .nav-wrapper {
                 width: 620px;
                 .nav {
-                    @include flex(row,flex-start,normal);
+                    @include flex(row, flex-start, normal);
                     list-style: none;
                     display: flex;
+                    .menu {
+                        display: none;
+                        .uil-bars {
+                            font-size: 25px;
+                            color: #fff;
+                        }
+                    }
                     .nav-item {
-                        @include flex(row,center,center);                     
+                        @include flex(row, center, center);
                         width: 100px;
                         font-size: 13px;
                         font-family: $primary-font;
@@ -44,7 +51,6 @@
                         .active {
                             color: $primery-color;
                         }
-                       
                     }
                     :hover {
                         .for-nav-item {
@@ -56,17 +62,12 @@
                             color: $primery-color;
                         }
                     }
-                    @media screen and (max-width:$media-xl){
-                        .news-item{
-                            display: none;
-                        }
-                     }
                     .nav-item-last {
                         margin: 0 0 0 30px;
                         width: 60px;
-                        @include flex(row,flex-start,center);
+                        @include flex(row, flex-start, center);
                         .for-last-item {
-                           @include flex(row,center,center);
+                            @include flex(row, center, center);
                             width: 26px;
                             height: 26px;
                             background-color: $primery-text-color;
@@ -79,18 +80,41 @@
                             transition: all 0.5s;
                         }
                     }
+                    @media screen and (max-width: $media-xl) {
+                        .news-item {
+                            display: none;
+                        }
+                    }
+                    @media screen and (max-width: $media-md) {
+                        justify-content: flex-end;
+                        .nav-item {
+                            display: none;
+                        }
+                        .nav-item-last {
+                            display: none;
+                        }
+                        .menu {
+                            display: block;
+                        }
+                    }
                 }
+            }
+            @media screen and (max-width: $media-xl) {
+                width: 80%;
+            }
+            @media screen and (max-width: $media-lg) {
+                width: 100%;
             }
         }
         .wbp-wrapper {
             width: 40%;
             display: flex;
-            @include flex(column,flex-start,flex-end);
+            @include flex(column, flex-start, flex-end);
             padding-top: 20px;
             .info-wrapper {
                 font-size: 13px;
                 width: 535px;
-                @include flex(row,flex-end,center);
+                @include flex(row, flex-end, center);
                 color: $primery-text-color;
                 font-family: $primary-font;
                 .phone-number {
@@ -100,20 +124,23 @@
                         margin: 0 10px;
                         font-size: 16px;
                     }
-                    :hover {
+                    &:hover {
                         color: $primery-color;
                         transition: all 0.5s;
+                        .uil-phone {
+                            color: inherit;
+                        }
                     }
-                }
+                } 
                 .social {
                     i {
                         margin: 0 0 0 17px;
                         font-size: 16px;
-                    }
-                    :hover {
-                        color: $primery-color;
-                        transition: all 0.5s;
-                    }
+                        &:hover {
+                            color: $primery-color;
+                            transition: all 0.5s;
+                        }
+                    }  
                 }
                 .seach-form {
                     width: 235px;
@@ -148,15 +175,15 @@
                         color: $primery-text-color;
                         font-family: $primary-font;
                     }
-                    @media screen and (max-width:$media-xxl){
-                           width: 180px;
-                    }  
+                    @media screen and (max-width: $media-xxl) {
+                        width: 180px;
+                    }
                 }
-                
             }
             .basket-wrapper {
                 margin: 40px 0 0 0;
                 color: $secondary-color;
+                position: relative;
                 float: right;
                 font-size: 13px;
                 transition: all 0.5;
@@ -167,18 +194,174 @@
                 }
                 span {
                     margin: 0 5px 0;
+                    &:hover {
+                        color: $primery-text-color;
+                        transition: all 0.5s;
+                    }
                 }
-                :hover {
-                    color: $primery-text-color;
+                .basket-modal{
+                    width: 280px;
+                    min-height: 100px;
+                    position: absolute;
+                    background-color: rgb(24, 24, 24);
+                    right: 0;
+                    top: 35px;
+                    display: none;
+                    .basket-close{
+                        display: flex;
+                        justify-content: flex-end;
+                        .uil-times{
+                            font-size: 16px;
+                            margin: 5px 15px 0 0 ;
+                            color: #ffffff;
+                            &:hover{
+                                color: $secondary-color;
+                            }
+                        }
+                    }
+                    .basket-info{
+                    margin: 15px 0 0 25px;
+                      font-size: 13px;
+                      color: #ffffff;
+                      .uil-times{
+                          font-size: 16px;
+                          &:hover{
+                            color: $secondary-color;
+                        }
+                      }
+                    }
+                    .cart{
+                        display: flex;
+                        padding-right: 40px;
+                        // position: relative;
+                        z-index: 100;
+                        img{
+                            margin: 0 15px 0 0;
+                        }
+                        span{
+                            margin: 0 0 0 10px;
+                        }
+                        p{
+                            margin: 20px 0 0;
+                        }   
+                    }
+                    .cart-1{
+                        .subTotal{
+                            position: relative;
+                            margin: 40px 0 0 0;
+                            left: 0;
+                        }
+                       .button-wrapper{
+                           margin: 36px 0;
+                        button{
+                            width: 100px;
+                            height: 38px;
+                            border-radius: 50px;
+                            margin: 0 5px 0 0;
+                            border: none;
+                            outline: none;
+                            background-color: $secondary-color;
+                            color: $primery-text-color;
+                        }
+                       }
+                    }
                 }
+                
             }
-            @media screen and (max-width:$media-xl){
+            @media screen and (max-width: $media-xl) {
                 display: none;
-         }  
+            }
         }
-        
+    }
+    @media screen and (max-width: $media-md) {
+        position: absolute;
+        top: 0;
     }
 }
-.top-panel-else{
-    background-color: $secondary-text-color ;
+.top-panel-else {
+    background-color: $secondary-text-color;
+}
+
+.menu-space {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: $secondary-text-color;
+    height: 100vh;
+    z-index: 400;
+    display: none;
+    .row {
+        .close {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0 0 0;
+            width: 95%;
+            .uil-times {
+                font-size: 25px;
+                color: #b5b5b5;
+            }
+        }
+        .logo-wrapper {
+            display: flex;
+            justify-content: center;
+            .logo {
+                width: 147px;
+                height: 16px;
+            }
+        }
+        ul {
+            width: 390px;
+            margin: 50px auto;
+            list-style: none;
+            li {
+                margin: 0 0 10px;
+                font-size: 20px;
+                a {
+                    text-decoration: none;
+                    font-family: $primary-font;
+                    color: #b5b5b5;
+                }
+            }
+        }
+        .search {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            input {
+                margin: 0 auto;
+                width: 364px;
+                height: 43px;
+                background-color: #202020;
+                border-radius: 50px;
+                border: 1px solid rgb(91, 91, 91);
+                outline: none;
+                padding: 13px 39px 13px 19.5px;
+                color: #fff;
+                font-size: 13px;
+                font-family: $primary-font;
+            }
+            button {
+                position: absolute;
+                right: 23%;
+                background-color: transparent;
+                border: none;
+                color: #fff;
+                font-size: 18px;
+                width: 43px;
+                height: 43px;
+            }
+        }
+        .social-wrapper {
+            margin: 40px;
+            display: flex;
+            justify-content: center;
+            .social {
+                color: #b5b5b5;
+                i {
+                    margin: 0 10px 0 0;
+                }
+            }
+        }
+    }
 }

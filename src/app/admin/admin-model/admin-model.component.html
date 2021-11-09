@@ -1,1 +1,47 @@
-<p>admin-model works!</p>
+<div class="container">
+    <div class="button-wrapper">
+        <button type="button" (click)="open()">
+            +
+        </button>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Brand</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of model;let i = index" >
+                    <td>{{ i+1 }}</td>
+                    <td>{{ item.brand }}</td>
+                    <td>
+                        <div class="btn-wrap">
+                            <button class="btn1" type="button">Edit</button>
+                            <button class="btn1 btn2" type="button">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--Modal-->
+<div class="modal-wrapper" [ngStyle]="modalOpen">
+    <div class="modal" >
+        <div class="wrapper-title">
+            <h1 class="title">Model</h1>
+            <div><i class="uil uil-times" (click)="close()"></i></div>
+        </div>
+        <div class="form-wrapper">
+            <form [formGroup]='formModel' (ngSubmit)='createModel()'>
+                <h1>Brand</h1>
+                <input type="text" placeholder="Path here.." formControlName="brand">
+                <button type="submit" class="button" [disabled]='formModel.invalid' >Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

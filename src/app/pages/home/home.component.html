@@ -1,6 +1,14 @@
 <app-slider></app-slider>
 <section class="container">
-    <app-subscribe></app-subscribe>
+    <div class="subscribe-wrapper">
+        <div class="form-wrapper">
+            <span class="form-text">Subscribe for News and Get a Discount</span>
+            <form>
+                <input type="text" placeholder="YOUR EMAIL">
+                <app-button [buttonConfig]="subscribeButton"></app-button>
+            </form>
+        </div>
+    </div>
     <div class="empty-storage">
         <span class="layer-1">01</span>
         <div class="storage-title">
@@ -10,36 +18,7 @@
     </div>
 </section>
 <app-home-category></app-home-category>
-<section>
-    <div class="vc-row">
-        <div class="title">
-            <span class="layer-1">02</span>
-            <h2 class="layer-2">PERFORM AND</h2>
-            <h2 class="layer-3">INSPIRE</h2>
-        </div>
-        <div class="image">
-            <img src="assets/images/img_vs.webp">
-            <h3>-20%</h3>
-        </div>
-    </div>
-</section>
-<section class="products">
-    <div class="pro-row">
-        <app-product-card></app-product-card>
-        <app-product-card></app-product-card>
-        <app-product-card></app-product-card>
-        <app-product-card></app-product-card>
-        <app-product-card></app-product-card>
-        <app-product-card></app-product-card>
-    </div>
-    <div class="button-wrapper">
-        <div class="row">
-            <app-button [buttonConfig]='button1'></app-button>
-            <app-button [buttonConfig]='button2'></app-button>
-        </div>
-    </div>
-    <div class="vc-empti-space"></div>
-</section>
+<app-shop-vossen></app-shop-vossen>
 <section class="wpb-container">
     <div class="wpb-row-1">
         <div class="title">

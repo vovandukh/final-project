@@ -1,1 +1,56 @@
-<p>admin-sub-category works!</p>
+<div class="container">
+    <div class="button-wrapper">
+        <button type="button" (click)="open()">
+            +
+        </button>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Name</td>
+                    <td>Category</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of subCategory,let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.category.name }}</td>
+                    <td>
+                        <div class="btn-wrap">
+                            <button class="btn1" type="button" (click)="editSubCategory(item)">Edit</button>
+                            <button class="btn1 btn2" type="button" (click)="deleteSubCategory(item)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--Modal-->
+<div class="modal-wrapper" [ngStyle]="modalOpen">
+    <div class="modal">
+        <div class="wrapper-title">
+            <h1 class="title">Sub Category</h1>
+            <div><i class="uil uil-times" (click)="close()"></i></div>
+        </div>
+        <div class="form-wrapper">
+            <form [formGroup]='subCategoryForm' (ngSubmit)="saveSubCategory()">
+                <h1>Category</h1>
+                <select formControlName='category'>
+                    <option selected disabled>Choose</option>
+                    <option [ngValue]="category" *ngFor="let category of category">{{ category.name }}</option>
+                </select>
+                <h1>Name</h1>
+                <input type="text" placeholder="Name here.." formControlName='name'>
+                <h1>Path</h1>
+                <input type="text" placeholder="Path here.." formControlName='path'>
+                <button type="submit" [disabled]='subCategoryForm.invalid' style="margin: 20px 0 0 0 ;">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

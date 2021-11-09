@@ -1,0 +1,190 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/mixin";
+.container {
+    padding: 0 30px 0;
+    .button-wrapper {
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            color: $primery-text-color;
+            background-color: $secondary-color;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            position: relative;
+        }
+        :before {
+            content: "";
+            background-color: $secondary-color;
+            border-radius: 10px;
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: scale(0.001, 0.001);
+        }
+        :focus {
+            outline: 0;
+            color: #fff;
+            :before {
+                animation: effect_dylan 0.8s;
+            }
+        }
+
+        margin: 0 0 20px;
+    }
+    .table-wrapper {
+        height: 450px;
+        overflow-y: scroll;
+        font-size: 22px;
+        color: #fff;
+        font-family: "Source Sans Pro", sans-serif;
+        table {
+            width: 1200px;
+            thead {
+                tr {
+                    td {
+                        padding: 20px 10px;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        padding: 0 10px;
+                    }
+                }
+            }
+            .btn1 {
+                width: 80px;
+                height: 40px;
+                margin: 0px 10px 0 0;
+                outline: none;
+                border: none;
+                background-color: yellowgreen;
+                border-radius: 50px;
+                color: #fff;
+                font-size: 18px;
+                font-family: "Source Sans Pro", sans-serif;
+            }
+            .btn2 {
+                background-color: red;
+            }
+        }
+    }
+}
+
+.modal-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 250px;
+    background-color: rgba(0, 0, 0, 0.459);
+    .modal {
+        width: 600px;
+        height: 600px;
+        padding: 50px;
+        z-index: 280;
+        background-color: rgb(44, 36, 36);
+        border-radius: 20px;
+        position: absolute;
+        top: 5%;
+        left: 30%;
+        .wrapper-title {
+            display: flex;
+            justify-content: space-between;
+            .title {
+                width: 95%;
+                font-family: "Source Sans Pro", sans-serif;
+                color: #fff;
+                text-align: center;
+            }
+            .uil-times {
+                font-size: 25px;
+                color: red;
+            }
+        }
+        .form-wrapper {
+            width: 550px;
+            height: 350px;
+            form {
+                font-family: "Source Sans Pro", sans-serif;
+                h1 {
+                    font-size: 22px;
+                    color: #fff;
+                    margin: 20px 0 0 0;
+                }
+                input[type="text"] {
+                    height: 40px;
+                    width: 500px;
+                    border-radius: 10px;
+                    margin: 10px 0 0 0;
+                    padding: 0 20px;
+                    font-size: 14px;
+                    color: #fff;
+                    outline: none;
+                    border: none;
+                    background: rgba(88, 88, 88, 0.637);
+                }
+                input[type="text"]:focus {
+                    border: 1px solid #fff;
+                }
+                textarea {
+                    height: 100px;
+                    width: 500px;
+                    resize: none;
+                    border-radius: 10px;
+                    margin: 10px 0 0 0;
+                    padding: 20px;
+                    font-size: 14px;
+                    color: #fff;
+                    outline: none;
+                    border: none;
+                    background: rgba(88, 88, 88, 0.637);
+                }
+                textarea:focus {
+                    border: 1px solid #fff;
+                }
+                input[type="file"] {
+                    margin: 20px 0 0;
+                    color: #fff;
+                }
+                button {
+                    margin: 0 0 0 50px;
+                    width: 200px;
+                    height: 50px;
+                    border-radius: 50px;
+                    outline: none;
+                    border: none;
+                    background-color: $secondary-color;
+                    color: $primery-text-color;
+                    font-size: 22px;
+                    &:disabled{
+                        background-color: #ee6d57 ;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes effect_dylan {
+    50% {
+        transform: scale(1.5, 1.5);
+        opacity: 0;
+    }
+    99% {
+        transform: scale(0.001, 0.001);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(0.001, 0.001);
+        opacity: 1;
+    }
+}

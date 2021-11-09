@@ -1,0 +1,23 @@
+@import '../admin-sub-category/admin-sub-category.component.scss';
+@import '../admin-category/admin-category.component.scss';
+
+.modal-wrapper{
+    .modal{
+        top: 1%;
+        padding-top: 60px;
+        left: 5%;
+        width: 90%;
+        height: 700px;
+      .form-wrapper{
+          padding-top: 40px;
+          width: 100%;
+        form{
+            padding: 0 60px;
+            width: 70%;
+            width: inherit;
+            display: flex;
+            justify-content: space-between;
+        }
+      }
+     }
+}

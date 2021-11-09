@@ -1,0 +1,68 @@
+<section>
+    <div class="image-top">
+        <h1>Checkout</h1>
+    </div>
+    <div class="container">
+        <div class="form-wrapper">
+            <h1>BILLING DETAILS</h1>
+            <form [formGroup]="orderForm" (ngSubmit)='createOrder()' >
+                <h1>First Name</h1>
+                <input type="text" formControlName='firstName'>
+                <h1>Last Name</h1>
+                <input type="text" formControlName='lastName'>
+                <h1>Street address</h1>
+                <input type="text" formControlName='streetAddress'>
+                <h1>City</h1>
+                <input type="text" formControlName='city'>
+                <h1>Country</h1>
+                <input type="text" formControlName='country'>
+                <h1>Phone</h1>
+                <input type="text" formControlName='phone'>
+                <h1>Email address</h1>
+                <input type="text" formControlName='email'>
+                <h1>YOUR ORDER</h1>
+                <div class="order-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of basket">
+                                <td class="product-info">
+                                    <div class="product-name">
+                                        <span>{{item.product.name}}</span> <span class="product-count"> x
+                                            {{item.product.count}}</span>
+                                    </div>
+                                    <div class="model-info">
+                                        <p>Year: {{item.year}}</p>
+                                        <p>Make: {{item.brand}}</p>
+                                        <p>Model: {{item.model}}</p>
+                                        <p>Size: {{item.size}}</p>
+                                    </div>
+                                </td>
+                                <td class="total">{{ item.total | currency:'USD' }}</td>
+                            </tr>
+                            <tr>
+                                <th class="product-total">Total</th>
+                                <th class="total-1">{{ total | currency:'USD' }}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="payment">
+                    <input (click)="changePayment('cart')"  name="payment" type="radio"  value="card" checked>Card
+                    <input (click)="changePayment('cash')"  name="payment" type="radio"  value="card">Cash
+                </div>
+                <hr>
+                <div class="button-wrapper">
+                    <button type="submit">PLACE ORDER</button>
+                </div>
+            </form>
+           
+        </div>
+    </div>
+</section>

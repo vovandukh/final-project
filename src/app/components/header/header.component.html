@@ -2,7 +2,7 @@
     <div class="top-row">
         <div class="logo-nav-wrapper">
             <div class="logo-wrapper">
-                <img class="logo-image" src="/assets/images/logo-header-retina.webp">
+                <img [routerLink]="[ '' ]" class="logo-image" src="/assets/images/logo-header-retina.webp">
             </div>
             <nav class="nav-wrapper">
                 <ul class="nav">
@@ -10,10 +10,10 @@
                         <a class="for-nav-item" [routerLink]="[ '' ]" routerLinkActive="active">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="for-nav-item" [routerLink]="[ 'catalog' ]" routerLinkActive="active">CATALOG</a>
+                        <a class="for-nav-item" [routerLink]="[ 'catalog/all' ]" routerLinkActive="active">CATALOG</a>
                     </li>
                     <li class="nav-item news-item">
-                        <a class="for-nav-item " href="#">
+                        <a  class="for-nav-item " href="#">
                             NEWS
                         </a>  
                     </li>
@@ -28,6 +28,9 @@
                         <span href="#" class="for-last-item">
                             <i class="uil uil-ellipsis-h"></i>
                         </span>
+                    </li>
+                    <li class="menu">
+                        <i class="uil uil-bars" (click)="openMenu()"></i>
                     </li>
                 </ul>
             </nav>
@@ -57,8 +60,80 @@
             </div>
             <div class="basket-wrapper">
                 <i class="uil uil-shopping-basket"></i>
-                <span>$ 0.00</span>
+                <span (click)="openBasketModal()" >{{ total| currency:'USD' }}</span>
+                <div class="basket-modal" [ngStyle]="basketModal">
+                    <div class="basket-close"><i class="uil uil-times" (click)="closeBasketModal()"></i></div>
+
+                    <div class="basket-info">
+                        <ng-container *ngIf="basketproduscts ; else noItem" >
+                            <div class="cart" *ngFor="let item of basketInfo" >
+                                <img [src]="item.imagePath" width="55px" height="55px">
+                               <div>
+                                <div style="display: flex;"><h5>{{item.name}}</h5> <i class="uil uil-times" (click)="removeProduct(item.id)"></i></div>
+                                <p>{{item.count}} x {{item.price}}</p>
+                               </div>
+                            </div>
+                            <div class="cart-1">
+                                <div class="subTotal">Subtotal: {{total | currency:'USD'}}</div>
+                                <div class="button-wrapper">
+                                    <button type="button" [routerLink]="['basket']" (click)="closeBasketModal()">VIEV CART</button>
+                                    <button type="button" [routerLink]="[ 'checkout']" (click)="closeBasketModal()" >CHECKOUT</button>
+                                </div>
+                            </div>  
+                        </ng-container>
+                        <ng-template #noItem>
+                            <p >No products in the cart</p>
+                        </ng-template>
+                        
+                      
+                            
+                        
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </header>
+
+<div class="menu-space" [ngStyle]="menuOpen">
+   <div class="row">
+       <div class="close">
+        <i class="uil uil-times" (click)="closeMenu()"></i>
+       </div>
+       <div class="logo-wrapper">
+           <img class="logo" src="/assets/images/logo-header-retina.webp">
+       </div>
+       <ul>
+           <li>
+               <a [routerLink]="[ '/path']">HOME</a>
+           </li>
+           <li>
+            <a [routerLink]="[ '/path']">CATALOG</a>
+           </li>
+           <li>
+            <a [routerLink]="[ '/path']">FEATURES</a>
+           </li>
+           <li>
+            <a [routerLink]="[ '/path']">ABOUT US</a>
+           </li>
+           <li> 
+            <a [routerLink]="[ '/path']">NEWS</a>
+           </li>
+           <li> 
+            <a [routerLink]="[ '/path']">CONTACTS</a>
+           </li>
+       </ul>
+       <div class="search">
+           <input type="text" placeholder="Search">
+           <button type="button"><i class="uil uil-search-alt"></i></button>
+       </div>
+       <div class="social-wrapper">
+         <div class="social">
+            <i class="uil uil-facebook"></i>
+            <i class="uil uil-twitter"></i>
+            <i class="uil uil-instagram-alt"></i>
+         </div>
+       </div>
+   </div>
+</div>

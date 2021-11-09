@@ -35,6 +35,29 @@
                 font-size: 90px;
                 color: rgb(246, 198, 41);
             }
+            @media screen and(max-width:$media-lg) {
+                .layer-1{
+                    font-size: 280px;
+                }
+                .layer-2 {
+                    font-size: 75px;
+                }
+                .layer-3 {
+                    font-size: 83px;
+                }
+            }
+        
+            @media screen and (max-width: $media-md) {
+               .layer-1{
+                   font-size: 208px;
+               }
+               .layer-2{
+                   font-size: 48px;
+               }
+               .layer-3{
+                   font-size: 50px;
+               }
+            }
         }
     }
     .slider-wrapper {
@@ -46,24 +69,24 @@
             height: 268px;
             width: 48%;
             padding: 30px 50px;
-            .review-author{
-                @include flex(row,flex-start,normal);
-                img{
+            .review-author {
+                @include flex(row, flex-start, normal);
+                img {
                     margin: 0 30px 0 0;
                     @media screen and(max-width:$media-xxl) {
                         width: 56px;
-                        height: 56px; 
+                        height: 56px;
                     }
                 }
-                .autor-info{
+                .autor-info {
                     width: 100%;
-                    h4{
+                    h4 {
                         font-size: 22px;
                         margin: 0 0 10px;
                         font-family: $primary-font;
                         color: $secondary-text-color;
                     }
-                    div{
+                    div {
                         font-size: 13px;
                         font-family: $primary-font;
                         color: #b5b5b5;
@@ -71,29 +94,32 @@
                     }
                 }
             }
-            .review-content{
+            .review-content {
                 margin: 25px 0 0;
-                p{
-                    font-size: 14px;
+                p {
+                    font-size: 13px;
                     line-height: 24px;
                     color: #1e1e1e;
                     font-family: $monserat-regular;
                 }
             }
             @media screen and(max-width:$media-xxl) {
-                height: 310px;  
+                height: 310px;
             }
             @media screen and(max-width:$media-xl) {
-                height: 290px;  
+                height: 290px;
+            }
+            @media screen and(max-width:$media-xl) {
+                height: 475px;
             }
         }
     }
-    .empty-space{
-        @include flex(row,center,normal);
+    .empty-space {
+        @include flex(row, center, normal);
         width: 90%;
         margin: 0 auto;
         height: 82px;
-        .page{
+        .page {
             margin: 50px 20px 0 0;
             width: 8px;
             height: 8px;
@@ -103,5 +129,4 @@
             background-color: #b5b5b5;
         }
     }
-    
 }

@@ -1,0 +1,13 @@
+@import "../admin-sub-category/admin-sub-category.component.scss";
+
+.modal-wrapper {
+    .modal {
+        .form-wrapper {
+            form {
+                .button {
+                    margin: 20px 0 0 !important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,174 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/mixin";
+.image-top {
+    height: 390px;
+    background-image: url(../../../assets/images/slide-1-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 10% 0 0 10%;
+    h1{
+        color: #ffffff;
+        font-size: 63px;
+        font-family: $secondary-font;
+        
+    }
+}
+
+.container {
+    width: 1170px;
+    margin: 40px auto;
+    display: flex;
+    .image {
+        width: 526px;
+        height: 526px;
+        padding: 20px;
+        background-color: #ffffff;
+    }
+    .product-info {
+        height: 643px;
+        width: 726px;
+        padding-left: 70px;
+        .price-rating {
+            margin: 5px 0 0 0;
+            font-size: 32px;
+            font-family: $secondary-font;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .rating {
+                span {
+                    padding: 0;
+                    font-size: 24px;
+                    line-height: 0;
+                    color: lightgrey;
+                }
+                ::before {
+                    content: "★";
+                }
+                .active {
+                    color: gold;
+                }
+            }
+        }
+        .form-wrapper {
+            form {
+                h3 {
+                    margin: 23px 0 15px 0;
+                    font-size: 14px;
+                    font-family: $primary-font;
+                }
+                .select{
+                    position: relative;
+                    .uil-angle-down{
+                        position: absolute;
+                        top: 30% ;
+                        right: 20px;
+                        font-size: 20px;
+                    }
+
+                }
+                select{
+                    width: 100%;
+                    height: 45px;
+                    border-radius: 50px;
+                    padding: 0 45px 0 20px;
+                    margin-right: 1em;
+                    display: inline-block;
+                    background-color: #f0f0f0;
+                    color: $secondary-text-color;
+                    border: 1px solid #dedede;
+                    outline: none;
+                    font-family: $primary-font;
+                    appearance: none;
+                }
+                
+                .custom-radio {
+                    position: absolute;
+                    z-index: -1;
+                    opacity: 0;
+                }
+                .custom-radio:checked + label {
+                    color: $primery-color;
+                }
+                .label-1{
+                    font-size: 14px;
+                    font-family: $monserat-regular;
+                }
+                .label-2{
+                  font-size: 25px;
+                  font-family: $secondary-font;
+                  margin: 0 0 0 20px;
+                }
+                .wrapper{
+                    margin: 20px 0 0;
+                    display: flex;
+                   .count{
+                        margin: 0 15px 0 0;
+                        width: 97px;
+                        height: 50px;
+                        border-radius: 50px;
+                        padding: 15px 15px 15px 24px;
+                        background-color: #f0f0f0;
+                        color: $secondary-text-color;
+                        font-family: $secondary-font;
+                        border: 1px solid #dedede;
+                        outline: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        .button{
+                            font-size: 20px;
+                        }
+                        .uil-angle-up{
+                            &:hover{
+                                color: $secondary-color;
+                            }
+                        }
+                        .uil-angle-down{
+                            &:hover{
+                                color: $secondary-color;
+                            }
+                        }
+                       
+                    }
+                    button{
+                        width: 130px;
+                        height: 50px;
+                        border-radius: 50px;
+                        background-color: $secondary-text-color;
+                        font-family: $secondary-font;
+                        color: #ffffff;
+                        border: none;
+                        outline: none;
+                        &:hover{
+                            background-color: $secondary-color;
+                        }
+                        &:disabled{
+                            background-color: rgb(66, 66, 66) ;
+                        }
+                    }
+
+                }
+               
+            }
+        }
+     
+    }
+}
+.productDescription{
+    width: 1170px;
+    background-color: #ffffff;
+    padding: 40px;
+    margin: 0 auto 50px;
+    h1{
+        font-size: 28px;
+        color: $secondary-text-color;
+        font-family: $secondary-font;
+        margin: 0 0 15px;
+    }
+    p{
+        font-size: 14px;
+        color: $secondary-text-color;
+        font-family: $primary-font;
+    }
+}

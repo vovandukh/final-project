@@ -1,1 +1,58 @@
-<p>basket works!</p>
+<section>
+    <div class="image-top">
+        <h1>Cart</h1>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th class="product-name">Product</th>
+                    <th class="product-price">Price</th>
+                    <th class="product-quantity">Qvantity</th>
+                    <th class="product-subtotal">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of basket">
+                    <td style="text-align: center;"><i class="uil uil-times" (click)="removeProduct(item.id)"></i></td>
+                    <td>
+                        <div class="image">
+                            <img [src]="item.product.imagePath" width="50px" height="50px">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="product-title">
+                            <span>{{ item.product.name }}</span>
+                            <div class="product-info">
+                                <p>Year: {{ item.year }}</p>
+                                <p>Make: {{ item.brand }}</p>
+                                <p>Model: {{ item.model }}</p>
+                                <p>Size: {{ item.size }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="price">{{ item.product.price | currency:'USD'}}</td>
+                    <td>
+                        <div class="count">
+                            {{ item.product.count }}
+                            <div class="button">
+                                <div><i class="uil uil-angle-up button" (click)="changeCount(true,item.product)"></i></div>
+                                <div><i class="uil uil-angle-down button" (click)="changeCount(false,item.product)"></i></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="price">{{ item.product.price * item.product.count  | currency:'USD' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-total">
+        <h1>Card totals</h1>
+        <div class="total">
+            <p class="sub-total">Subtotal</p> <span>{{ total | currency:'USD' }}</span>
+        </div>
+        <button type="button" [routerLink]="[ '/checkout']">PROCEED TO CHECKOUT</button>
+    </div>
+</section>

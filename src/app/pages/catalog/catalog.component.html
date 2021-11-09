@@ -1,1 +1,58 @@
-<p>catalog works!</p>
+<section>
+    <div class="image-top">
+        <h1>Catalog</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar-left">
+            <div class="container-sidebar">
+                <div class="sidebar-filter-price">
+                    <h1>Filter by price</h1>
+                    <div class="custom-slider">
+                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                    </div>
+                    <div class="price-info">
+                        <button>Filter</button>
+                        <span class="price">Prise: ${{minValue}}—${{maxValue}}</span>
+                    </div>
+                </div>
+                <div class="sidebar-filter-subCategory">
+
+                    <ul *ngIf="subCategoryTitle; else category">
+                        <h1>Filter by sub category</h1>
+                        <li *ngFor="let item of subCategory">
+                            <a [routerLink]="[ '/catalog',item.path]" (click)="loadProductsBysubCategory(item.path)"><i
+                                    class="uil uil-angle-right-b"></i>{{item.name}}</a>
+                        </li>
+                    </ul>
+                    <ng-template #category>
+                        <ul>
+                            <h1>Filter by category</h1>
+                            <li *ngFor="let item of subCategory">
+                                <a [routerLink]="[ '/catalog',item.path]" (click)="checkChange(item.path)"><i
+                                        class="uil uil-angle-right-b"></i>{{item.name}}</a>
+                            </li>
+                        </ul>
+                    </ng-template>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="products">
+            <div class="product-item" *ngFor="let item of product">
+                <img [src]="item.imagePath" width="100%" height="200">
+                <p class="title">{{ item.name }}</p>
+                <div class="rating">
+                    <span class="active"></span>
+                    <span class="active"></span>
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="price">{{ item.price | currency:'USD' }}</div>
+                <button type="button" [routerLink]="[ '/products-detail', item.id ]">BUY NOW</button>
+            </div>
+        </div>
+    </div>
+</section>

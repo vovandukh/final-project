@@ -1,0 +1,40 @@
+<section>
+    <div class="vc-row">
+        <div class="title">
+            <span class="layer-1">02</span>
+            <h2 class="layer-2">PERFORM AND</h2>
+            <h2 class="layer-3">INSPIRE</h2>
+        </div>
+        <div class="image">
+            <img src="assets/images/img_vs.webp">
+            <h3>-20%</h3>
+        </div>
+    </div>
+</section>
+<section class="products">
+    <div class="pro-row">
+        <div *ngFor="let item of products; let i = index">
+        <div class="product-item" *ngIf="i<6" >
+                <img [src]="item.imagePath" width="370" height="370">
+            <p class="product-title" [routerLink]="[ 'products-detail', item.id ]">{{item.name}}</p>
+            <div class="rating">
+                <span class="active"></span>	
+                <span class="active"></span>    
+                <span class="active"></span>  
+                <span></span>    
+                <span></span>
+            </div>
+            <span class="price">
+                <i class="uil uil-dollar-alt"></i>
+                {{item.price}}</span>
+        </div>
+    </div>
+    </div>
+    <div class="button-wrapper">
+        <div class="row">
+            <app-button [buttonConfig]='button1'></app-button>
+            <app-button [buttonConfig]='button2'></app-button>
+        </div>
+    </div>
+    <div class="vc-empti-space"></div>
+</section>

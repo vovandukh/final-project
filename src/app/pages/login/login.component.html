@@ -1,1 +1,12 @@
-<p>login works!</p>
+<section>
+    <div class="container">
+        <span class="error animated tada" id="msg"></span>
+        <form name="form1" class="box" [formGroup]="loginForm">
+            <h4>Admin<span>Dashboard</span></h4>
+            <input type="text" name="email" placeholder="Email" autocomplete="off" formControlName="email">
+            <i class="typcn typcn-eye" id="eye"></i>
+            <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off" formControlName="password">
+            <button type="button" value="Sign in" class="btn1" (click)="loginUser()">Submit</button>
+        </form>
+    </div>
+</section>

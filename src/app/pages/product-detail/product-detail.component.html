@@ -1,1 +1,90 @@
-<p>product-detail works!</p>
+<section>
+    <div class="image-top">
+        <h1>{{ product.name }}</h1>
+    </div>
+    <div class="container">
+        <div class="image">
+            <img [src]="product.imagePath" width="100%" height="100%">
+        </div>
+        <div class="product-info">
+            <div class="price-rating">
+                <span>{{ product.price | currency:'USD' }}</span>
+                <div class="rating">
+                    <span class="active"></span>
+                    <span class="active"></span>
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="form-wrapper">
+                <form [formGroup]="orderDetail">
+                    <h3>Year</h3>
+                    <div class="select">
+                        <i class="uil uil-angle-down"></i>
+                        <select formControlName='year'>
+                            <option disabled selected>CHOOSE AN OPTION</option>
+                            <option [value]='2020'>2020</option>
+                            <option [value]='2019'>2019</option>
+                            <option [value]='2018'>2018</option>
+                            <option [value]='2018'>2017</option>
+                            <option [value]='2018'>2016</option>
+                            <option [value]='2018'>2015</option>
+                            <option [value]='2018'>2014</option>
+                            <option [value]='2018'>2013</option>
+                            <option [value]='2018'>2012</option>
+                            <option [value]='2018'>2011</option>
+                            <option [value]='2018'>2010</option>
+                        </select>
+                    </div>
+                    <h3>Make</h3>
+                    <div class="select">
+                        <i class="uil uil-angle-down"></i>
+                        <select  formControlName='brand' (change)='loadSubModel($event)'>
+                            <option disabled selected>CHOOSE AN OPTION</option>
+                            <option *ngFor="let item of modelBrand" [value]="item.brand">{{ item.brand }}</option>
+                        </select>
+                    </div>
+                    <h3>Model</h3>
+                    <div class="select">
+                        <i class="uil uil-angle-down"></i>
+                        <select  formControlName='model'>
+                            <option disabled selected>CHOOSE AN OPTION</option>
+                            <option *ngFor="let item of modelCar" [value]="item.model">{{ item.model }}</option>
+                        </select>
+                    </div>
+                    <h3>Size</h3>
+                    <input type="radio" class="custom-radio" id="choose" name="size" [value]="null"
+                        formControlName='size' checked>
+                    <label for="choose" class="label-1">Choose an option</label>
+                    <input type="radio" class="custom-radio" id="size-1" name="size" formControlName='size'
+                        [value]="17">
+                    <label for="size-1" class="label-2">17"</label>
+                    <input type="radio" class="custom-radio" id="size-2" name="size" formControlName='size'
+                        [value]="18">
+                    <label for="size-2" class="label-2">18"</label>
+                    <input type="radio" class="custom-radio" id="size-3" name="size" formControlName='size'
+                        [value]="20">
+                    <label for="size-3" class="label-2">20"</label>
+                    <input type="radio" class="custom-radio" id="size-4" name="size" formControlName='size'
+                        [value]="22">
+                    <label for="size-4" class="label-2">22"</label>
+                    <div class="wrapper">
+                        <div class="count">
+                            {{ product.count }}
+                            <div class="button">
+                                <div><i class="uil uil-angle-up button" (click)="changeCount(true)"></i></div>
+                                <div><i class="uil uil-angle-down button" (click)="changeCount(false)"></i></div>
+                            </div>
+                        </div>
+                        <button type="submit" (click)="addToBasket()" [disabled]='orderDetail.invalid'>BUY NOW</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="productDescription">
+        <h1>DESCRIPTION</h1>
+        <p>{{ product.description }}</p>
+    </div>
+</section>

@@ -1,6 +1,6 @@
 export interface ICategoryRequest{
     imagePath:string;
-    title:string;
+    name:string;
     description:string;
     path:string;
 }
@@ -8,7 +8,7 @@ export interface ICategoryRequest{
 export interface ICategoryResponce{
     id: string;
     imagePath:string;
-    title:string;
+    name:string;
     description:string;
     path:string;
 }

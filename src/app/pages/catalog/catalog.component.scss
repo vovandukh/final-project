@@ -1,0 +1,166 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/mixin";
+@import "../home/home.component.scss";
+.image-top {
+    height: 390px;
+    background-image: url(../../../assets/images/slide-1-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 10% 0 0 10%;
+    h1{
+        color: #ffffff;
+        font-size: 63px;
+        font-family: $secondary-font;
+        
+    }
+}
+
+.container {
+    padding: 90px 30px 0 60px;
+    display: flex;
+    .sidebar-left {
+        width: 25%;
+        height: 80%;
+        background-color: #ffffff;
+        .container-sidebar {
+            width: 100%;
+            padding: 48px 0;
+            .sidebar-filter-price {
+                width: 100%;
+                padding: 0 60px; 
+                h1{
+                    font-size: 20px;
+                    color: $secondary-text-color;
+                    font-family: $primary-font;
+                }
+                .price-info{
+                    margin: 10px 0 0 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    button{
+                        width: 90px;
+                        height: 50px;
+                        border-radius: 50px;
+                        font-size: 13px;
+                        outline: none;
+                        border: none;
+                        background-color: $secondary-color;
+                        color: #fff;
+                        font-family: $secondary-font;
+                        text-transform: uppercase;
+                    }
+                    .price{
+                        font-size: 11px;
+                        color: #B5B5B5;
+                        font-family: $primary-font;
+                    }
+                }
+            }
+            .sidebar-filter-subCategory{
+                margin-top: 53px;
+                border-top: 1px solid rgb(234, 234, 234);
+                padding: 43px 60px 0;
+                width: 100%;
+                h1{
+                    font-size: 20px;
+                    color: $secondary-text-color;
+                    font-family: $primary-font;
+                }
+                ul{
+                    margin:15px 0 0 0;
+                    list-style: none;
+                    font-size:18px;
+                    li{
+                        margin:5px 0 0 0;
+                        a{
+                            text-decoration: none;
+                            color: $secondary-text-color;
+                            font-family: $primary-font;
+                            &:hover{
+                                color: $secondary-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .products {
+        width: 75%;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        .product-item{
+            width: 233px;
+            margin: 0 14px 27px;
+            background-color: #ffffff;
+            .title{
+                margin: 30px 0 0 0; 
+                font-size: 19px; 
+                padding: 0 30px; 
+                font-family: $monserat-regular;
+            }
+            .rating{
+                margin: 18px 0;
+                span {
+                padding: 0;
+                font-size: 24px;
+                line-height: 0;
+                color: lightgrey;
+                }::before{
+                    content: '★';
+                }
+                .active{
+                    color: gold;
+                }
+            }
+            .price{
+                font-size: 25px;
+                font-family: $secondary-font;
+            }
+            button{
+                margin: 20px 0;
+                width: 111px;
+                height: 50px;
+                border-radius: 50px;
+                background-color: $secondary-text-color;
+                color: $primery-text-color;
+                border: none;
+                outline: none;
+                font-family: $secondary-font;
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .custom-slider {
+        margin: 0 10px;
+        .ngx-slider {
+            .ngx-slider-bar {
+                background: #b5b5b5;
+                height: 3px;
+            }
+            .ngx-slider-bubble {
+                display: none;
+            }
+            .ngx-slider-selection{
+                background: $secondary-color;
+            }
+            .ngx-slider-pointer{
+                width: 13px;
+                height: 13px;
+                top: auto;
+                bottom: -5px;
+                background: $secondary-color;
+            }
+            .ngx-slider-pointer:after {
+                display: none;
+             }
+            .ngx-slider-pointer:focus {
+            outline: none;
+             }
+        }
+    }
+}
