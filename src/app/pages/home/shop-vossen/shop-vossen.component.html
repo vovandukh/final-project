@@ -14,26 +14,26 @@
 <section class="products">
     <div class="pro-row">
         <div *ngFor="let item of products; let i = index">
-        <div class="product-item" *ngIf="i<6" >
+            <div class="product-item" *ngIf="i<6">
                 <img [src]="item.imagePath" width="370" height="370">
-            <p class="product-title" [routerLink]="[ 'products-detail', item.id ]">{{item.name}}</p>
-            <div class="rating">
-                <span class="active"></span>	
-                <span class="active"></span>    
-                <span class="active"></span>  
-                <span></span>    
-                <span></span>
+                <p class="product-title" [routerLink]="[ 'products-detail', item.id ]">{{item.name}}</p>
+                <div class="rating">
+                    <span class="active"></span>
+                    <span class="active"></span>
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="price">
+                    <i class="uil uil-dollar-alt"></i>
+                    {{item.price}}</span>
             </div>
-            <span class="price">
-                <i class="uil uil-dollar-alt"></i>
-                {{item.price}}</span>
         </div>
-    </div>
     </div>
     <div class="button-wrapper">
         <div class="row">
-            <app-button [buttonConfig]='button1'></app-button>
-            <app-button [buttonConfig]='button2'></app-button>
+            <button class="button" type="button" [routerLink]="[ '/catalog', 'vossen' ]">SHOP VOSSEN</button>
+            <button class="button button1" type="button" [routerLink]="[ '/catalog', 'wheels' ]">MORE BRANDS</button>
         </div>
     </div>
     <div class="vc-empti-space"></div>

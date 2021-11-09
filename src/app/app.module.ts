@@ -18,7 +18,6 @@ import { AdminModelComponent } from './admin/admin-model/admin-model.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { AdminSubCategoryComponent } from './admin/admin-sub-category/admin-sub-category.component';
 import { SliderComponent } from './pages/home/slider/slider.component';
-import { ButtonComponent } from './components/button/button.component';
 import { HomeCategoryComponent } from './pages/home/home-category/home-category.component';
 import { VideoSliderComponent } from './pages/home/video-slider/video-slider.component';
 import { HomeNewsComponent } from './pages/home/home-news/home-news.component';
@@ -40,6 +39,13 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ShopVossenComponent } from './pages/home/shop-vossen/shop-vossen.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { AdminSubModelComponent } from './admin/admin-sub-model/admin-sub-model.component';
+import { NewsComponent } from './pages/news/news.component';
+import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
+import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
+import { SafePipe } from './shared/pipes/safe/safe.pipe';
+import { RightMenuNewsComponent } from './components/right-menu-news/right-menu-news/right-menu-news.component';
+import {DpDatePickerModule} from 'ng2-date-picker';
+
 
 
 @NgModule({
@@ -60,7 +66,6 @@ import { AdminSubModelComponent } from './admin/admin-sub-model/admin-sub-model.
     CatalogComponent,
     AdminSubCategoryComponent,
     SliderComponent,
-    ButtonComponent,
     HomeCategoryComponent,
     VideoSliderComponent,
     HomeNewsComponent,
@@ -69,6 +74,11 @@ import { AdminSubModelComponent } from './admin/admin-sub-model/admin-sub-model.
     ShopVossenComponent,
     CheckoutComponent,
     AdminSubModelComponent,
+    NewsComponent,
+    NewsDetailComponent,
+    AdminNewsComponent,
+    SafePipe,
+    RightMenuNewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +91,7 @@ import { AdminSubModelComponent } from './admin/admin-sub-model/admin-sub-model.
     provideStorage(() => getStorage()),
     provideAnalytics(() => getAnalytics()),
     NgxSliderModule,
+    DpDatePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

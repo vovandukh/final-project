@@ -1,25 +1,25 @@
 <section class="container">
     <div class="row">
-        <div class="video-item">
-            <img src="assets/images/featured-2-600x450.jpg" width="364"
-                height="273">
-            <h1>BMW M5 Styling with <br> Lexani Wheels</h1>
-            <p>JANUARY 28,2017</p>
-            <app-button [buttonConfig]="button"></app-button>
-        </div>
-        <div class="video-item">
-            <img src="assets/images/featured-5-600x450.jpg" width="364"
-                height="273">
-            <h1>BMW M5 Styling with <br> Lexani Wheels</h1>
-            <p>JANUARY 28,2017</p>
-            <app-button [buttonConfig]="button"></app-button>
-        </div>
-        <div class="video-item">
-            <img src="assets/images/featured-6-600x450.jpg" width="364"
-                height="273">
-            <h1>BMW M5 Styling with <br> Lexani Wheels</h1>
-            <p>JANUARY 28,2017</p>
-            <app-button [buttonConfig]="button"></app-button>
+        <div *ngFor="let item of news;let i = index">
+            <ng-container *ngIf=" i < 3">
+                <div class="video-item" >
+                    <div class="image-wrapper">
+                        <div class="play-button" >
+                            <i class="uil uil-play" (click)="playVideo($event)"></i>
+                        </div>
+                        <img [src]="item.imagePath" width="100%">
+                    </div>
+                    <div class="video">
+                        <iframe class="img" [src]="item.videoPath | safe" width="640" height="480"
+                            frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+                    </div>
+                    <h1>{{ item.name }}</h1>
+                    <p>{{ item.date }}</p>
+                    <button class="button" type="submit" [routerLink]="[ 'news-detail', item.id ]">
+                        READ MORE
+                    </button>
+                </div>
+            </ng-container>
         </div>
     </div>
     <div class="button-page-wrapper">

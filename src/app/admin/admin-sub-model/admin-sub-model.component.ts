@@ -49,11 +49,12 @@ export class AdminSubModelComponent implements OnInit {
   }
 
 
-  close() {
-    this.modalOpen = { 'display': 'none' };
-  }
-  open() {
-    this.modalOpen = { 'display': 'block' };
-  }
+  openModal(status:any){
+    if(status){
+     this.modalOpen = {'display': 'block'};
+    }else{
+     this.modalOpen = {'display': 'none'};
+    }
+   }
 
 }

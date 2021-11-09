@@ -1,6 +1,6 @@
 <div class="container">
     <div class="button-wrapper">
-        <button type="button" (click)="open()">
+        <button type="button" (click)="openModal(true)">
             +
         </button>
     </div>
@@ -40,7 +40,7 @@
     <div class="modal">
         <div class="wrapper-title">
             <h1 class="title">Products</h1>
-            <div><i class="uil uil-times" (click)="close()"></i></div>
+            <div><i class="uil uil-times" (click)="openModal(false)"></i></div>
         </div>
         <div class="form-wrapper">
             <form [formGroup]="productForm" (ngSubmit)="saveProducts()">

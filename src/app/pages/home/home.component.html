@@ -5,7 +5,9 @@
             <span class="form-text">Subscribe for News and Get a Discount</span>
             <form>
                 <input type="text" placeholder="YOUR EMAIL">
-                <app-button [buttonConfig]="subscribeButton"></app-button>
+                <button type= "submit">
+                   SUBSCRIBE
+                </button>
             </form>
         </div>
     </div>
@@ -41,6 +43,28 @@
 <div class="order-callback">
     <div class="row">
         <p class="text">Order a Callback to Get a Free Professional Consultation</p>
-        <app-button [buttonConfig]="button3"></app-button>
+        <button class="button" type= "submit" (click)="openModalCallback(true)">
+            ORDER A CALLBACK
+         </button>
+    </div>
+</div>
+
+
+<!-- Modal Callback -->
+
+<div class="modal-callback-wrapper" [ngStyle]="modalCallback">
+    <div class="modal-wrapper">
+        <div class="modal">
+            <div class="close-button-wrapper"><i class="uil uil-times" (click)="openModalCallback(false)"></i></div>
+            <div class="form-wrapper">
+                <h3>Fill the Form Below</h3>
+                <p>Our manager will call you back in a few minutes</p>
+                <form>
+                    <input type="text" placeholder="ENTER YOUR NAME">
+                    <input type="text" placeholder="ENTER YOUR PHONE NUMBER">
+                    <button type="submit">ORDER A CALLBACK</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

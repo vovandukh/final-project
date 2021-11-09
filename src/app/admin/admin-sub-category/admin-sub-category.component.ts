@@ -75,10 +75,11 @@ export class AdminSubCategoryComponent implements OnInit {
       this.loadSubCategory()
     })
   }
-  close() {
-    this.modalOpen = {'display': 'none'};
-  }
-  open() {
-    this.modalOpen = {'display': 'block'};
-  }
+  openModal(status:any){
+    if(status){
+     this.modalOpen = {'display': 'block'};
+    }else{
+     this.modalOpen = {'display': 'none'};
+    }
+   }
 }

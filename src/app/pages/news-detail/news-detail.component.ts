@@ -1,0 +1,26 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { INewsResponce } from 'src/app/shared/interfaces/news/news.inteface';
+import { NewsService } from 'src/app/shared/services/news/news.service';
+
+@Component({
+  selector: 'app-news-detail',
+  templateUrl: './news-detail.component.html',
+  styleUrls: ['./news-detail.component.scss']
+})
+export class NewsDetailComponent implements OnInit {
+  public news:any;
+  public newsID = this.activatedRoute.snapshot.paramMap.get('id');
+  constructor(private newsService:NewsService, private activatedRoute:ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.loadNews();
+  }
+
+  loadNews(){
+    this.newsService.getNewsById(this.newsID as string).then(data =>{
+      this.news = data.data();
+      console.log(this.news);
+    })
+  }
+}

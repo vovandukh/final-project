@@ -26,8 +26,13 @@ export class ProductService {
     return deleteDoc(doc(this.firestore, "products", product.id))
   }
   getProductCategory(name: any): Promise<QuerySnapshot<DocumentData>> {
-    let data = query(collection(this.firestore, "products"), where("category.path", "==", name));
+    if(name == 'vossen'){
+      let data = query(collection(this.firestore, "products"), where("brand", "==", name));
+      return getDocs(data)
+    }else{
+      let data = query(collection(this.firestore, "products"), where("category.path", "==", name));
     return getDocs(data)
+    }
   }
   getProductSubCategory(name: any): Promise<QuerySnapshot<DocumentData>> {
     let data = query(collection(this.firestore, "products"), where("subCategory.path", "==", name));

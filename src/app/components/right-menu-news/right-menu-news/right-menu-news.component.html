@@ -1,0 +1,19 @@
+
+<div class="right-filter">
+    <div class="recent-posts">
+        <h1>Recent Posts</h1>
+        <div class="posts-wrapper" *ngFor="let item of news;let i = index ">
+            <ng-container *ngIf="i < 2">
+                <div class="post">
+                    <img [src]="item.imagePath" width="60" height="60">
+                    <a class="name" [routerLink]="[ '/news-detail', item.id ]">{{ item.name }}</a>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="calendar">
+        <h1>Calendar</h1>
+        <dp-day-calendar theme="dp-material"></dp-day-calendar>  
+        <div class="empty-space"></div>
+    </div> 
+</div>

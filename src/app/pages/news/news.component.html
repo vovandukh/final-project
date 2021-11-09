@@ -1,0 +1,21 @@
+<section>
+    <div class="image-top">
+        <h1>All Post</h1>
+    </div>
+    <div class="container">
+        <div class="news-wrapper">
+            <div class="news-item" *ngFor="let item of news">
+                <div class="image-wrapper">
+                    <img [src]="item.imagePath">
+                </div>
+                <div class="info">
+                    <p class="name" ><a [routerLink]="[ '/news-detail', item.id ]">{{ item.name }}</a></p>
+                    <p class="date">{{ item.date }}</p>
+                    <p class="text">{{ item.description | slice:0:405}}...</p>
+                    <button type="button" [routerLink]="[ '/news-detail', item.id ]">READ MORE</button>
+                </div>
+            </div>
+        </div>
+        <app-right-menu-news></app-right-menu-news>
+    </div>
+</section>

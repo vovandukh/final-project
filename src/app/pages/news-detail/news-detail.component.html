@@ -1,0 +1,26 @@
+<section>
+    <div class="image-top">
+        <h1>{{ news.name }}</h1>
+    </div>
+    <div class="container">
+        <div class="news-wrapper">
+            <div class="image-wrapper">
+                <img [src]="news.imagePath" alt="">
+            </div>
+            <div class="date">{{ news.date }}</div>
+            <div class="video" *ngIf="news.videoPath">
+                <iframe class="img" [src]="news.videoPath | safe" frameborder="0" webkitallowfullscreen
+                    mozallowfullscreen allowfullscreen></iframe>
+            </div>
+            <p class="text">{{ news.description | slice:0:82 }}</p>
+            <p class="text">{{ news.description | slice:82:428 }}</p>
+            <p class="text">{{ news.description | slice:428:793 }}</p>
+            <p class="text">{{ news.description | slice:793: -1 }}</p>
+            <div>
+                <p class="tags">TAGS: <a class="tag">{{news.tags}}</a> </p>
+            </div>
+        </div>
+        <app-right-menu-news></app-right-menu-news>
+    </div>
+
+</section>

@@ -198,6 +198,29 @@
             @media screen and (max-width: $media-xxl) {
                 width: 290px;
             }
+            .button{
+                padding: 16px 24px;
+                border-radius: 50px;
+                font-family: $secondary-font;
+                color: $primery-text-color;
+                outline: none;
+                border: none;
+                background-color: $secondary-color;
+                @media screen and (max-width:$media-xl){
+                    padding: 17px 18px;
+                 }
+                 &:hover{
+                     background-color: $secondary-text-color;
+                     transition: all 0.5s;
+                 }
+            }
+            .button1{
+                background-color: $secondary-text-color;
+                &:hover{
+                    background-color: $secondary-color;
+                    transition: all 0.5s;
+                }
+            }
         }
     }
     .vc-empti-space {

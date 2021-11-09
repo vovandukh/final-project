@@ -11,20 +11,22 @@
                     <td>#</td>
                     <td>Name</td>
                     <td>Description</td>
+                    <td>Tags</td>
                     <td>Image</td>
                     <td>Action</td>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let category of category ; let i = index">
+                <tr *ngFor="let category of news ; let i = index">
                     <td> {{ i + 1 }}</td>
                     <td> {{ category.name }} </td>
-                    <td> {{ category.description }}</td>
+                    <td> {{ category.description | slice:0:50 }}</td>
+                    <td> {{ category.tags }}</td>
                     <td><img [src]="category.imagePath" width="50" height="50"></td>
                     <td>
                         <div class="btn-wrap">
-                            <button class="btn1" type="button" (click)="editCategory(category)">Edit</button>
-                            <button class="btn1 btn2" type="button" (click)="deleteCategory(category)">Delete</button>
+                            <button class="btn1" type="button" >Edit</button>
+                            <button class="btn1 btn2" type="button">Delete</button>
                         </div>
                     </td>
                 </tr>
@@ -41,16 +43,18 @@
             <div><i class="uil uil-times" (click)="openModal(false)"></i></div>
         </div>
         <div class="form-wrapper">
-            <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+            <form [formGroup]="newsForm" (ngSubmit)="saveNews()">
                 <h1>Name</h1>
                 <input type="text" placeholder="Name here.." formControlName="name">
-                <h1>Path</h1>
-                <input type="text" placeholder="Path here.." formControlName="path">
+                <h1>Video</h1>
+                <input type="text" placeholder="video Path here.." formControlName="videoPath">
                 <h1>Description</h1>
                 <textarea placeholder="Text here.." formControlName="description"></textarea>
+                <h1>Tags</h1>
+                <input type="text" placeholder="Text here.." formControlName="tags">
                 <h1>Image</h1>
                 <input type="file" (change)="upload($event)">
-                <button type="submit" [disabled]="categoryForm.invalid">Submit</button>
+                <button type="submit" [disabled]="newsForm.invalid">Submit</button>
             </form>
         </div>
     </div>

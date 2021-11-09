@@ -72,6 +72,22 @@
                     font-family: $primary-font;
                     margin: 0 16px 0 0;
                 }
+                button{
+                    padding: 16px 24px;
+                    border-radius: 50px;
+                    font-family: $secondary-font;
+                    color: $primery-text-color;
+                    outline: none;
+                    border: none;
+                    background-color: $secondary-color;
+                    @media screen and (max-width:$media-xl){
+                        padding: 17px 18px;
+                     }
+                     &:hover{
+                         background-color: $primery-color;
+                         transition: all 0.5s;
+                     }
+                }
             }
 
         }

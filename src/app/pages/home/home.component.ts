@@ -6,11 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
- public button3 = {type:'button',text:'order a callback',color:'#e43315'}
- public subscribeButton = {text:'subscribe', type: 'submit',color:'#e43315'}
+ public modalCallback= {}
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openModalCallback(status:any){
+   if(status){
+     this.modalCallback = {'display': 'block'}
+   }else{
+    this.modalCallback = {'display': 'none'}
+   }
   }
 
 }
