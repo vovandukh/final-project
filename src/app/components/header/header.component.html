@@ -16,19 +16,10 @@
                         <a  class="for-nav-item " class="for-nav-item" [routerLink]="[ 'news' ]" routerLinkActive="active">NEWS</a>  
                     </li>
                     <li class="nav-item">
-                        <a class="for-nav-item" href="#">ABOUT US</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="for-nav-item" href="#">FEATURES</a>
-                        <i class="uil uil-angle-down"></i>
-                    </li>
-                    <li class="nav-item-last drop-down-menu">
-                        <span href="#" class="for-last-item">
-                            <i class="uil uil-ellipsis-h"></i>
-                        </span>
+                        <a class="for-nav-item" href="#">CONTACTS</a>
                     </li>
                     <li class="menu">
-                        <i class="uil uil-bars" (click)="openMenu()"></i>
+                        <i class="uil uil-bars" (click)="openMenu(true)"></i>
                     </li>
                 </ul>
             </nav>
@@ -55,38 +46,34 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="basket-wrapper">
-                <i class="uil uil-shopping-basket"></i>
-                <span (click)="openBasketModal()" >{{ total| currency:'USD' }}</span>
-                <div class="basket-modal" [ngStyle]="basketModal">
-                    <div class="basket-close"><i class="uil uil-times" (click)="closeBasketModal()"></i></div>
-
-                    <div class="basket-info">
-                        <ng-container *ngIf="basketproduscts ; else noItem" >
-                            <div class="cart" *ngFor="let item of basketInfo" >
-                                <img [src]="item.imagePath" width="55px" height="55px">
-                               <div>
-                                <div style="display: flex;"><h5>{{item.name}}</h5> <i class="uil uil-times" (click)="removeProduct(item.id)"></i></div>
-                                <p>{{item.count}} x {{item.price}}</p>
-                               </div>
-                            </div>
-                            <div class="cart-1">
-                                <div class="subTotal">Subtotal: {{total | currency:'USD'}}</div>
-                                <div class="button-wrapper">
-                                    <button type="button" [routerLink]="['basket']" (click)="closeBasketModal()">VIEV CART</button>
-                                    <button type="button" [routerLink]="[ 'checkout']" (click)="closeBasketModal()" >CHECKOUT</button>
+                <div class="basket-wrapper">
+                    <i class="uil uil-shopping-basket"></i>
+                    <span (click)="openBasketModal()" >{{ total| currency:'USD' }}</span>
+                    <div class="basket-modal" [ngStyle]="basketModal">
+                        <div class="basket-close"><i class="uil uil-times" (click)="closeBasketModal()"></i></div>
+    
+                        <div class="basket-info">
+                            <ng-container *ngIf="basketproduscts ; else noItem" >
+                                <div class="cart" *ngFor="let item of basketInfo" >
+                                    <img [src]="item.imagePath" width="55px" height="55px">
+                                   <div>
+                                    <div style="display: flex;"><h5>{{item.name}}</h5> <i class="uil uil-times" (click)="removeProduct(item.id)"></i></div>
+                                    <p>{{item.count}} x {{item.price}}</p>
+                                   </div>
                                 </div>
-                            </div>  
-                        </ng-container>
-                        <ng-template #noItem>
-                            <p >No products in the cart</p>
-                        </ng-template>
-                        
-                      
-                            
-                        
-                        
+                                <div class="cart-1">
+                                    <div class="subTotal">Subtotal: {{total | currency:'USD'}}</div>
+                                    <div class="button-wrapper">
+                                        <button type="button" [routerLink]="['basket']" (click)="closeBasketModal()">VIEV CART</button>
+                                        <button type="button" [routerLink]="[ 'checkout']" (click)="closeBasketModal()" >CHECKOUT</button>
+                                    </div>
+                                </div>  
+                            </ng-container>
+                            <ng-template #noItem>
+                                <p >No products in the cart</p>
+                            </ng-template>
+    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,7 +84,7 @@
 <div class="menu-space" [ngStyle]="menuOpen">
    <div class="row">
        <div class="close">
-        <i class="uil uil-times" (click)="closeMenu()"></i>
+        <i class="uil uil-times" (click)="openMenu(false)"></i>
        </div>
        <div class="logo-wrapper">
            <img class="logo" src="/assets/images/logo-header-retina.webp">
@@ -108,12 +95,6 @@
            </li>
            <li>
             <a [routerLink]="[ '/path']">CATALOG</a>
-           </li>
-           <li>
-            <a [routerLink]="[ '/path']">FEATURES</a>
-           </li>
-           <li>
-            <a [routerLink]="[ '/path']">ABOUT US</a>
            </li>
            <li> 
             <a [routerLink]="[ '/path']">NEWS</a>

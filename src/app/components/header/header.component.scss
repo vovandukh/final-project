@@ -14,7 +14,7 @@
         .logo-nav-wrapper {
             @include flex(row, space-evenly, normal);
             height: 60px;
-            width: 60%;
+            width: 40%;
             margin: 20px 0 0;
             .logo-image {
                 width: 170px;
@@ -80,11 +80,6 @@
                             transition: all 0.5s;
                         }
                     }
-                    @media screen and (max-width: $media-xl) {
-                        .news-item {
-                            display: none;
-                        }
-                    }
                     @media screen and (max-width: $media-md) {
                         justify-content: flex-end;
                         .nav-item {
@@ -107,13 +102,12 @@
             }
         }
         .wbp-wrapper {
-            width: 40%;
+            width: 60%;
             display: flex;
             @include flex(column, flex-start, flex-end);
-            padding-top: 20px;
+            padding: 12px 0;
             .info-wrapper {
                 font-size: 13px;
-                width: 535px;
                 @include flex(row, flex-end, center);
                 color: $primery-text-color;
                 font-family: $primary-font;
@@ -179,94 +173,93 @@
                         width: 180px;
                     }
                 }
-            }
-            .basket-wrapper {
-                margin: 40px 0 0 0;
-                color: $secondary-color;
-                position: relative;
-                float: right;
-                font-size: 13px;
-                transition: all 0.5;
-                font-family: $primary-font;
-                .uil-shopping-basket {
-                    margin: 0 5px 0;
-                    font-size: 16px;
-                }
-                span {
-                    margin: 0 5px 0;
-                    &:hover {
-                        color: $primery-text-color;
-                        transition: all 0.5s;
+                .basket-wrapper {
+                    margin: 0 0 0 20px;
+                    color: $secondary-color;
+                    position: relative;
+                    float: right;
+                    font-size: 13px;
+                    transition: all 0.5;
+                    font-family: $primary-font;
+                    .uil-shopping-basket {
+                        margin: 0 5px 0;
+                        font-size: 16px;
                     }
-                }
-                .basket-modal{
-                    width: 280px;
-                    min-height: 100px;
-                    position: absolute;
-                    background-color: rgb(24, 24, 24);
-                    right: 0;
-                    top: 35px;
-                    display: none;
-                    .basket-close{
-                        display: flex;
-                        justify-content: flex-end;
-                        .uil-times{
-                            font-size: 16px;
-                            margin: 5px 15px 0 0 ;
-                            color: #ffffff;
-                            &:hover{
-                                color: $secondary-color;
+                    span {
+                        margin: 0 5px 0;
+                        &:hover {
+                            color: $primery-text-color;
+                            transition: all 0.5s;
+                        }
+                    }
+                    .basket-modal{
+                        width: 280px;
+                        min-height: 100px;
+                        position: absolute;
+                        background-color: rgb(24, 24, 24);
+                        right: 0;
+                        top: 35px;
+                        display: none;
+                        .basket-close{
+                            display: flex;
+                            justify-content: flex-end;
+                            .uil-times{
+                                font-size: 16px;
+                                margin: 5px 15px 0 0 ;
+                                color: #ffffff;
+                                &:hover{
+                                    color: $secondary-color;
+                                }
                             }
                         }
+                        .basket-info{
+                        margin: 15px 0 0 25px;
+                          font-size: 13px;
+                          color: #ffffff;
+                          .uil-times{
+                              font-size: 16px;
+                              &:hover{
+                                color: $secondary-color;
+                            }
+                          }
+                        }
+                        .cart{
+                            display: flex;
+                            padding-right: 40px;
+                            z-index: 100;
+                            img{
+                                margin: 0 15px 0 0;
+                            }
+                            span{
+                                margin: 0 0 0 10px;
+                            }
+                            p{
+                                margin: 20px 0 0;
+                            }   
+                        }
+                        .cart-1{
+                            .subTotal{
+                                position: relative;
+                                margin: 40px 0 0 0;
+                                left: 0;
+                            }
+                           .button-wrapper{
+                               margin: 36px 0;
+                            button{
+                                width: 100px;
+                                height: 38px;
+                                border-radius: 50px;
+                                margin: 0 5px 0 0;
+                                border: none;
+                                outline: none;
+                                background-color: $secondary-color;
+                                color: $primery-text-color;
+                            }
+                           }
+                        }
                     }
-                    .basket-info{
-                    margin: 15px 0 0 25px;
-                      font-size: 13px;
-                      color: #ffffff;
-                      .uil-times{
-                          font-size: 16px;
-                          &:hover{
-                            color: $secondary-color;
-                        }
-                      }
-                    }
-                    .cart{
-                        display: flex;
-                        padding-right: 40px;
-                        // position: relative;
-                        z-index: 100;
-                        img{
-                            margin: 0 15px 0 0;
-                        }
-                        span{
-                            margin: 0 0 0 10px;
-                        }
-                        p{
-                            margin: 20px 0 0;
-                        }   
-                    }
-                    .cart-1{
-                        .subTotal{
-                            position: relative;
-                            margin: 40px 0 0 0;
-                            left: 0;
-                        }
-                       .button-wrapper{
-                           margin: 36px 0;
-                        button{
-                            width: 100px;
-                            height: 38px;
-                            border-radius: 50px;
-                            margin: 0 5px 0 0;
-                            border: none;
-                            outline: none;
-                            background-color: $secondary-color;
-                            color: $primery-text-color;
-                        }
-                       }
-                    }
+                    
                 }
-                
             }
             @media screen and (max-width: $media-xl) {
                 display: none;

@@ -95,11 +95,11 @@ export class HeaderComponent implements OnInit {
     this.basketModal = { 'display': 'none' }
   }
 
-  openMenu() {
-    this.menuOpen = { 'display': 'block' };
+  openMenu(status:any) {
+    if(status){
+      this.menuOpen = { 'display': 'block' };
+    } else{
+      this.menuOpen = { 'display': 'none' };
+    }
   }
-  closeMenu() {
-    this.menuOpen = { 'display': 'none' };
-  }
-
 }
