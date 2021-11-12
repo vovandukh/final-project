@@ -7,7 +7,7 @@
             <nav class="nav-wrapper">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="for-nav-item" [routerLink]="[ '' ]" routerLinkActive="active">HOME</a>
+                        <a class="for-nav-item" [routerLink]="[ 'home' ]" routerLinkActive="active">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="for-nav-item" [routerLink]="[ 'catalog/all' ]" routerLinkActive="active">CATALOG</a>
@@ -16,7 +16,13 @@
                         <a  class="for-nav-item " class="for-nav-item" [routerLink]="[ 'news' ]" routerLinkActive="active">NEWS</a>  
                     </li>
                     <li class="nav-item">
-                        <a class="for-nav-item" href="#">CONTACTS</a>
+                        <a class="for-nav-item" [routerLink]="[ 'contacts' ]" routerLinkActive="active">CONTACTS</a>
+                    </li>
+                    <li class="nav-item" *ngIf="!userLogin">
+                        <a class="for-nav-item" [routerLink]="[ 'login-user' ]" routerLinkActive="active" >LOG IN</a>
+                    </li>
+                    <li class="nav-item" *ngIf="userLogin" >
+                        <a class="for-nav-item" [routerLink]="['profile']" routerLinkActive="active">PROFILE</a>
                     </li>
                     <li class="menu">
                         <i class="uil uil-bars" (click)="openMenu(true)"></i>
@@ -91,16 +97,19 @@
        </div>
        <ul>
            <li>
-               <a [routerLink]="[ '/path']">HOME</a>
+               <a [routerLink]="[ 'home']"  (click)="openMenu(false)">HOME</a>
            </li>
            <li>
-            <a [routerLink]="[ '/path']">CATALOG</a>
+            <a [routerLink]="[ 'catalog/all']" (click)="openMenu(false)">CATALOG</a>
            </li>
            <li> 
-            <a [routerLink]="[ '/path']">NEWS</a>
+            <a [routerLink]="[ 'news']" (click)="openMenu(false)">NEWS</a>
            </li>
            <li> 
-            <a [routerLink]="[ '/path']">CONTACTS</a>
+            <a [routerLink]="[ 'contacts']" (click)="openMenu(false)">CONTACTS</a>
+           </li>
+           <li> 
+            <a [routerLink]="[ 'basket']" (click)="openMenu(false)">CART</a>
            </li>
        </ul>
        <div class="search">

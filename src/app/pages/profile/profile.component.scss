@@ -1,0 +1,55 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/mixin";
+.image-top {
+    width: 100%;
+    height: 200px;
+    background-image: url(../../../assets/images/slide-1-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 5% 0 0 5%;
+    h1 {
+        color: #ffffff;
+        font-size: 52px;
+        font-family: $secondary-font;
+        @media screen and (max-width: $media-xl) {
+            position: absolute;
+            top: 15%;
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-lg) {
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-md) {
+            font-size: 32px;
+            position: absolute;
+            top: 15%;
+        }
+    }
+}
+
+.container{
+    height: 500px;
+    width: 70%;
+    margin: 40px auto;
+    background-color: #ffffff;
+    .header{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: rgb(43, 43, 43);
+        .active{
+            color: $secondary-color;
+        }
+        a{
+            text-decoration: none;
+            color: #ffffff;
+            font-family: $primary-font;
+            &:hover{
+                color: $secondary-color;
+                transition: all 0.2s; 
+            }
+        }
+    }
+}

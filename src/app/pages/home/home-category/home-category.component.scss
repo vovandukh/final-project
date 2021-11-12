@@ -41,6 +41,10 @@
          
             
         }
+        @media screen and (max-width: $media-md) {
+            width: 100vw;
+            height: 60vh;
+        }
         
 
         

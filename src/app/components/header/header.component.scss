@@ -14,7 +14,7 @@
         .logo-nav-wrapper {
             @include flex(row, space-evenly, normal);
             height: 60px;
-            width: 40%;
+            width: 50%;
             margin: 20px 0 0;
             .logo-image {
                 width: 170px;
@@ -94,10 +94,16 @@
                     }
                 }
             }
+            @media screen and (max-width: $media-xxl) {
+                width: 50%;
+            }
             @media screen and (max-width: $media-xl) {
-                width: 80%;
+                width: 60%;
             }
             @media screen and (max-width: $media-lg) {
+                width: 60%;
+            }
+            @media screen and (max-width: $media-md) {
                 width: 100%;
             }
         }
@@ -137,7 +143,7 @@
                     }  
                 }
                 .seach-form {
-                    width: 235px;
+                    width: 180px;
                     height: 34px;
                     background-color: $primery-text-color;
                     margin: 0 0 0 30px;
@@ -170,7 +176,7 @@
                         font-family: $primary-font;
                     }
                     @media screen and (max-width: $media-xxl) {
-                        width: 180px;
+                        width: 150px;
                     }
                 }
                 .basket-wrapper {
@@ -254,6 +260,7 @@
                                 outline: none;
                                 background-color: $secondary-color;
                                 color: $primery-text-color;
+                                
                             }
                            }
                         }
@@ -262,7 +269,22 @@
                 }
             }
             @media screen and (max-width: $media-xl) {
-                display: none;
+                width: 40%;
+                margin:10px 0 0 0;
+                .seach-form{
+                    display: none;
+                }       
+            }
+            @media screen and (max-width: $media-lg) {
+                width: 40%;
+                .phone-number{
+                    display: none;
+                } 
+            }
+            @media screen and (max-width: $media-md) {
+                .info-wrapper{
+                    display: none;
+                }
             }
         }
     }

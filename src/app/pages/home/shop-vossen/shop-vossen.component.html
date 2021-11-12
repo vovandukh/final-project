@@ -16,7 +16,7 @@
         <div *ngFor="let item of products; let i = index">
             <div class="product-item" *ngIf="i<6">
                 <img [src]="item.imagePath" width="370" height="370">
-                <p class="product-title" [routerLink]="[ 'products-detail', item.id ]">{{item.name}}</p>
+                <p class="product-title" [routerLink]="[ '/products-detail', item.id ]">{{item.name}}</p>
                 <div class="rating">
                     <span class="active"></span>
                     <span class="active"></span>

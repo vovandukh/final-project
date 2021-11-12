@@ -1,1 +1,17 @@
-<p>profile works!</p>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="image-top">
+    <h1>PROFILE</h1>
+</div>
+<section>
+    <div class="container">
+        <div class="header">
+            <a [routerLink]="[ 'profile-info' ]" routerLinkActive="active">PROFILE</a>
+            <a [routerLink]="[ 'profile-orders' ]" routerLinkActive="active">ORDERS</a>
+            <a [routerLink]="[ 'edit-profile' ]" routerLinkActive="active">EDIT PROFILE</a>
+            <a (click)="signOut()" style="color: red;">SIGN OUT</a>
+        </div>
+        <div class="row">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</section>

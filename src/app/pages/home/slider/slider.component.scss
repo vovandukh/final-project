@@ -150,5 +150,22 @@
             display: none;
         }
      }
+     @media screen and (max-width:$media-sm){
+         .title-slider{
+            .layer-1{
+                font-size: 40px;
+                line-height: 10px;
+            }
+            .layer-2{
+                font-size: 40px;
+                line-height: 10px;
+            }
+            .layer-3{
+                font-size: 38px;
+            }
+
+         }
+        
+     }
     
 }

@@ -10,6 +10,19 @@
         color: #ffffff;
         font-size: 63px;
         font-family: $secondary-font;
+        @media screen and (max-width: $media-xl) {
+            position: absolute;
+            top: 30%;
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-lg) {
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-md) {
+            font-size: 32px;
+            position: absolute;
+            top: 30%;
+        }
     }
 }
 
@@ -18,21 +31,24 @@
     width: 90%;
     max-width: 1170px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     .news-wrapper {
         width: 65%;
         .news-item {
             width: 100%;
-            height: 821px;
             background-color: #ffffff;
             margin: 0 0 80px;
             .image-wrapper {
                 width: inherit;
-                height: 428px;
+                height: 30vw;
                 img {
                     width: 100%;
                     height: 100%;
                 }
+                @media screen and (max-width: $media-md) {
+                  height: 50vw;
+                } 
             }
             .info {
                 padding: 40px;
@@ -59,7 +75,7 @@
                     font-family: $monserat-regular;
                 }
                 button{
-                    margin: 50px 0;
+                    margin: 50px 0 30px;
                     padding: 16px 23px;
                     border-radius: 50px;
                     background-color: $secondary-text-color;
@@ -73,6 +89,25 @@
                     }
                 }
             }
+            
         }
+        @media screen and (max-width: $media-xxl) {
+            width: 59vw;
+        } 
+        @media screen and (max-width: $media-xl) {
+            width: 53vw;
+        } 
+        @media screen and (max-width: $media-lg) {
+            width: 57vw;
+        } 
+        @media screen and (max-width: $media-md) {
+            width: 100%;
+        } 
+    }
+    @media screen and (max-width: $media-xl) {
+        width: 85%;
+    }
+    @media screen and (max-width: $media-lg) {
+        width: 90%;
     }
 }

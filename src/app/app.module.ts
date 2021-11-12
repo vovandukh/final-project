@@ -43,8 +43,17 @@ import { NewsComponent } from './pages/news/news.component';
 import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 import { SafePipe } from './shared/pipes/safe/safe.pipe';
-import { RightMenuNewsComponent } from './components/right-menu-news/right-menu-news/right-menu-news.component';
+import { RightMenuNewsComponent } from './components/right-menu-news/right-menu-news.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import { LoginUserComponent } from './pages/login-user/login-user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ProfileInfoComponent } from './pages/profile/profile-info/profile-info.component';
+import { ProfileOrdersComponent } from './pages/profile/profile-orders/profile-orders.component';
+import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.component';
+
+
 
 
 
@@ -79,6 +88,11 @@ import {DpDatePickerModule} from 'ng2-date-picker';
     AdminNewsComponent,
     SafePipe,
     RightMenuNewsComponent,
+    ContactsComponent,
+    LoginUserComponent,
+    ProfileInfoComponent,
+    ProfileOrdersComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +105,9 @@ import {DpDatePickerModule} from 'ng2-date-picker';
     provideStorage(() => getStorage()),
     provideAnalytics(() => getAnalytics()),
     NgxSliderModule,
-    DpDatePickerModule
+    DpDatePickerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

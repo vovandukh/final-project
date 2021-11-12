@@ -1,6 +1,8 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IProductResponce } from 'src/app/shared/interfaces/products/product.interface';
+import { LoginService } from 'src/app/shared/services/login/login.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
@@ -8,26 +10,30 @@ import { OrderService } from 'src/app/shared/services/order/order.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit{
   @ViewChild('topPanel') topPanel!: ElementRef;
+  public userLogin = false;
   public topPanelOffsetTop: number = 0;
   public topPanelElse = { 'top-panel-else': false };
-  public adminLogin = false;
   public menuOpen = { 'display': 'none' };
   public basketModal = { 'display': 'none' };
   public basketproduscts:boolean = false;
   public total = 0;
   public basket = [];
   public basketInfo:IProductResponce[] = [];
-  constructor(private orderService: OrderService
 
-  ) { }
+
+
+  constructor(private orderService: OrderService, private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.checkChenge();
     this.loadBasket();
-    this.setTotalPrice()
+    this.setTotalPrice();
+    this.loginCheck();
+    this.checkUserLogin()
   }
+  
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -60,6 +66,23 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  checkUserLogin(){
+    if(localStorage.length > 0 && localStorage.getItem('user')){
+      const user = JSON.parse(localStorage.getItem('user') as string)
+      console.log(user);
+      if(user.role === 'USER'){
+        this.userLogin = true;
+      } else {
+        this.userLogin = false;
+      }
+    }
+  }
+
+  loginCheck(){
+   this.loginService.$checkLogin.subscribe(()=>{
+     this.checkUserLogin()
+   })
+  }
   setTotalPrice() {
     if (this.basket.length === 0) {
       this.total = 0;

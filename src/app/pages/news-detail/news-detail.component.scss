@@ -10,6 +10,19 @@
         color: #ffffff;
         font-size: 63px;
         font-family: $secondary-font;
+        @media screen and (max-width: $media-xl) {
+            position: absolute;
+            top: 30%;
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-lg) {
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-md) {
+            font-size: 32px;
+            position: absolute;
+            top: 30%;
+        }
         
     }
 }
@@ -19,21 +32,31 @@
     max-width: 1170px;
     margin: 90px auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     .news-wrapper{
         width: 65%;
         .image-wrapper{
-            height: 550px;
+            height: 30vw;
             img{
                 width: 100%;
                 height: 100%;
             }
+            @media screen and (max-width: $media-lg) {
+                height: 30vw;
+              } 
+            @media screen and (max-width: $media-md) {
+                height: 50vw;
+              } 
         }
         .date{
             margin: 50px 0 80px 0;
             font-size: 13px;
             color: #b5b5b5;
             font-family: $secondary-font;
+            @media screen and (max-width: $media-xl) {
+                margin: 20px 0;
+            } 
         }
         .video{
             margin: 0 0 80px;
@@ -48,6 +71,9 @@
             font-size: 14px;
             font-family: $primary-font;
             margin: 0 0 26px;
+            @media screen and (max-width: $media-xl) {
+                margin: 10px 0;
+            }
         }
         .tags{
             font-size: 14px;
@@ -62,5 +88,18 @@
                 border-radius: 50px
             }
         }
-    }  
+        @media screen and (max-width: $media-xxl) {
+            width: 59vw;
+        } 
+        @media screen and (max-width: $media-xl) {
+            width: 53vw;
+        } 
+        @media screen and (max-width: $media-lg) {
+            width: 57vw;
+        } 
+        @media screen and (max-width: $media-md) {
+            width: 100%;
+            margin: 0 0 30px;
+        } 
+    } 
 }

@@ -3,11 +3,11 @@
         <table>
             <thead>
                 <tr>
+                    <td>Status</td>
                     <td>Country</td>
                     <td>City</td>
                     <td>Address</td>
-                    <td>First Name</td>
-                    <td>Last Name</td>
+                    <td>Name</td>
                     <td>Phone</td>
                     <td>Email</td>
                     <td>Payment</td>
@@ -16,18 +16,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of orders" >
+                <tr *ngFor="let item of orders" class="row-wrapper" >
+                    <td>
+                        <select (change)='changeStatus($event,item)' >
+                            <option value="item.status"selected disabled>{{ item.status }}</option>
+                            <option value="accepted">accepted</option>
+                            <option value="ready to go">ready to go</option>
+                            <option value="done">done</option>
+                            <option value="canceled">canceled</option>
+                        </select>
+                    </td>
                      <td>{{ item.country }}</td>
                     <td>{{ item.city }}</td>
                     <td>{{ item.streetAddress }}</td>
-                    <td>{{ item.firstName }}</td>
-                    <td>{{ item.lastName }}</td> 
+                    <td>{{ item.name }}</td>
                     <td>{{ item.phone }}</td> 
                     <td>{{ item.email }}</td> 
                     <td>{{ item.payment }}</td> 
                     <td>
-                        <div>
-                            <p>{{ item.basket.product }}</p>
+                        <div *ngFor="let c of item.basket" class="basket">
+                            <p>Name:{{ c.product.name }}</p>
+                            <p>Brand:{{ c.brand }}</p>
+                            <p>Model:{{ c.model }}</p>
+                            <p>Year:{{ c.year }}</p>
+                            <p>Size:{{ c.size }}</p>
                         </div>
                     </td> 
                     <td>{{ item.total | currency:'USD' }}</td> 

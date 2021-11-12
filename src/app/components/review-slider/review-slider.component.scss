@@ -109,9 +109,24 @@
             @media screen and(max-width:$media-xl) {
                 height: 290px;
             }
-            @media screen and(max-width:$media-xl) {
+            @media screen and(max-width:$media-lg) {
+                height: 435px;
+            }
+            @media screen and(max-width:$media-md) {
                 height: 475px;
             }
+            @media screen and(max-width:$media-sm) {
+                // @include flex(row, flex-start, normal);
+                width: 100%;
+                height: 475px;
+            }
+        }
+        @media screen and(max-width:$media-sm) {
+            display: block;
+            width: 90%;
+            height: 302px;
+            overflow: hidden;
+           
         }
     }
     .empty-space {

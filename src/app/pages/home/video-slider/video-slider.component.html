@@ -1,6 +1,6 @@
 <section class="container">
     <div class="row">
-        <div *ngFor="let item of news;let i = index">
+        <div *ngFor="let item of news;let i = index" style="width: 100%;">
             <ng-container *ngIf=" i < 3">
                 <div class="video-item" >
                     <div class="image-wrapper">
@@ -15,7 +15,7 @@
                     </div>
                     <h1>{{ item.name }}</h1>
                     <p>{{ item.date }}</p>
-                    <button class="button" type="submit" [routerLink]="[ 'news-detail', item.id ]">
+                    <button class="button" type="submit" [routerLink]="[ '/news-detail', item.id ]">
                         READ MORE
                     </button>
                 </div>

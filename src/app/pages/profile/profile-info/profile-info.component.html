@@ -1,0 +1,19 @@
+
+<div class="container">
+    <div class="empty-space"></div>
+    <div class="image-profile">
+        <img [src]="user.photoURL" *ngIf="user.photoURL; else elseImage" width="100%" height="100%">
+        <ng-template #elseImage>
+            <img src="assets/images/pngwing.com (2).png" width="100%" height="100%">
+        </ng-template>
+        
+    </div>
+    <div class="info">
+        <div class="row-wrapper"><p>Name:</p><span>{{ user.name }}</span></div>
+        <div class="row-wrapper"><p>Email:</p><span>{{ user.email }}</span></div>
+        <div class="row-wrapper"><p>Phone Number:</p><span>{{ user.phoneNumber }}</span></div>
+        <div class="row-wrapper"><p>Country:</p><span>{{ user.country }}</span></div>
+        <div class="row-wrapper"><p>City:</p><span>{{user.city}}</span></div>
+        <div class="row-wrapper"><p>Address:</p><span>{{ user.address }}</span></div>
+    </div>
+</div>

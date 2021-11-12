@@ -1,0 +1,226 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/mixin";
+.image-top {
+    height: 390px;
+    background-image: url(../../../assets/images/slide-1-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 10% 0 0 10%;
+    h1 {
+        color: #ffffff;
+        font-size: 63px;
+        font-family: $secondary-font;
+        @media screen and (max-width: $media-xl) {
+            position: absolute;
+            top: 30%;
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-lg) {
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-md) {
+            font-size: 32px;
+            position: absolute;
+            top: 30%;
+        }
+    }
+}
+
+.container {
+    .row {
+        width: 90%;
+        // max-width: 1170px;
+        margin: 80px auto;
+        display: flex;
+        // flex-wrap: wrap;
+        .info-wrapper {
+            width: 43%;
+            h1 {
+                font-size: 35px;
+                font-family: $secondary-font;
+                color: $secondary-text-color;
+                @media screen and (max-width: $media-xl) {
+                    font-size: 28px;
+                }
+                @media screen and (max-width: $media-md) {
+                    font-size: 22px;
+                }
+                @media screen and (max-width: $media-sm) {
+                    font-size: 18px;
+                }
+            }
+            .info {
+                margin: 20px 0 0 0;
+                padding: 38px 42px;
+                width: 29vw;
+                height: 29vw;
+                background-color: #ffffff;
+                h3 {
+                    font-size: 22px;
+                    font-family: $primary-font;
+                    color: $secondary-color;
+                    @media screen and (max-width: $media-lg) {
+                     font-size: 18px;
+                    }
+                }
+                .wrapper {
+                    margin: 15px 0 0 0;
+                    font-size: 14px;
+                    font-family: $monserat-regular;
+                    .empty-space {
+                        height: 35px;
+                    }
+                    @media screen and (max-width: $media-lg) {
+                        font-size: 13px;
+                       }
+                }
+                .social-wrapper {
+                    font-size: 18px;
+                    color: $secondary-text-color;
+                    i {
+                        margin: 0 20px 0 0;
+                        &:hover {
+                            color: $primery-color;
+                            transition: all 0.2s;
+                        }
+                    }
+                }
+                @media screen and (max-width: $media-xxl) {
+                    width: 35vw;
+                    height: 33vw;
+                }
+                @media screen and (max-width: $media-xl) {
+                    width: 33vw;
+                    height: 38vw;
+                   
+                }
+                @media screen and (max-width: $media-lg) {
+                    width: 33vw;
+                    height: 50vw;
+                   
+                }
+                @media screen and (max-width: $media-md) {
+                    width: 90vw;
+                    height: 420px;
+                   
+                }
+            }
+        }
+        .message-wrapper {
+            width: 57%;
+            h1 {
+                font-size: 38px;
+                font-family: $secondary-font;
+                color: $secondary-text-color;
+                @media screen and (max-width: $media-xl) {
+                    font-size: 28px;
+                }
+                @media screen and (max-width: $media-md) {
+                    margin: 20px 0 0 0;
+                    font-size: 22px;
+                }
+                @media screen and (max-width: $media-sm) {
+                    font-size: 18px;
+                }
+            }
+            .form-wrapper {
+                margin: 20px 0 0 0;
+                width: 40vw;
+                height: 29vw;
+                background-color: #ffffff;
+                padding: 44px 31px 42px;
+                form {
+                    font-family: $primary-font;
+                    .colums-wrap {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 0 0 30px;
+                        .colums_1_2 {
+                            width: 45%;
+                            height: 50px;
+                            border-radius: 50px;
+                            background-color: rgb(240, 240, 240);
+                            border: 1px solid rgb(222, 222, 222);
+                            outline: none;
+                            padding: 15px 24px;
+                            @media screen and (max-width: $media-sm) {
+                                height: 47px;
+                                width: 100%;
+                                margin: 0 0 20px;
+                            }
+                        }
+                        .colums_1_1 {
+                            width: 100%;
+                            height: 50px;
+                            border-radius: 50px;
+                            background-color: rgb(240, 240, 240);
+                            border: 1px solid rgb(222, 222, 222);
+                            outline: none;
+                            padding: 15px 24px;
+                            @media screen and (max-width: $media-sm) {
+                                height: 47px;
+                                width: 100%;
+                                margin: 0 0 20px;
+                            }
+                        }
+                        .textarea-massege {
+                            width: 100%;
+                            height: 122px;
+                            resize: none;
+                            border-radius: 30px;
+                            background-color: rgb(240, 240, 240);
+                            border: 1px solid rgb(222, 222, 222);
+                            outline: none;
+                            padding: 15px 24px;
+                            @media screen and (max-width: $media-md) {
+                                height: 100px;
+                            }
+                        }
+                        @media screen and (max-width: $media-sm) {
+                            flex-direction: column;
+                            padding: 0 0 10px;
+                        }
+                    }
+                    button {
+                        width: 150px;
+                        height: 45px;
+                        border-radius: 50px;
+                        color: #ffffff;
+                        background-color: $secondary-text-color;
+                        border: none;
+                        outline: none;
+                        font-family: $secondary-font;
+                        &:hover {
+                            background-color: $secondary-color;
+                            transition: all 0.2s;
+                        }
+                    }
+                }
+                @media screen and (max-width: $media-xxl) {
+                    width: 43vw;
+                    height: 33vw;
+                }
+                @media screen and (max-width: $media-xl) {
+                    width: 46vw;
+                    height: 41vw;
+                }
+                @media screen and (max-width: $media-lg) {
+                    width: 50vw;
+                    height: 55vw;
+                }
+                @media screen and (max-width: $media-md) {
+                    width: 90vw;
+                    height: 440px;
+                    margin: 10px 0 0 0;
+                   
+                }
+            }
+        }
+        @media screen and (max-width: $media-md) {
+            flex-direction: column;
+        }
+    }
+    .map {
+        width: 100%;
+    }
+}

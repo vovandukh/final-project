@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { doc, docData, Firestore } from '@angular/fire/firestore';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { addDoc } from '@firebase/firestore';
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit , OnDestroy {
 
   initLogin() {
     this.loginForm = this.fb.group({
-      email: null,
+      email: [null,Validators.email],
       password: null
     })
   }
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit , OnDestroy {
     this.login(email, password).then(() => {
       alert('login successfully')
     }).catch(err => {
-      alert(err)
+      console.log(err);
     })
   }
   ngOnDestroy(){

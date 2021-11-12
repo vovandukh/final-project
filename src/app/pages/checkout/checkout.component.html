@@ -6,10 +6,8 @@
         <div class="form-wrapper">
             <h1>BILLING DETAILS</h1>
             <form [formGroup]="orderForm" (ngSubmit)='createOrder()' >
-                <h1>First Name</h1>
-                <input type="text" formControlName='firstName'>
-                <h1>Last Name</h1>
-                <input type="text" formControlName='lastName'>
+                <h1>Name</h1>
+                <input type="text" formControlName='name'>
                 <h1>Street address</h1>
                 <input type="text" formControlName='streetAddress'>
                 <h1>City</h1>
@@ -59,7 +57,7 @@
                 </div>
                 <hr>
                 <div class="button-wrapper">
-                    <button type="submit">PLACE ORDER</button>
+                    <button type="submit" [disabled]='orderForm.invalid'>PLACE ORDER</button>
                 </div>
             </form>
            

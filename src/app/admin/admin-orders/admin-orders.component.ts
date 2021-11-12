@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IOrderRequvest } from 'src/app/shared/interfaces/order/order.interface';
+import { Firestore } from '@angular/fire/firestore';
+import { doc, setDoc } from '@firebase/firestore';
+import { IOrderRequvest, IOrderResponce } from 'src/app/shared/interfaces/order/order.interface';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
@@ -8,19 +10,29 @@ import { OrderService } from 'src/app/shared/services/order/order.service';
   styleUrls: ['./admin-orders.component.scss']
 })
 export class AdminOrdersComponent implements OnInit {
-  public orders:IOrderRequvest[] = []
+  public orders: IOrderResponce[] = []
 
-  constructor(private orderService:OrderService) { }
+  constructor(private orderService: OrderService,private firestore:Firestore) { }
 
   ngOnInit(): void {
     this.loadOrder();
   }
 
-  loadOrder(){
-   this.orderService.loadOrder().subscribe(data =>{
-     this.orders = data;
-     console.log(this.orders);
-   })
+  loadOrder() {
+    this.orderService.loadOrder().subscribe(data => {
+      this.orders = data;
+      console.log(this.orders);
+    })
+  }
+
+  changeStatus(event: any, item:IOrderResponce) {
+    let value = event.target.value;
+    this.orders.forEach(elem => {
+      if (elem.id === item.id) {
+        elem.status = value
+      }
+    })
+    setDoc(doc(this.firestore , 'orders',item.id),item)
   }
 
 }

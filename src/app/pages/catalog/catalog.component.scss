@@ -7,38 +7,55 @@
     background-position: center;
     background-size: cover;
     padding: 10% 0 0 10%;
-    h1{
+    h1 {
         color: #ffffff;
         font-size: 63px;
         font-family: $secondary-font;
-        
+        @media screen and (max-width: $media-xl) {
+            position: absolute;
+            top: 30%;
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-lg) {
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-md) {
+            font-size: 32px;
+            position: absolute;
+            top: 30%;
+        }
     }
 }
 
 .container {
     padding: 90px 30px 0 60px;
     display: flex;
+    justify-content: space-between;
     .sidebar-left {
         width: 25%;
-        height: 80%;
+        height: 100%;
         background-color: #ffffff;
         .container-sidebar {
             width: 100%;
             padding: 48px 0;
             .sidebar-filter-price {
                 width: 100%;
-                padding: 0 60px; 
-                h1{
+                padding: 0 60px;
+                h1 {
                     font-size: 20px;
                     color: $secondary-text-color;
                     font-family: $primary-font;
+                    @media screen and (max-width: $media-xl) {
+                        font-size: 16px;
+                    }
                 }
-                .price-info{
+                .price-info {
                     margin: 10px 0 0 0;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    button{
+                    flex-wrap: wrap;
+                    button {
                         width: 90px;
                         height: 50px;
                         border-radius: 50px;
@@ -49,77 +66,126 @@
                         color: #fff;
                         font-family: $secondary-font;
                         text-transform: uppercase;
+                        @media screen and (max-width: $media-xxl) {
+                            margin: 0 0 20px;
+                        }
+                        @media screen and (max-width: $media-xl) {
+                            width: 100%;
+                        }
                     }
-                    .price{
+                    .price {
                         font-size: 11px;
-                        color: #B5B5B5;
+                        color: #b5b5b5;
                         font-family: $primary-font;
                     }
                 }
+                @media screen and (max-width: $media-xl) {
+                    padding: 20px 40px;
+                }
+                @media screen and (max-width: $media-md) {
+                    width: 50%;
+                    border: none;
+                }
+                @media screen and (max-width: $media-sm) {
+                    padding: 0 10px;
+                }
             }
-            .sidebar-filter-subCategory{
+            .sidebar-filter-subCategory {
                 margin-top: 53px;
                 border-top: 1px solid rgb(234, 234, 234);
                 padding: 43px 60px 0;
                 width: 100%;
-                h1{
+                h1 {
                     font-size: 20px;
                     color: $secondary-text-color;
                     font-family: $primary-font;
+                    @media screen and (max-width: $media-xl) {
+                        font-size: 16px;
+                    }
                 }
-                ul{
-                    margin:15px 0 0 0;
+                ul {
+                    margin: 20px 0 0 0;
                     list-style: none;
-                    font-size:18px;
-                    li{
-                        margin:5px 0 0 0;
-                        a{
+                    font-size: 18px;
+                    li {
+                        margin: 5px 0 0 0;
+                        a {
                             text-decoration: none;
                             color: $secondary-text-color;
                             font-family: $primary-font;
-                            &:hover{
+                            &:hover {
                                 color: $secondary-color;
                             }
                         }
                     }
+                    @media screen and (max-width: $media-xl) {
+                        font-size: 16px;
+                    }
+                }
+                @media screen and (max-width: $media-xl) {
+                    padding: 20px 40px;
+                }
+                @media screen and (max-width: $media-md) {
+                    width: 50%;
+                    border: none;
+                }
+                @media screen and (max-width: $media-sm) {
+                    padding: 0 10px;
                 }
             }
         }
+        @media screen and (max-width: $media-lg) {
+            width: 30%;
+        }
+        @media screen and (max-width: $media-md) {
+            width: 100%;
+        }
+        @media screen and (max-width: $media-sm) {
+            padding: 0 20px;
+        }
     }
     .products {
-        width: 75%;
+        width: 70%;
         display: flex;
         flex-wrap: wrap;
+        // justify-content: flex-end;
         text-align: center;
-        .product-item{
-            width: 233px;
+        .product-item {
+            width: 14vw;
             margin: 0 14px 27px;
             background-color: #ffffff;
-            .title{
-                margin: 30px 0 0 0; 
-                font-size: 19px; 
-                padding: 0 30px; 
+            .title {
+                margin: 30px 0 0 0;
+                font-size: 19px;
+                padding: 0 30px;
                 font-family: $monserat-regular;
+                @media screen and (max-width: $media-xl) {
+                    font-size: 16px;
+                }
             }
-            .rating{
+            .rating {
                 margin: 18px 0;
                 span {
-                padding: 0;
-                font-size: 24px;
-                line-height: 0;
-                color: lightgrey;
-                }::before{
-                    content: '★';
+                    padding: 0;
+                    font-size: 24px;
+                    line-height: 0;
+                    color: lightgrey;
                 }
-                .active{
+                ::before {
+                    content: "★";
+                }
+                .active {
                     color: gold;
                 }
             }
-            .price{
+            .price {
                 font-size: 25px;
                 font-family: $secondary-font;
+                @media screen and (max-width: $media-xl) {
+                    font-size: 19px;
+                }
             }
-            button{
+            button {
                 margin: 20px 0;
                 width: 111px;
                 height: 50px;
@@ -130,7 +196,43 @@
                 outline: none;
                 font-family: $secondary-font;
             }
+            @media screen and (max-width: $media-xxl) {
+                width: 20vw;
+                img {
+                    height: 20vw;
+                }
+            }
+            @media screen and (max-width: $media-xl) {
+                width: 18vw;
+                img {
+                    height: 18vw;
+                }
+            }
+            @media screen and (max-width: $media-lg) {
+                width: 25vw;
+                img {
+                    height: 22vw;
+                }
+            }
+            @media screen and (max-width: $media-md) {
+                width: 39vw;
+                img {
+                    height: 35vw;
+                }
+            }
+            @media screen and (max-width: $media-sm) {
+                width: 32vw;
+                img {
+                    height: 32vw;
+                }
+            }
         }
+        @media screen and (max-width: $media-md) {
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: $media-md) {
+        flex-wrap:wrap-reverse;
     }
 }
 
@@ -145,10 +247,10 @@
             .ngx-slider-bubble {
                 display: none;
             }
-            .ngx-slider-selection{
+            .ngx-slider-selection {
                 background: $secondary-color;
             }
-            .ngx-slider-pointer{
+            .ngx-slider-pointer {
                 width: 13px;
                 height: 13px;
                 top: auto;
@@ -157,10 +259,10 @@
             }
             .ngx-slider-pointer:after {
                 display: none;
-             }
+            }
             .ngx-slider-pointer:focus {
-            outline: none;
-             }
+                outline: none;
+            }
         }
     }
 }

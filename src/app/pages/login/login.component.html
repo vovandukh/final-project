@@ -8,5 +8,9 @@
             <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off" formControlName="password">
             <button type="button" value="Sign in" class="btn1" (click)="loginUser()">Submit</button>
         </form>
+        <div style="color: white;" class="alert alert-danger"
+*ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
+Incorect Email
+</div>
     </div>
 </section>

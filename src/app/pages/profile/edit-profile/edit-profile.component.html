@@ -1,0 +1,35 @@
+<div class="form-wrapper">
+    <form [formGroup]='formUser' (ngSubmit)='updateUser()'>
+        <div class="row-wrapper">
+            <div class="input-wrapper">
+                <h1>Name</h1>
+                <input type="text" formControlName="name">
+            </div>
+            <div class="input-wrapper">
+                <h1>Email</h1>
+                <input type="text" [disabled]='true' formControlName="email">
+            </div>
+        </div>
+        <div class="row-wrapper">
+            <div class="input-wrapper">
+                <h1>Phone Number</h1>
+                <input type="text" formControlName="phoneNumber" >
+            </div>
+            <div class="input-wrapper">
+                <h1>Country</h1>
+                <input type="text" formControlName="country">
+            </div>
+        </div>
+        <div class="row-wrapper">
+            <div class="input-wrapper" >
+                <h1>City</h1>
+                <input type="text" formControlName="city">
+            </div>
+            <div class="input-wrapper">
+                <h1>Address</h1>
+                <input type="text" formControlName="address">
+            </div>  
+        </div>
+        <button type="submit" [disabled]='formUser.invalid'>SUBMIT</button>
+    </form>
+</div>
