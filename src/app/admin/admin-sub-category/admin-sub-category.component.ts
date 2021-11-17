@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { getDownloadURL, ref, uploadBytesResumable, Storage } from '@angular/fire/storage';
+import { Storage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ICategoryResponce } from 'src/app/shared/interfaces/category/category.interface';
 import { ISubCategoryResponce } from 'src/app/shared/interfaces/sub-category/sub-category.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
@@ -12,6 +13,8 @@ import { SubCategoryService } from 'src/app/shared/services/sub-category/sub-cat
   styleUrls: ['./admin-sub-category.component.scss']
 })
 export class AdminSubCategoryComponent implements OnInit {
+  public page:number = 1;
+  public totalLength!:number;
   public category: ICategoryResponce[] = [];
   public subCategory: ISubCategoryResponce[] = [];
   public subCategoryForm!: FormGroup;
@@ -20,7 +23,7 @@ export class AdminSubCategoryComponent implements OnInit {
   public modalOpen = {};
 
 
-  constructor(private categoryService: CategoryService, private subCategoryService: SubCategoryService, private fb: FormBuilder, private storage: Storage) { }
+  constructor(private categoryService: CategoryService, private subCategoryService: SubCategoryService, private fb: FormBuilder,private toast:ToastrService) { }
 
   ngOnInit(): void {
     this.loadCategory();
@@ -42,6 +45,7 @@ export class AdminSubCategoryComponent implements OnInit {
   loadSubCategory() {
     this.subCategoryService.loadSubCategoryFB().subscribe(subCategory => {
       this.subCategory = subCategory;
+      this.totalLength = subCategory.length;
     })
   }
   saveSubCategory() {
@@ -50,12 +54,18 @@ export class AdminSubCategoryComponent implements OnInit {
       this.loadCategory();
       this.editStatus = false;
       this.modalOpen = {'display': 'none'};
+      this.toast.success('Edit success')
+    }).catch(err =>{
+      this.toast.error(err)
     })
     }else{
       this.subCategoryService.createSubCategoryFB(this.subCategoryForm.value).then(() => {
         this.loadSubCategory();
         this.initSubCategory();
         this.modalOpen = {'display': 'none'};
+        this.toast.success('Sub category created')
+      }).catch(err =>{
+        this.toast.error(err)
       })
     }
   }
@@ -70,9 +80,11 @@ export class AdminSubCategoryComponent implements OnInit {
     this.modalOpen = {'display': 'block'};
   }
   deleteSubCategory(SubCategory:ISubCategoryResponce){
-    console.log(SubCategory);
     this.subCategoryService.deleteSubCategoryFB(SubCategory).then(()=>{
       this.loadSubCategory()
+      this.toast.success('Delete success')
+    }).catch(err =>{
+      this.toast.error(err)
     })
   }
   openModal(status:any){

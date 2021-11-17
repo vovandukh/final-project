@@ -3,7 +3,7 @@
 .top-panel {
     @include flex(row, center, center);
     width: 100%;
-    padding: 20px 45px;
+    padding: 20px 35px;
     background-color: transparent;
     position: fixed;
     z-index: 100;
@@ -19,6 +19,10 @@
             .logo-image {
                 width: 170px;
                 height: 18px;
+                @media screen and (max-width: $media-xl) {
+                    width: 140px;
+                    height: 15px;
+                } 
             }
             .nav-wrapper {
                 width: 620px;
@@ -50,6 +54,12 @@
                         }
                         .active {
                             color: $primery-color;
+                        }
+                        @media screen and (max-width: $media-xl) {
+                            width: 80px;
+                        }
+                        @media screen and (max-width: $media-lg) {
+                            width: 80px;
                         }
                     }
                     :hover {
@@ -95,7 +105,7 @@
                 }
             }
             @media screen and (max-width: $media-xxl) {
-                width: 50%;
+                width: 52%;
             }
             @media screen and (max-width: $media-xl) {
                 width: 60%;
@@ -108,7 +118,7 @@
             }
         }
         .wbp-wrapper {
-            width: 60%;
+            width: 55%;
             display: flex;
             @include flex(column, flex-start, flex-end);
             padding: 12px 0;
@@ -140,6 +150,9 @@
                             color: $primery-color;
                             transition: all 0.5s;
                         }
+                        @media screen and (max-width: $media-xl) {
+                            margin: 0 0 0 5px;
+                        } 
                     }  
                 }
                 .seach-form {
@@ -180,7 +193,8 @@
                     }
                 }
                 .basket-wrapper {
-                    margin: 0 0 0 20px;
+                    margin: 0 0 0 10px;
+                    width: 110px;
                     color: $secondary-color;
                     position: relative;
                     float: right;
@@ -264,8 +278,11 @@
                             }
                            }
                         }
-                    }
-                    
+                        
+                    } 
+                    @media screen and (max-width: $media-xl) {
+                        margin: 0 0 0 5px;
+                    } 
                 }
             }
             @media screen and (max-width: $media-xl) {
@@ -276,7 +293,9 @@
                 }       
             }
             @media screen and (max-width: $media-lg) {
-                width: 40%;
+                justify-content: flex-start;
+                margin: 10px 0 0 50px;
+                width: 30%;
                 .phone-number{
                     display: none;
                 } 
@@ -287,10 +306,6 @@
                 }
             }
         }
-    }
-    @media screen and (max-width: $media-md) {
-        position: absolute;
-        top: 0;
     }
 }
 .top-panel-else {
@@ -306,6 +321,7 @@
     z-index: 400;
     display: none;
     .row {
+        padding: 10%;
         .close {
             display: flex;
             justify-content: flex-end;
@@ -345,7 +361,7 @@
             position: relative;
             input {
                 margin: 0 auto;
-                width: 364px;
+                width: 80%;
                 height: 43px;
                 background-color: #202020;
                 border-radius: 50px;
@@ -358,7 +374,7 @@
             }
             button {
                 position: absolute;
-                right: 23%;
+                right: 10%;
                 background-color: transparent;
                 border: none;
                 color: #fff;
@@ -378,5 +394,25 @@
                 }
             }
         }
+    }
+}
+
+
+.button-up{
+    width: 50px;
+    height: 50px;
+    background-color: $secondary-text-color;
+    border:none;
+    outline: none;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    z-index: 500;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 30px;
+    &:hover{
+        color: $secondary-color;
+        transition: all 0.2s;
     }
 }

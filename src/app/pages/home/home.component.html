@@ -1,16 +1,5 @@
 <app-slider></app-slider>
 <section class="container">
-    <div class="subscribe-wrapper">
-        <div class="form-wrapper">
-            <span class="form-text">Subscribe for News and Get a Discount</span>
-            <form>
-                <input type="text" placeholder="YOUR EMAIL">
-                <button type= "submit">
-                   SUBSCRIBE
-                </button>
-            </form>
-        </div>
-    </div>
     <div class="empty-storage">
         <span class="layer-1">01</span>
         <div class="storage-title">
@@ -59,9 +48,9 @@
             <div class="form-wrapper">
                 <h3>Fill the Form Below</h3>
                 <p>Our manager will call you back in a few minutes</p>
-                <form>
-                    <input type="text" placeholder="ENTER YOUR NAME">
-                    <input type="text" placeholder="ENTER YOUR PHONE NUMBER">
+                <form [formGroup]='formModalCallback' (ngSubmit)="setCallback($event)">
+                    <input type="text" placeholder="ENTER YOUR NAME" formControlName="name">
+                    <input type="text" placeholder="ENTER YOUR PHONE NUMBER"formControlName="phoneNumber">
                     <button type="submit">ORDER A CALLBACK</button>
                 </form>
             </div>

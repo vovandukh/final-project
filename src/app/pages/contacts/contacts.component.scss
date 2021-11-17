@@ -23,16 +23,20 @@
             position: absolute;
             top: 30%;
         }
+        @media screen and (max-width: $media-sm) {
+            top: 10%;
+        }
+    }
+    @media screen and (max-width: $media-sm) {
+        height: 180px;
     }
 }
 
 .container {
     .row {
         width: 90%;
-        // max-width: 1170px;
         margin: 80px auto;
         display: flex;
-        // flex-wrap: wrap;
         .info-wrapper {
             width: 43%;
             h1 {

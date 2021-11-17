@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
-import { addDoc, collection } from '@firebase/firestore';
+import { doc, Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc } from '@firebase/firestore';
 import { collectionData } from 'rxfire/firestore';
 import { Observable, Subject } from 'rxjs';
 import { IOrderRequvest } from '../../interfaces/order/order.interface';
@@ -17,5 +17,8 @@ export class OrderService {
   }
   loadOrder():Observable<any>{
     return collectionData(collection(this.firestore,'orders'),{idField:'id'})
+  }
+  deleteOrders(id:string){
+    return deleteDoc(doc(this.firestore, 'orders', id))
   }
 }

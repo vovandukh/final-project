@@ -15,19 +15,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of subModel;let i = index" >
+                <tr *ngFor="let item of subModel | 
+                paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength},let i = index" >
                     <td>{{ i+1 }}</td>
                     <td>{{ item.brand.brand }}</td>
                     <td>{{ item.model }}</td>
                     <td>
                         <div class="btn-wrap">
-                            <button class="btn1" type="button">Edit</button>
-                            <button class="btn1 btn2" type="button">Delete</button>
+                            <button class="btn1 btn2" type="button" (click)="deleteSubModel(item.id)">Delete</button>
                         </div>
                     </td>
                  </tr>
             </tbody>
         </table>
+        <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
     </div>
 </div>
 

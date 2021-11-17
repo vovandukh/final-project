@@ -17,21 +17,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let category of news ; let i = index">
+                <tr *ngFor="let items of news | 
+                paginate: { itemsPerPage: 2, currentPage: page, totalItems: totalLength}; let i = index">
                     <td> {{ i + 1 }}</td>
-                    <td> {{ category.name }} </td>
-                    <td> {{ category.description | slice:0:50 }}</td>
-                    <td> {{ category.tags }}</td>
-                    <td><img [src]="category.imagePath" width="50" height="50"></td>
+                    <td> {{ items.name }} </td>
+                    <td> {{ items.description | slice:0:50 }}</td>
+                    <td> {{ items.tags }}</td>
+                    <td><img [src]="items.imagePath" width="50" height="50"></td>
                     <td>
                         <div class="btn-wrap">
-                            <button class="btn1" type="button" >Edit</button>
-                            <button class="btn1 btn2" type="button">Delete</button>
+                            <button class="btn1" type="button" (click)="editNews(items)" >Edit</button>
+                            <button class="btn1 btn2" type="button" (click)="deleteNews(items.id)">Delete</button>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
     </div>
 </div>
 

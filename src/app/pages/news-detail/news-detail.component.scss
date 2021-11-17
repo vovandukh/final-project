@@ -24,6 +24,12 @@
             top: 30%;
         }
         
+        @media screen and (max-width: $media-sm) {
+            top: 10%;
+        }
+    }
+    @media screen and (max-width: $media-sm) {
+        height: 180px;
     }
 }
 

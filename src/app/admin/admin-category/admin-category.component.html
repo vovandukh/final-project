@@ -16,8 +16,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let category of category ; let i = index">
-                    <td> {{ i + 1 }}</td>
+                <tr *ngFor="let category of category  | 
+                paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength}, let i = index"  class="row-wrapper" >
+                    <td>{{ i+1 }}</td>
                     <td> {{ category.name }} </td>
                     <td> {{ category.description }}</td>
                     <td><img [src]="category.imagePath" width="50" height="50"></td>
@@ -30,8 +31,10 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
     </div>
 </div>
+
 
 <!--Modal-->
 <div class="modal-wrapper" [ngStyle]="modalOpen">

@@ -1,5 +1,14 @@
 <div class="slider">
     <div class="row">
+        <div class="viewport">
+            <ngx-slick-carousel class="slider-wrapper-1" #slickModal [config]="slideConfig" (init)="slickInit($event)"
+                (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div ngxSlickItem *ngFor="let item of image" style="width: 100%;">
+                    <img [src]="item" width="100%" height="100%">
+                </div>
+            </ngx-slick-carousel>
+        </div>
         <div class="title-slider">
             <p>
                 <span class="layer-1">THE WORLD'S</span>
@@ -11,12 +20,23 @@
                 <br>
                 of premium quality products and maintenace services.
             </p>
-            <div class="form-wrapper">
-                <form class="form">
-                    <input type="email" placeholder="YOUR EMAIL">
-                    <button type= "submit">
+            <div class="form-wrapper" >
+                <form class="form" [formGroup]="subscribeForm" (ngSubmit)="getSubscribe($event)">
+                    <input type="email" placeholder="YOUR EMAIL" formControlName="email" [ngStyle]="invalid">
+                    <button type="submit">
                         SUBSCRIBE
-                     </button> 
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="subscribe-wrapper">
+            <div class="form-wrapper">
+                <span class="form-text">Subscribe for News and Get a Discount</span>
+                <form [formGroup]="subscribeForm" (ngSubmit)="getSubscribe($event)" >
+                    <input type="text" placeholder="YOUR EMAIL" formControlName="email">
+                    <button type= "submit">
+                       SUBSCRIBE
+                    </button>
                 </form>
             </div>
         </div>

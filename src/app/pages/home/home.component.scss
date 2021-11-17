@@ -1,90 +1,6 @@
 @import "../../shared/styles/variables";
 @import "../../shared/styles/mixin";
 .container {
-    .subscribe-wrapper {
-        @include flex(row, center, center);
-        position: relative;
-        height: 140px;
-        width: 90%;
-        background-color: $primery-text-color;
-        margin: 0 auto;
-        .form-wrapper {
-            @include flex(row, flex-start, center);
-            flex-wrap: wrap;
-            span {
-                font-size: 26px;
-                color: $secondary-text-color;
-                font-family: $monserat-regular;
-                @media screen and (max-width: $media-xxl) {
-                    font-size: 22px;
-                }
-                @media screen and (max-width: $media-sm) {
-                    font-size: 16px;
-                }
-            }
-            button {
-                padding: 16px 24px;
-                border-radius: 50px;
-                font-family: $secondary-font;
-                color: $primery-text-color;
-                outline: none;
-                border: none;
-                background-color: $secondary-color;
-                @media screen and (max-width: $media-xl) {
-                    padding: 17px 18px;
-                }
-                &:hover {
-                    background-color: $secondary-text-color;
-                    transition: all 0.5s;
-                }
-            }
-            input {
-                width: 373px;
-                height: 49px;
-                border-radius: 50px;
-                margin: 0 20px 0 43px;
-                outline: none;
-                border: 1px solid rgb(222, 222, 222);
-                background-color: #f0f0f0;
-                color: $secondary-text-color;
-                padding: 0 23px;
-                font-family: $monserat-regular;
-                @media screen and (max-width: $media-xxl) {
-                    width: 288px;
-                }
-                @media screen and (max-width: $media-xl) {
-                    width: 256px;
-                }
-                @media screen and (max-width: $media-lg) {
-                    margin: 20px 10px 0 0;
-                    text-align: center;
-                    width: 470px;
-                }
-                @media screen and (max-width: $media-md) {
-                    width: 100%;
-                    margin: 20px 0;
-                }
-            }
-            @media screen and (max-width: $media-lg) {
-                span {
-                    display: block;
-                    width: 100%;
-                    text-align: center;
-                }
-                form {
-                    width: 90%;
-                    margin: 0 auto;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-wrap: wrap;
-                }
-            }
-        }
-        @media screen and (max-width: $media-md) {
-            height: 220px;
-        }
-    }
     .empty-storage {
         margin: 30px auto;
         width: 90%;
@@ -133,6 +49,7 @@
         }
         @media screen and (max-width: $media-md) {
             .layer-1 {
+                margin: 15% 0;
                 font-size: 208px;
             }
             .storage-title {
@@ -142,6 +59,48 @@
                 span {
                     font-size: 48px;
                 }
+            }
+        }
+        @media screen and (max-width: $media-xxl) {
+            .layer-1 {
+                margin: 5% 0 5%;
+                font-size: 208px;
+            }
+        }
+        @media screen and (max-width: $media-xl) {
+            .layer-1 {
+                margin: 5% 0 10%;
+                font-size: 208px;
+            }
+        }
+        @media screen and (max-width: $media-lg) {
+            
+        }
+        @media screen and (max-width: $media-sm) {
+            .layer-1 {
+                margin: 35% 0 20%;
+                font-size: 208px;
+            }
+        }
+        @media screen and (max-width: $media-sm) {
+            .layer-1 {
+                margin: 35% 0 20%;
+                font-size: 208px;
+            }
+        }
+        @media screen and (max-width: 400px) {
+            .layer-1 {
+                margin: 42% 0 20%;
+                font-size: 180px;
+            }
+            .layer-2 {
+                font-size: 40px;
+            }
+            .layer-3 {
+                font-size: 40px;
+            }
+            p{
+                display: none;
             }
         }
     }
@@ -202,6 +161,19 @@
                 }
                 .layer-3 {
                     font-size: 65px;
+                }
+            }
+            @media screen and (max-width: $media-sm) {
+                width: 100%;
+                .layer-1 {
+                    font-size: 180px;
+                }
+                .layer-2 {
+                    font-size: 40px;
+                }
+                .layer-3 {
+                    margin: 5px 0 0 ;
+                    font-size: 40px;
                 }
             }
         }
@@ -315,12 +287,28 @@
                     font-size: 38px;
                     font-family: $secondary-font;
                     text-transform: uppercase;
+                    @media screen and (max-width: $media-xl) {
+                        font-size: 34px;
+                    }
+                    @media screen and (max-width: $media-lg) {
+                         font-size: 28px;
+                    }
+                    @media screen and (max-width: $media-md) {
+                         font-size: 24px;
+                    }
+                    @media screen and (max-width: $media-md) {
+                         font-size: 20px;
+                    }
+                    @media screen and (max-width: $media-sm ){
+                         font-size: 18px;
+                    }
                 }
                 p{
                     line-height: 24px;
                     font-size: 14px;
                     font-family: $monserat-regular;
                     margin: 0 0 42px;
+
                 }
                 form{
                     input{
@@ -346,6 +334,10 @@
                         outline: none;
                         color: #ffff;
                         font-family: $secondary-font;
+                        &:hover{
+                            background-color: $secondary-text-color;
+                            transition: all 0.2s;
+                        }
                     }
                 }
             }

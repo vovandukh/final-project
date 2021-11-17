@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { INewsResponce } from 'src/app/shared/interfaces/news/news.inteface';
 import { NewsService } from 'src/app/shared/services/news/news.service';
 
 @Component({
@@ -20,7 +19,6 @@ export class NewsDetailComponent implements OnInit {
   loadNews(){
     this.newsService.getNewsById(this.newsID as string).then(data =>{
       this.news = data.data();
-      console.log(this.news);
     })
   }
 }

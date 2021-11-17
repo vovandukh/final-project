@@ -1,49 +1,50 @@
 <div class="image-top">
     <h1>lOG IN</h1>
 </div>
-<!-- <h2>Weekly Coding Challenge #1: Sign in/up Form</h2> -->
-<section>
-    <div class="container" id="container" [ngClass]="container">
-        <div class="form-container sign-up-container">
-            <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
-                <h1>Create Account</h1>
-                <div class="social-container">
-                    <a (click)="authService.faceBookAuth()" class="social"><i class="uil uil-facebook"></i></a>
-                    <a (click)="authService.googleAuth()" class="social"><i class="uil uil-google"></i></a>
-                </div>
-                <span>or use your email for registration</span>
-                <input type="email" placeholder="Email" formControlName="email" >
-                <input type="password" placeholder="Password" formControlName="password">
-                <button type="submit" [disabled]='registerForm.invalid'>Sign Up</button>
-            </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" [formGroup]='authForm' (ngSubmit)='loginUser()'>
+                    <h1>Sign In</h1>
+                    <p class="text-muted"> Please enter your login and password!</p> 
+                    <input type="text" name=""placeholder="Email" formControlName="email" [ngStyle]="errorEmail"> 
+                        <input type="password" name="" placeholder="Password" formControlName="password" [ngStyle]="errorPassword"> 
+                        <a class="new-user" (click)="OpenLogup(true)">NEW USER? REGISTER</a>
+                    <button type="submit"  [disabled]='authForm.invalid'>Submit</button>
+                    <div class="col-md-12">
+                        <ul class="social-network social-circle">
+                            <li><a (click)="loginUserFacebook()" class="icoFacebook" title="Facebook"><i class="uil uil-facebook-f"></i></a>
+                            </li>
+                            <li><a (click)="loginUserGoogle()" class="icoGoogle" title="Google +"><i class="uil uil-google"></i></a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-container sign-in-container">
-            <form [formGroup]='authForm' (ngSubmit)='loginUser()'>
-                <h1>Sign in</h1>
-                <div class="social-container">
-                    <a (click)="authService.faceBookAuth()" class="social"><i class="uil uil-facebook"></i></a>
-                    <a (click)="authService.googleAuth()" class="social"><i class="uil uil-google"></i></a>
-                </div>
-                <span>or use your account</span>
-                <input type="email" placeholder="Email"  formControlName="email">
-                <input type="password" placeholder="Password" formControlName="password">
-                <a href="#">Forgot your password?</a>
-                <button type="submit" [disabled]='authForm.invalid'>Sign In</button>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn" (click)="signIn(true)">Sign In</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
-                    <button class="ghost" id="signUp" (click)="signIn(false)">Sign Up</button>
+        <div class="row-1" [ngStyle]="openLogup">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box box-1" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+                        <h1>Sign Up</h1>
+                        <p class="text-muted"> Please enter your login and password!</p> 
+                        <input type="text" name=""placeholder="Email" formControlName="email"> 
+                        <input type="password" name="" placeholder="Password" formControlName="password"> 
+                        <a class="new-user" (click)="OpenLogup(false)">Sign Up here</a>
+                        <button type="submit" [disabled]='registerForm.invalid'>Submit</button>
+                        <div class="col-md-12">
+                            <ul class="social-network social-circle">
+                                <li><a (click)="authService.faceBookAuth()" class="icoFacebook" title="Facebook"><i
+                                            class="uil uil-facebook-f"></i></a></li>
+                                <li><a (click)="authService.googleAuth()" class="icoGoogle" title="Google +"><i
+                                            class="uil uil-google"></i></a></li>
+                            </ul>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+
+     

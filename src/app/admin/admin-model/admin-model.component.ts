@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModelService } from 'src/app/shared/services/model/model.service';
-import { IModelrequest, IModelresponce } from 'src/app/shared/interfaces/model/model.interface';
+import { IModelresponce } from 'src/app/shared/interfaces/model/model.interface';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -10,40 +11,55 @@ import { IModelrequest, IModelresponce } from 'src/app/shared/interfaces/model/m
   styleUrls: ['./admin-model.component.scss']
 })
 export class AdminModelComponent implements OnInit {
-  public formModel!:FormGroup;
-  public model:IModelresponce[] = [];
-  public modalOpen ={};
+  public page: number = 1;
+  public totalLength!: number;
+  public formModel!: FormGroup;
+  public model: IModelresponce[] = [];
+  public modalOpen = {};
 
-  constructor(private modelService:ModelService,private fb:FormBuilder) { }
+  constructor(
+    private modelService: ModelService,
+    private fb: FormBuilder,
+    private toast: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.initModel();
     this.loadModel()
   }
-  initModel(){
+  initModel() {
     this.formModel = this.fb.group({
-      brand:[null,Validators.required],
+      brand: [null, Validators.required],
     })
   }
-  createModel(){
-    this.modelService.createModelFB(this.formModel.value).then(()=>{
-     this.loadModel();
-     this.modalOpen = {'display': 'none'};
-     this.initModel();
+  createModel() {
+    this.modelService.createModelFB(this.formModel.value).then(() => {
+      this.loadModel();
+      this.modalOpen = { 'display': 'none' };
+      this.initModel();
+      this.toast.success('Create success')
     })
   }
-  loadModel(){
-   this.modelService.loadModelFB().subscribe(data =>{
-     this.model = data ;
-     console.log(data);
-     
-   })
+  loadModel() {
+    this.modelService.loadModelFB().subscribe(data => {
+      this.model = data;
+      this.totalLength = data.length
+
+    })
   }
-  openModal(status:any){
-   if(status){
-    this.modalOpen = {'display': 'block'};
-   }else{
-    this.modalOpen = {'display': 'none'};
-   }
+  deleteModel(id: string) {
+    this.modelService.deleteModel(id).then(() => {
+      this.loadModel();
+      this.toast.success('Delete success')
+    }).catch(err => {
+      this.toast.error(err)
+    })
+  }
+  openModal(status: any) {
+    if (status) {
+      this.modalOpen = { 'display': 'block' };
+    } else {
+      this.modalOpen = { 'display': 'none' };
+    }
   }
 }

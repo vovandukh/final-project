@@ -19,6 +19,13 @@ footer {
                 padding: 8px 20px 0;
                 .logo {
                     margin: 5px 0 0 0;
+                    @media screen and(max-width:$media-sm) {
+                        width: 120px;
+                        img{
+                            padding: 0 10px 0;
+                            width: 100%;
+                        }
+                    }
                 }
                 .text {
                     margin: 40px 0 0 0;
@@ -26,12 +33,22 @@ footer {
                     font-size: 13px;
                     line-height: 20px;
                     font-family: $monserat-regular;
+                    @media screen and(max-width:$media-sm) {
+                        margin: 0 0 10px;
+                        font-size: 10px;
+                    }
                 }
                 .social {
                     margin-top: 40px;
                     color: rgb(91, 91, 91);
                     i {
                         margin: 0 20px 0 0;
+                        @media screen and(max-width:$media-sm) {
+                            margin: 0 5px 0px;
+                        }
+                    }
+                    @media screen and(max-width:$media-sm) {
+                        margin: 0 0 10px;
                     }
                 }
                 h2 {
@@ -41,6 +58,9 @@ footer {
                     margin: 0 0 35px 20px;
                     @media screen and(max-width:$media-xl) {
                         font-size: 16px;
+                    }
+                    @media screen and(max-width:$media-sm) {
+                        margin: 0 0 0 15px;
                     }
                 }
                 ul {
@@ -58,7 +78,12 @@ footer {
                             .uil-angle-right {
                                 font-size: 20px;
                             }
+                            @media screen and(max-width:$media-sm) {
+                                font-size: 10px;
+                            }
                         }
+    
+                       
                     }
                 }
                 .adress {
@@ -112,7 +137,7 @@ footer {
             }
         }
         @media screen and(max-width:$media-lg) {
-            height: 650px;
+            height: 660px;
         }
  
     }

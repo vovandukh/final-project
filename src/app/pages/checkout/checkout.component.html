@@ -7,17 +7,17 @@
             <h1>BILLING DETAILS</h1>
             <form [formGroup]="orderForm" (ngSubmit)='createOrder()' >
                 <h1>Name</h1>
-                <input type="text" formControlName='name'>
+                <input type="text" formControlName='name' [ngStyle]="nameInvalid">
                 <h1>Street address</h1>
-                <input type="text" formControlName='streetAddress'>
+                <input type="text" formControlName='streetAddress' [ngStyle]="addressInvalid">
                 <h1>City</h1>
-                <input type="text" formControlName='city'>
+                <input type="text" formControlName='city' [ngStyle]="cityInvalid">
                 <h1>Country</h1>
-                <input type="text" formControlName='country'>
+                <input type="text" formControlName='country' [ngStyle]="countryInvalid">
                 <h1>Phone</h1>
-                <input type="text" formControlName='phone'>
+                <input type="text" formControlName='phone' [ngStyle]="phoneInvalid">
                 <h1>Email address</h1>
-                <input type="text" formControlName='email'>
+                <input type="text" formControlName='email' [ngStyle]="emailInvalid">
                 <h1>YOUR ORDER</h1>
                 <div class="order-wrapper">
                     <table>
@@ -52,12 +52,12 @@
                 </div>
                 <hr>
                 <div class="payment">
-                    <input (click)="changePayment('cart')"  name="payment" type="radio"  value="card" checked>Card
-                    <input (click)="changePayment('cash')"  name="payment" type="radio"  value="card">Cash
+                    <input (click)="changePayment('cart')"  name="payment" type="radio"  value="card">Card
+                    <input (click)="changePayment('cash')"  name="payment" type="radio"  value="cash">Cash
                 </div>
                 <hr>
                 <div class="button-wrapper">
-                    <button type="submit" [disabled]='orderForm.invalid'>PLACE ORDER</button>
+                    <button type="submit">PLACE ORDER</button>
                 </div>
             </form>
            

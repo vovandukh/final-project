@@ -18,7 +18,6 @@ export class BasketComponent implements OnInit {
   loadBasket(){
     if(localStorage.length > 0 && localStorage.getItem('basket')){
       this.basket = JSON.parse(localStorage.getItem('basket') as string);
-      console.log(this.basket);
     }else{
       this.basket =[];
     }

@@ -17,7 +17,6 @@ export class RightMenuNewsComponent implements OnInit {
   loadNews(){
     this.newsService.loadNews().subscribe(data =>{
      this.news = data as INewsResponce[];
-     console.log(this.news);
     })
   }
 }

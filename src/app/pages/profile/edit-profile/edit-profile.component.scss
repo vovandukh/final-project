@@ -2,12 +2,12 @@
 @import "../../../shared/styles/mixin";
 .form-wrapper {
     width: 100%;
-    height: 400px;
     padding: 30px 50px;
     form {
         .row-wrapper {
             width: 100%;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             margin: 0 0 30px 0;
             .input-wrapper {
@@ -16,6 +16,9 @@
                     font-size: 20px;
                     font-family: $primary-font;
                     margin: 0 0 10px;
+                    @media screen and (max-width: $media-md) {
+                        font-size: 15px;
+                     }
                 }
                 input {
                     padding: 20px 40px;
@@ -27,8 +30,15 @@
                     outline: none;
                     font-family: $monserat-regular;
                     font-size: 20px;
+                    @media screen and (max-width: $media-md) {
+                        font-size: 15px;
+                     }
                 }
+                @media screen and (max-width: $media-md) {
+                    width: 100%;
+                 }
             }
+
         }
         button {
             width: 150px;
@@ -39,6 +49,12 @@
             background-color: $secondary-color;
             color: #fff;
             font-family: $secondary-font;
+            @media screen and (max-width: $media-md) {
+              font-size: 14px;
+             }
         }
     }
+    @media screen and (max-width: $media-md) {
+        padding: 20px 10px;
+     }
 }

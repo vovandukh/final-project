@@ -13,15 +13,16 @@
                         <a class="for-nav-item" [routerLink]="[ 'catalog/all' ]" routerLinkActive="active">CATALOG</a>
                     </li>
                     <li class="nav-item news-item">
-                        <a  class="for-nav-item " class="for-nav-item" [routerLink]="[ 'news' ]" routerLinkActive="active">NEWS</a>  
+                        <a class="for-nav-item " class="for-nav-item" [routerLink]="[ 'news' ]"
+                            routerLinkActive="active">NEWS</a>
                     </li>
                     <li class="nav-item">
                         <a class="for-nav-item" [routerLink]="[ 'contacts' ]" routerLinkActive="active">CONTACTS</a>
                     </li>
                     <li class="nav-item" *ngIf="!userLogin">
-                        <a class="for-nav-item" [routerLink]="[ 'login-user' ]" routerLinkActive="active" >LOG IN</a>
+                        <a class="for-nav-item" [routerLink]="[ 'login-user' ]" routerLinkActive="active">LOG IN</a>
                     </li>
-                    <li class="nav-item" *ngIf="userLogin" >
+                    <li class="nav-item" *ngIf="userLogin">
                         <a class="for-nav-item" [routerLink]="['profile']" routerLinkActive="active">PROFILE</a>
                     </li>
                     <li class="menu">
@@ -48,37 +49,42 @@
                             <button type="submit">
                                 <i class="uil uil-search-alt"></i>
                             </button>
-                                <input type="text" placeholder="Search">
+                            <input type="text" placeholder="Search">
                         </form>
                     </div>
                 </div>
                 <div class="basket-wrapper">
                     <i class="uil uil-shopping-basket"></i>
-                    <span (click)="openBasketModal()" >{{ total| currency:'USD' }}</span>
+                    <span (click)="openBasketModal(true)">{{ total| currency:'USD' }}</span>
                     <div class="basket-modal" [ngStyle]="basketModal">
-                        <div class="basket-close"><i class="uil uil-times" (click)="closeBasketModal()"></i></div>
-    
+                        <div class="basket-close"><i class="uil uil-times" (click)="openBasketModal(false)"></i></div>
+
                         <div class="basket-info">
-                            <ng-container *ngIf="basketproduscts ; else noItem" >
-                                <div class="cart" *ngFor="let item of basketInfo" >
+                            <ng-container *ngIf="basketproduscts ; else noItem">
+                                <div class="cart" *ngFor="let item of basketInfo">
                                     <img [src]="item.imagePath" width="55px" height="55px">
-                                   <div>
-                                    <div style="display: flex;"><h5>{{item.name}}</h5> <i class="uil uil-times" (click)="removeProduct(item.id)"></i></div>
-                                    <p>{{item.count}} x {{item.price}}</p>
-                                   </div>
+                                    <div>
+                                        <div style="display: flex;">
+                                            <h5>{{item.name}}</h5> <i class="uil uil-times"
+                                                (click)="removeProduct(item.id)"></i>
+                                        </div>
+                                        <p>{{item.count}} x {{item.price}}</p>
+                                    </div>
                                 </div>
                                 <div class="cart-1">
                                     <div class="subTotal">Subtotal: {{total | currency:'USD'}}</div>
                                     <div class="button-wrapper">
-                                        <button type="button" [routerLink]="['basket']" (click)="closeBasketModal()">VIEV CART</button>
-                                        <button type="button" [routerLink]="[ 'checkout']" (click)="closeBasketModal()" >CHECKOUT</button>
+                                        <button type="button" [routerLink]="['basket']"
+                                            (click)="openBasketModal(false)">VIEV CART</button>
+                                        <button type="button" [routerLink]="[ 'checkout']"
+                                            (click)="openBasketModal(false)">CHECKOUT</button>
                                     </div>
-                                </div>  
+                                </div>
                             </ng-container>
                             <ng-template #noItem>
-                                <p >No products in the cart</p>
+                                <p>No products in the cart</p>
                             </ng-template>
-    
+
                         </div>
                     </div>
                 </div>
@@ -88,40 +94,51 @@
 </header>
 
 <div class="menu-space" [ngStyle]="menuOpen">
-   <div class="row">
-       <div class="close">
-        <i class="uil uil-times" (click)="openMenu(false)"></i>
-       </div>
-       <div class="logo-wrapper">
-           <img class="logo" src="/assets/images/logo-header-retina.webp">
-       </div>
-       <ul>
-           <li>
-               <a [routerLink]="[ 'home']"  (click)="openMenu(false)">HOME</a>
-           </li>
-           <li>
-            <a [routerLink]="[ 'catalog/all']" (click)="openMenu(false)">CATALOG</a>
-           </li>
-           <li> 
-            <a [routerLink]="[ 'news']" (click)="openMenu(false)">NEWS</a>
-           </li>
-           <li> 
-            <a [routerLink]="[ 'contacts']" (click)="openMenu(false)">CONTACTS</a>
-           </li>
-           <li> 
-            <a [routerLink]="[ 'basket']" (click)="openMenu(false)">CART</a>
-           </li>
-       </ul>
-       <div class="search">
-           <input type="text" placeholder="Search">
-           <button type="button"><i class="uil uil-search-alt"></i></button>
-       </div>
-       <div class="social-wrapper">
-         <div class="social">
-            <i class="uil uil-facebook"></i>
-            <i class="uil uil-twitter"></i>
-            <i class="uil uil-instagram-alt"></i>
-         </div>
-       </div>
-   </div>
+    <div class="row">
+        <div class="close">
+            <i class="uil uil-times" (click)="openMenu(false)"></i>
+        </div>
+        <div class="logo-wrapper">
+            <img class="logo" src="/assets/images/logo-header-retina.webp">
+        </div>
+        <ul>
+            <li>
+                <a [routerLink]="[ 'home']" (click)="openMenu(false)">HOME</a>
+            </li>
+            <li>
+                <a [routerLink]="[ 'catalog/all']" (click)="openMenu(false)">CATALOG</a>
+            </li>
+            <li>
+                <a [routerLink]="[ 'news']" (click)="openMenu(false)">NEWS</a>
+            </li>
+            <li>
+                <a [routerLink]="[ 'contacts']" (click)="openMenu(false)">CONTACTS</a>
+            </li>
+            <li>
+                <a [routerLink]="[ 'basket']" (click)="openMenu(false)">CART</a>
+            </li>
+            <li class="nav-item" *ngIf="!userLogin">
+                <a [routerLink]="[ 'login-user' ]" (click)="openMenu(false)" routerLinkActive="active">LOG IN</a>
+            </li>
+            <li class="nav-item" *ngIf="userLogin">
+                <a [routerLink]="['profile']" (click)="openMenu(false)" routerLinkActive="active">PROFILE</a>
+            </li>
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="Search">
+            <button type="button"><i class="uil uil-search-alt"></i></button>
+        </div>
+        <div class="social-wrapper">
+            <div class="social">
+                <i class="uil uil-facebook"></i>
+                <i class="uil uil-twitter"></i>
+                <i class="uil uil-instagram-alt"></i>
+            </div>
+        </div>
+    </div>
 </div>
+
+<button type="button" class="button-up" [ngStyle]="buttonUp" (click)="backToUp()">
+    <i class="uil uil-angle-up"></i>
+</button>
+

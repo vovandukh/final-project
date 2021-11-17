@@ -33,15 +33,6 @@
             font-family: $secondary-font;
             color: $secondary-color;
         }
-        @media screen and (max-width: $media-xl) {
-            .layer-2 {
-                font-size: 74px;
-            }
-            .layer-3 {
-                top: 55%;
-                font-size: 102px;
-            }
-        }
     }
     .image {
         margin: 30px auto 0;
@@ -63,7 +54,14 @@
         }
     }
     @media screen and (max-width: $media-xl) {
-        height: 870px;
+        height: 870px; 
+        .layer-2 {
+            font-size: 74px;
+        }
+        .layer-3 {
+            top: 55%;
+            font-size: 102px;
+        }
     }
     @media screen and (max-width: $media-md) {
         height: 797px;
@@ -83,6 +81,30 @@
             width: 80%;
             h3{
                 font-size: 111px;
+            }
+        }
+    }
+    @media screen and (max-width: $media-sm) {
+        height: 797px;
+        .title{
+            width: 80%;
+            .layer-1{
+                font-size: 180px
+            }
+            .layer-2{
+                font-size: 30px;
+            }
+            .layer-3{
+                font-size: 40px;
+            }
+        }
+        .image{
+            width: 80%;
+            img{
+                width: 100%;
+            }
+            h3{
+                font-size: 80px;
             }
         }
     }

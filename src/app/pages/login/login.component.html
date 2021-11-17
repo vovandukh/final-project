@@ -3,14 +3,10 @@
         <span class="error animated tada" id="msg"></span>
         <form name="form1" class="box" [formGroup]="loginForm">
             <h4>Admin<span>Dashboard</span></h4>
-            <input type="text" name="email" placeholder="Email" autocomplete="off" formControlName="email">
+            <input type="text" name="email" placeholder="Email" autocomplete="off" formControlName="email" [ngStyle]="errorEmail">
             <i class="typcn typcn-eye" id="eye"></i>
-            <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off" formControlName="password">
+            <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off" formControlName="password" [ngStyle]="errorPassword">
             <button type="button" value="Sign in" class="btn1" (click)="loginUser()">Submit</button>
         </form>
-        <div style="color: white;" class="alert alert-danger"
-*ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
-Incorect Email
-</div>
     </div>
 </section>

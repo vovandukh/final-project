@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { doc, setDoc } from '@firebase/firestore';
-import { IOrderRequvest, IOrderResponce } from 'src/app/shared/interfaces/order/order.interface';
+import { ToastrService } from 'ngx-toastr';
+import {  IOrderResponce } from 'src/app/shared/interfaces/order/order.interface';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
@@ -10,29 +11,38 @@ import { OrderService } from 'src/app/shared/services/order/order.service';
   styleUrls: ['./admin-orders.component.scss']
 })
 export class AdminOrdersComponent implements OnInit {
-  public orders: IOrderResponce[] = []
+  public page:number = 1;
+  public totalLength!:number;
+  public orders: any = []
 
-  constructor(private orderService: OrderService,private firestore:Firestore) { }
+  constructor(private orderService: OrderService,private firestore:Firestore ,private toast:ToastrService) { }
 
   ngOnInit(): void {
-    this.loadOrder();
+    this.loadOrder()
   }
 
   loadOrder() {
     this.orderService.loadOrder().subscribe(data => {
       this.orders = data;
-      console.log(this.orders);
+      this.totalLength = data.length;
     })
   }
-
   changeStatus(event: any, item:IOrderResponce) {
     let value = event.target.value;
-    this.orders.forEach(elem => {
+    this.orders.forEach((elem:any) => {
       if (elem.id === item.id) {
         elem.status = value
       }
     })
     setDoc(doc(this.firestore , 'orders',item.id),item)
+  }
+  deleteOrders(id:string){
+     this.orderService.deleteOrders(id).then(()=>{
+      this.toast.success('Delete success');
+       this.loadOrder();
+     }).catch(err =>{
+       this.toast.error(err)
+     })
   }
 
 }

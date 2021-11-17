@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminCallbackComponent } from './admin/admin-callback/admin-callback.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+import { AdminMessageComponent } from './admin/admin-message/admin-message.component';
 import { AdminModelComponent } from './admin/admin-model/admin-model.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminSubCategoryComponent } from './admin/admin-sub-category/admin-sub-category.component';
 import { AdminSubModelComponent } from './admin/admin-sub-model/admin-sub-model.component';
+import { AdminSubscribersComponent } from './admin/admin-subscribers/admin-subscribers.component';
 import { AdminComponent } from './admin/admin.component';
 import { BasketComponent } from './pages/basket/basket.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
@@ -25,6 +28,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGuard } from './shared/guards/Auth/auth.guard';
 import { CheckoutGuard } from './shared/guards/checkout/checkout.guard';
 import { ProfileGuard } from './shared/guards/profile/profile.guard';
+import { TestSliderComponent } from './test-slider/test-slider.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -33,6 +37,7 @@ const routes: Routes = [
   { path: 'products-detail/:id', component: ProductDetailComponent },
   { path: 'basket', component: BasketComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'test-slider', component: TestSliderComponent },
   { path: 'login-user', component: LoginUserComponent },
   {
     path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard], children: [
@@ -56,6 +61,9 @@ const routes: Routes = [
       { path: 'admin-sub-model', component: AdminSubModelComponent },
       { path: 'admin-orders', component: AdminOrdersComponent },
       { path: 'admin-news', component: AdminNewsComponent },
+      { path: 'admin-subscribes', component: AdminSubscribersComponent },
+      { path: 'admin-callback', component: AdminCallbackComponent },
+      { path: 'admin-message', component: AdminMessageComponent },
     ]
   },
 ];

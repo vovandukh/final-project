@@ -52,6 +52,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProfileInfoComponent } from './pages/profile/profile-info/profile-info.component';
 import { ProfileOrdersComponent } from './pages/profile/profile-orders/profile-orders.component';
 import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.component';
+import { TestSliderComponent } from './test-slider/test-slider.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AdminSubscribersComponent } from './admin/admin-subscribers/admin-subscribers.component';
+import { AdminCallbackComponent } from './admin/admin-callback/admin-callback.component';
+import { AdminMessageComponent } from './admin/admin-message/admin-message.component';
 
 
 
@@ -93,6 +99,10 @@ import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.
     ProfileInfoComponent,
     ProfileOrdersComponent,
     EditProfileComponent,
+    TestSliderComponent,
+    AdminSubscribersComponent,
+    AdminCallbackComponent,
+    AdminMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,6 +118,8 @@ import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.
     DpDatePickerModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    SlickCarouselModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Auth, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/shared/services/login/login.service';
+import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,17 +11,23 @@ import { LoginService } from 'src/app/shared/services/login/login.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private authService:LoginService,private auth:Auth,private router:Router) { }
+  public configMenu = {'display': 'none'}
+
+  constructor(private authService:LoginService) { }
 
   ngOnInit(): void {
   }
 
   signOut():void{
-    signOut(this.auth).then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['']);
-      this.authService.$checkLogin.next(true)
-    })
+    this.authService.logOut();
+  }
+
+  openMenu(status:boolean){
+  if(status){
+    this.configMenu = {'display': 'block'}
+  } else{
+    this.configMenu = {'display': 'none'}
+  }
   }
 
 }

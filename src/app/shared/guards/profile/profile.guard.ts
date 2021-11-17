@@ -14,8 +14,8 @@ export class ProfileGuard implements CanActivate {
   }
 
   isUserLogin(): boolean {
-    if(localStorage.length > 0 && localStorage.getItem('user')){
-      const user = JSON.parse(localStorage.getItem('user') as string);
+    if(localStorage.length > 0 && localStorage.getItem('users')){
+      const user = JSON.parse(localStorage.getItem('users') as string);
       if(user && user.role === 'USER'){
         return true;
       }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, signOut } from '@angular/fire/auth';
+import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { LoginService } from '../shared/services/login/login.service';
 
@@ -15,9 +15,6 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
    signOut(){
-    signOut(this.Auth).then(() => {
-      localStorage.removeItem('users');
-      this.router.navigate(['']);
-    })
+    this.login.logOut()
    }
 }

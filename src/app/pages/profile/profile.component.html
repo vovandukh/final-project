@@ -9,8 +9,15 @@
             <a [routerLink]="[ 'profile-orders' ]" routerLinkActive="active">ORDERS</a>
             <a [routerLink]="[ 'edit-profile' ]" routerLinkActive="active">EDIT PROFILE</a>
             <a (click)="signOut()" style="color: red;">SIGN OUT</a>
+            <div class="menuButton" (click)="openMenu(true)"><i class="uil uil-bars"></i></div>
+             <div class="menu" [ngStyle]="configMenu">
+                 <a [routerLink]="[ 'profile-info' ]">PROFILE</a>
+                 <a [routerLink]="[ 'profile-orders' ]" (click)="openMenu(false)">ORDERS</a>
+                 <a [routerLink]="[ 'edit-profile' ]" (click)="openMenu(false)">EDIT PROFILE</a>
+                 <a (click)="signOut()" class="last" (click)="openMenu(false)">SIGN OUT</a>
+             </div>
         </div>
-        <div class="row">
+        <div class="row" (click)="openMenu(false)">
             <router-outlet></router-outlet>
         </div>
     </div>

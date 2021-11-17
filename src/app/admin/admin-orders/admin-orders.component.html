@@ -12,11 +12,13 @@
                     <td>Email</td>
                     <td>Payment</td>
                     <td>Basket</td>
-                    <td>Total</td>
+                    <td>Total</td> 
+                    <td>Action</td> 
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of orders" class="row-wrapper" >
+                <tr *ngFor="let item of orders | 
+                paginate: { itemsPerPage: 2, currentPage: page, totalItems: totalLength};" class="row-wrapper" >
                     <td>
                         <select (change)='changeStatus($event,item)' >
                             <option value="item.status"selected disabled>{{ item.status }}</option>
@@ -39,12 +41,21 @@
                             <p>Brand:{{ c.brand }}</p>
                             <p>Model:{{ c.model }}</p>
                             <p>Year:{{ c.year }}</p>
-                            <p>Size:{{ c.size }}</p>
+                            <ng-container *ngIf="c.size">
+                                <p>Size: {{ c.size }}</p>
+                            </ng-container>
+                            <ng-container *ngIf="c.color">
+                                <p>Color: {{ c.color }}</p>
+                            </ng-container>
                         </div>
                     </td> 
                     <td>{{ item.total | currency:'USD' }}</td> 
+                    <td><div class="btn-wrap">
+                        <button class="btn1 btn2" type="button" (click)="deleteOrders(item.id)">Delete</button>
+                    </div></td> 
                 </tr>
             </tbody>
         </table>
+        <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
     </div>
 </div>

@@ -1,65 +1,65 @@
-@import '../../../shared/styles/variables';
+@import "../../../shared/styles/variables";
+@import "../../../shared/styles/mixin";
 
-.row{
-    margin: 0 0 -65px 0;
+.row {
+    margin: 0 0 10% 0;
     height: 750px;
     width: 100%;
     z-index: 0;
-    background-position: center;
-    background-size: cover;
-    background-image: url(../../../../assets/images/slide-1-bg.jpg);
-    .title-slider{
+        .slidewrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+            transition: 1.5s;
+            .slide {
+                width: 100%;
+                height: 100%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    .title-slider {
+        z-index: 10;
+        top: 0;
         position: absolute;
         top: 159px;
         left: 125px;
-        .layer-1{
+        .layer-1 {
             font-size: 79px;
             font-family: $secondary-font;
             color: $primery-color;
             line-height: 95px;
-            @media screen and (max-width:$media-xxl){
-                font-size: 74px;
-             }
-             @media screen and (max-width:$media-xl){
-                font-size: 61px;
-             }
-            
         }
-        .layer-2{
-          font-size: 79px;
-          font-family: $secondary-font;
-          color: $primery-text-color;
-          margin: 0 0 0 10px;
-          @media screen and (max-width:$media-xxl){
-            font-size: 74px;
-         }
-         @media screen and (max-width:$media-xl){
-            font-size: 61px;
-         }
+        .layer-2 {
+            font-size: 79px;
+            font-family: $secondary-font;
+            color: $primery-text-color;
+            margin: 0 0 0 10px;
         }
-        .layer-3{
+        .layer-3 {
             font-size: 64px;
             font-family: $monserat-regular;
             color: $primery-text-color;
-            line-height: 40px;
-            @media screen and (max-width:$media-xxl){
-                font-size: 59px;
-             }
-             @media screen and (max-width:$media-xl){
-                font-size: 49px;
-             }
+            line-height: 40px;  
         }
-        .slider-text{
+        .slider-text {
             margin: 35px 0 0 0;
             font-size: 13px;
             line-height: 22px;
             font-family: $primary-font;
             color: rgba(255, 255, 255, 0.55);
         }
-        .form-wrapper{
+        .form-wrapper {
             margin: 55px 0 0 0;
-            .form{
-                input{
+            .form {
+                input {
                     width: 296px;
                     height: 49px;
                     outline: none;
@@ -72,7 +72,7 @@
                     font-family: $primary-font;
                     margin: 0 16px 0 0;
                 }
-                button{
+                button {
                     padding: 16px 24px;
                     border-radius: 50px;
                     font-family: $secondary-font;
@@ -80,92 +80,208 @@
                     outline: none;
                     border: none;
                     background-color: $secondary-color;
-                    @media screen and (max-width:$media-xl){
+                    @media screen and (max-width: $media-xl) {
                         padding: 17px 18px;
-                     }
-                     &:hover{
-                         background-color: $primery-color;
-                         transition: all 0.5s;
-                     }
+                    }
+                    &:hover {
+                        background-color: $primery-color;
+                        transition: all 0.5s;
+                    }
                 }
             }
-
         }
     }
-    @media screen and (max-width:$media-xxl){
+    @media screen and (max-width: $media-xxl) {
         height: 700px;
-     }
-     @media screen and (max-width:$media-xl){
+        .layer-1 {
+            font-size: 74px;
+        }
+        .layer-2 {
+            font-size: 74px;
+        }
+        .layer-3 {
+            font-size: 59px;
+        }
+    }
+    @media screen and (max-width: $media-xl) {
         height: 580px;
-        .title-slider{
+        .title-slider {
             left: 100px;
-            .layer-1{
+            .layer-1 {
                 font-size: 59px;
                 line-height: 21px;
             }
-            .layer-2{
+            .layer-2 {
                 font-size: 59px;
                 line-height: 21px;
             }
-            .layer-3{
+            .layer-3 {
                 font-size: 47px;
             }
-
         }
-      
-
-     }
-     @media screen and (max-width:$media-lg){
+    }
+    @media screen and (max-width: $media-lg) {
         height: 490px;
-        .slider-text{
+        .slider-text {
             display: none;
         }
-        .title-slider{
+        .title-slider {
             top: 120px;
             left: 80px;
-            .layer-1{
+            .layer-1 {
                 font-size: 51px;
                 line-height: 10px;
             }
-            .layer-2{
+            .layer-2 {
                 font-size: 51px;
                 line-height: 10px;
             }
-            .layer-3{
+            .layer-3 {
                 font-size: 40px;
             }
         }
-     }
-     @media screen and (max-width:$media-md){
+    }
+    @media screen and (max-width: $media-md) {
         height: 390px;
-        .title-slider{
-          width: 100%;
-          left: 0;
-          text-align: center;
+        .title-slider {
+            width: 100%;
+            left: 0;
+            text-align: center;
         }
-        .slider-text{
+        .slider-text {
             display: none;
         }
-        .form-wrapper{
+        .form-wrapper {
             display: none;
         }
-     }
-     @media screen and (max-width:$media-sm){
-         .title-slider{
-            .layer-1{
-                font-size: 40px;
+    }
+    @media screen and (max-width: $media-sm) {
+        height:60vw;
+        .title-slider {
+            top: 14%;
+            .layer-1 {
+                font-size: 30px;
                 line-height: 10px;
             }
-            .layer-2{
-                font-size: 40px;
+            .layer-2 {
+                font-size: 30px;
                 line-height: 10px;
             }
-            .layer-3{
-                font-size: 38px;
+            .layer-3 {
+                font-size: 25px;
             }
-
-         }
+        }
         
-     }
-    
+    }
+    .subscribe-wrapper {
+        @include flex(row, center, center);
+        top: -15%;
+        position: relative;
+        height: 140px;
+        width: 90%;
+        background-color: $primery-text-color;
+        margin: 0 auto;
+        z-index: 10;
+        .form-wrapper {
+            @include flex(row, flex-start, center);
+            flex-wrap: wrap;
+            span {
+                font-size: 26px;
+                color: $secondary-text-color;
+                font-family: $monserat-regular;
+                @media screen and (max-width: $media-xxl) {
+                    font-size: 22px;
+                }
+                @media screen and (max-width: $media-sm) {
+                    font-size: 16px;
+                }
+            }
+            button {
+                padding: 16px 24px;
+                border-radius: 50px;
+                font-family: $secondary-font;
+                color: $primery-text-color;
+                outline: none;
+                border: none;
+                background-color: $secondary-color;
+                @media screen and (max-width: $media-xl) {
+                    padding: 17px 18px;
+                }
+                &:hover {
+                    background-color: $secondary-text-color;
+                    transition: all 0.5s;
+                }
+            }
+            input {
+                width: 373px;
+                height: 49px;
+                border-radius: 50px;
+                margin: 0 20px 0 43px;
+                outline: none;
+                border: 1px solid rgb(222, 222, 222);
+                background-color: #f0f0f0;
+                color: $secondary-text-color;
+                padding: 0 23px;
+                font-family: $monserat-regular;
+                @media screen and (max-width: $media-xxl) {
+                    width: 288px;
+                }
+                @media screen and (max-width: $media-xl) {
+                    width: 256px;
+                }
+                @media screen and (max-width: $media-lg) {
+                    margin: 20px 10px 0 0;
+                    text-align: center;
+                    width: 470px;
+                }
+                @media screen and (max-width: $media-md) {
+                    width: 100%;
+                    margin: 20px 0;
+                }
+            }
+            @media screen and (max-width: $media-lg) {
+                span {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                }
+                form {
+                    width: 90%;
+                    margin: 0 auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
+            }
+        }
+        @media screen and (max-width: $media-md) {
+            height: 220px;
+            top: -30%;
+        }
+        @media screen and (max-width: $media-md) {
+            height: 200px;
+            top: -20%;
+        }
+    }
+}
+
+
+::ng-deep {
+    .slider-wrapper-1 {
+        .slick-dots {
+            text-align: left;
+            padding-left: 100px;
+            top: 75% !important;
+            li {
+                button::before {
+                    font-size: 12px;
+                    color: white;
+                }
+            }
+            @media screen and (max-width: $media-xl) {
+                display: none !important;
+            }
+        }
+    }
 }

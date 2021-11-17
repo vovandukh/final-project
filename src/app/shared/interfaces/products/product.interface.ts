@@ -1,26 +1,29 @@
 export interface IProductRequest{
     name:string;
     category:any;
+    brand:string;
     subCategory:any;
     description:string;
     price:string;
     imagePath:string;
-    imagePath1?:string;
-    imagePath2?:string;
-    imagePath3?:string;
-    imagePath4?:string;
+    color?:string;
+    size?:string;
+    width?:string;
+    heigth?:string;
     count:number;
 }
 export interface IProductResponce{
     id:string;
     name:string;
+    brand:string;
     category:any;
+    subCategory:any;
     description:string;
     price:string;
     imagePath:string;
-    imagePath1?:string;
-    imagePath2?:string;
-    imagePath3?:string;
-    imagePath4?:string;
+    color?:string;
+    size?:string;
+    width?:string;
+    heigth?:string;
     count:number;
 }

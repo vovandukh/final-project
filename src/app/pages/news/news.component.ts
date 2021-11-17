@@ -8,7 +8,8 @@ import { NewsService } from 'src/app/shared/services/news/news.service';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-
+  public page:number = 1;
+  public totalLength!:number;
   public news:INewsResponce[] = [] 
 
   constructor(private newsService:NewsService) { }
@@ -20,7 +21,7 @@ export class NewsComponent implements OnInit {
   loadNews(){
     this.newsService.loadNews().subscribe(data =>{
      this.news = data as INewsResponce[];
-     console.log(this.news);
+     this.totalLength = data.length
     })
   }
 

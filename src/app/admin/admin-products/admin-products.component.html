@@ -17,7 +17,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of product ; let i = index">
+                <tr
+                    *ngFor="let product of product | paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength} ; let i = index">
                     <td> {{ i + 1 }}</td>
                     <td> {{ product.name }} </td>
                     <td> {{ product.description | slice: 0:50 }}</td>
@@ -25,13 +26,14 @@
                     <td><img [src]="product.imagePath" width="50" height="50"></td>
                     <td>
                         <div class="btn-wrap">
-                            <button class="btn1" type="button">Edit</button>
+                            <button class="btn1" type="button" (click)="editProduct(product)">Edit</button>
                             <button class="btn1 btn2" type="button" (click)="deleteProducts(product)">Delete</button>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
     </div>
 </div>
 
@@ -50,19 +52,31 @@
                     <h1>Brand</h1>
                     <input type="text" placeholder="Brand here.." formControlName="brand">
                     <h1>Price</h1>
-                    <input type="text" placeholder="Price here.." formControlName="price">
+                    <input type="number" placeholder="Price here.." formControlName="price">
                     <h1>Category</h1>
-                    <select name="" id="" formControlName='category' (change)="loadSubCategory($event)" [(ngModel)]="name">
+                    <select name="" id="" formControlName='category' (change)="loadSubCategory()"
+                        [(ngModel)]="name">
                         <option value="" disabled>Choose...</option>
-                        <option [ngValue]="category" value="category.path" *ngFor="let category of category">{{ category.name }}</option>
+                        <option [ngValue]="category" value="category.path" *ngFor="let category of category">{{
+                            category.name }}</option>
+                    </select>
+                    <h1>Sub Category</h1>
+                    <select name="" id="" formControlName='subCategory' (change)="loadSize()" [(ngModel)]="subCategoryName">
+                        <option value="" disabled>Choose...</option>
+                        <option [ngValue]="subCategory" *ngFor="let subCategory of subCategory">{{ subCategory.name }}
+                        </option>
                     </select>
                 </div>
                 <div class="block-2">
-                    <h1>Sub Category</h1>
-                    <select name="" id="" formControlName='subCategory'>
-                        <option value="" disabled>Choose...</option>
-                        <option [ngValue]="subCategory" *ngFor="let subCategory of subCategory">{{ subCategory.name }}</option>
-                    </select>
+                    <ng-container *ngIf="size">
+                        <h1>Width</h1>
+                        <input type="text" formControlName="width">
+                        <h1>Height</h1>
+                        <input type="text" formControlName="height">
+                        <h1>Size</h1>
+                        <input type="text" formControlName="size">
+                    </ng-container>
+                    
                     <h1>Description</h1>
                     <textarea placeholder="Text here.." formControlName='description'></textarea>
                     <h1>Image</h1>

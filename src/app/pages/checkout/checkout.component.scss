@@ -10,11 +10,30 @@
         color: #ffffff;
         font-size: 63px;
         font-family: $secondary-font;
-        
+        @media screen and (max-width: $media-xl) {
+            position: absolute;
+            top: 30%;
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-lg) {
+            font-size: 42px;
+        }
+        @media screen and (max-width: $media-md) {
+            font-size: 32px;
+            position: absolute;
+            top: 30%;
+        }
+        @media screen and (max-width: $media-sm) {
+            top: 10%;
+        }
+    }
+    @media screen and (max-width: $media-sm) {
+        height: 180px;
     }
 }
 .container{
-    width: 1170px;
+    max-width: 1170px;
+    width: 90%;
     margin: 0 auto 0;
     .form-wrapper{
         
@@ -42,6 +61,9 @@
                 border-radius: 50px;
                 font-family: $primary-font;
                 padding: 0 24px;
+                @media screen and (max-width: $media-md){
+                    width: 100%;
+                }
             }
             .payment{
                 margin: 20px 0 ;

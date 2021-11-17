@@ -24,13 +24,19 @@
             position: absolute;
             top: 30%;
         }
+        @media screen and (max-width: $media-sm) {
+            top: 10%;
+        }
+    }
+    @media screen and (max-width: $media-sm) {
+        height: 180px;
     }
 }
 
 .container {
-    padding: 90px 30px 0 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 40px 0 0 0;
     .sidebar-left {
         width: 25%;
         height: 100%;
@@ -72,6 +78,10 @@
                         @media screen and (max-width: $media-xl) {
                             width: 100%;
                         }
+                        &:hover{
+                            background-color: $secondary-text-color;
+                            transition: all 0.2s;
+                           }
                     }
                     .price {
                         font-size: 11px;
@@ -90,17 +100,120 @@
                     padding: 0 10px;
                 }
             }
+            .filter-size {
+                margin-top: 53px;
+                border-top: 1px solid rgb(234, 234, 234);
+                padding: 43px 60px 0;
+                width: 100%;
+                h1 {
+                    margin: 20px 0 0;
+                    font-size: 20px;
+                    color: $secondary-text-color;
+                    font-family: $primary-font;
+                    @media screen and (max-width: $media-xl) {
+                        font-size: 16px;
+                    }
+                }
+                h3 {
+                    margin: 20px 0 10px;
+                    font-size: 18px;
+                    color: $secondary-text-color;
+                    font-family: $primary-font;
+                }
+                .select {
+                    position: relative;
+                    select {
+                        width: 100%;
+                        height: 40px;
+                        border-radius: 50px;
+                        background-color: #f0f0f0;
+                        color: $secondary-text-color;
+                        border: 1px solid #dedede;
+                        appearance: none;
+                        outline: none;
+                        padding: 0 0 0 30px;
+                        font-family: $primary-font;        
+                    }
+                    .uil-angle-down {
+                        display: inline-block;
+                        position: absolute;
+                        top: 20%;
+                        right: 5%;
+                        font-size: 23px;
+                    } 
+                     
+                }
+                button {
+                    margin: 30px 0 0;
+                    width: 90px;
+                    height: 50px;
+                    border-radius: 50px;
+                    font-size: 13px;
+                    outline: none;
+                    border: none;
+                    background-color: $secondary-color;
+                    color: #fff;
+                    font-family: $secondary-font;
+                    text-transform: uppercase;
+                    @media screen and (max-width: $media-xxl) {
+                        margin: 0 0 20px;
+                    }
+                    @media screen and (max-width: $media-xl) {
+                        margin: 20px 0 0 0;
+                        width: 100%;
+                    }
+                    &:hover{
+                     background-color: $secondary-text-color;
+                     transition: all 0.2s;
+                    }
+                }
+
+                @media screen and (max-width: $media-xl) {
+                    padding: 20px 40px;
+                }
+                @media screen and (max-width: $media-md) {
+                    width: 50%;
+                    border: none;
+                }
+                @media screen and (max-width: $media-sm) {
+                    padding: 0 10px;
+                }
+            }
             .sidebar-filter-subCategory {
                 margin-top: 53px;
                 border-top: 1px solid rgb(234, 234, 234);
                 padding: 43px 60px 0;
                 width: 100%;
                 h1 {
+                    margin: 20px 0 0;
                     font-size: 20px;
                     color: $secondary-text-color;
                     font-family: $primary-font;
                     @media screen and (max-width: $media-xl) {
                         font-size: 16px;
+                    }
+                }
+                h3 {
+                    margin: 20px 0 10px;
+                    font-size: 18px;
+                    color: $secondary-text-color;
+                    font-family: $primary-font;
+                }
+                select {
+                    width: 100%;
+                    height: 40px;
+                    border-radius: 50px;
+                    background-color: #f0f0f0;
+                    color: $secondary-text-color;
+                    border: 1px solid #dedede;
+                    appearance: none;
+                    position: relative;
+                    outline: none;
+                    .uil-angle-down {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        font-size: 20px;
                     }
                 }
                 ul {
@@ -148,12 +261,15 @@
         width: 70%;
         display: flex;
         flex-wrap: wrap;
-        // justify-content: flex-end;
+        justify-content: flex-start;
         text-align: center;
         .product-item {
+            max-height: 500px;
             width: 14vw;
+            height: 38vw;
             margin: 0 14px 27px;
             background-color: #ffffff;
+            position: relative;
             .title {
                 margin: 30px 0 0 0;
                 font-size: 19px;
@@ -161,6 +277,14 @@
                 font-family: $monserat-regular;
                 @media screen and (max-width: $media-xl) {
                     font-size: 16px;
+                }
+                img{
+                    width: 90%;
+                    height: 90%;
+                }
+                &:hover{
+                    color: $secondary-color;
+                    transition: all 0.2s;
                 }
             }
             .rating {
@@ -195,14 +319,24 @@
                 border: none;
                 outline: none;
                 font-family: $secondary-font;
+                position: absolute;
+                bottom: 10px;
+                right: 25%;
+                &:hover{
+                    background-color: $secondary-color;
+                    transition: all 0.2s;
+                }
             }
             @media screen and (max-width: $media-xxl) {
+                max-height: 550px;
                 width: 20vw;
+                height: 48vw;
                 img {
                     height: 20vw;
                 }
             }
             @media screen and (max-width: $media-xl) {
+                max-height: 500px;
                 width: 18vw;
                 img {
                     height: 18vw;
@@ -210,29 +344,45 @@
             }
             @media screen and (max-width: $media-lg) {
                 width: 25vw;
+                height: 56vw;
                 img {
                     height: 22vw;
                 }
             }
             @media screen and (max-width: $media-md) {
-                width: 39vw;
+                width: 36vw;
+                height: 80vw;
                 img {
                     height: 35vw;
                 }
             }
             @media screen and (max-width: $media-sm) {
-                width: 32vw;
+                width: 40vw;
+                height: 88vw;
                 img {
-                    height: 32vw;
+                    height: 40vw;
                 }
+                .title {
+                    font-size: 13px;
+                    padding: 0;
+                }
+                button {
+                    width: 80px;
+                    height: 35px;
+                    font-size: 10px;
+                }
+            }
+            @media screen and (max-width: 420px){
+                height: 115vw;
             }
         }
         @media screen and (max-width: $media-md) {
             width: 100%;
+            justify-content: center;
         }
     }
     @media screen and (max-width: $media-md) {
-        flex-wrap:wrap-reverse;
+        flex-wrap: wrap-reverse;
     }
 }
 
@@ -262,6 +412,29 @@
             }
             .ngx-slider-pointer:focus {
                 outline: none;
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .container {
+        .my-pagination {
+            font-family: $primary-font;
+            width: 100%;
+            .ngx-pagination {
+                text-align: center;
+            }
+            .current {
+                margin: 20px;
+                border-radius: 50%;
+                background-color: $secondary-color;
+            }
+            .pagination-previous {
+                display: none;
+            }
+            .pagination-next {
+                display: none;
             }
         }
     }

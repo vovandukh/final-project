@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { getDownloadURL, ref, Storage, uploadBytes, uploadBytesResumable } from '@angular/fire/storage';
+import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ICategoryResponce } from 'src/app/shared/interfaces/category/category.interface';
+import { ToastrService } from 'ngx-toastr';
 import { IProductResponce } from 'src/app/shared/interfaces/products/product.interface';
-import { ISubCategoryRequest, ISubCategoryResponce } from 'src/app/shared/interfaces/sub-category/sub-category.interface';
+import { ISubCategoryResponce } from 'src/app/shared/interfaces/sub-category/sub-category.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 import { SubCategoryService } from 'src/app/shared/services/sub-category/sub-category.service';
@@ -14,13 +14,25 @@ import { SubCategoryService } from 'src/app/shared/services/sub-category/sub-cat
   styleUrls: ['./admin-products.component.scss']
 })
 export class AdminProductsComponent implements OnInit {
+  public size = false;
+  public page: number = 1;
+  public totalLength!: number;
   public category: ISubCategoryResponce[] = [];
-  public subCategory:ISubCategoryResponce[]=[];
-  public productForm!:FormGroup;
-  public product:IProductResponce[] = [];
+  public subCategory: ISubCategoryResponce[] = [];
+  public productForm!: FormGroup;
+  public product: IProductResponce[] = [];
   public modalOpen = {};
-  public name!:any; 
-  constructor(private subCategoryService: SubCategoryService,private categoryService:CategoryService, private fb: FormBuilder, private productService: ProductService,private storage:Storage) { }
+  public editStatus = false;
+  public productID!: string;
+  public name!: any;
+  public subCategoryName: any;
+  constructor(
+    private subCategoryService: SubCategoryService,
+    private categoryService: CategoryService,
+    private fb: FormBuilder,
+    private productService: ProductService,
+    private storage: Storage,
+    private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.loadCategory();
@@ -28,76 +40,100 @@ export class AdminProductsComponent implements OnInit {
     this.loadProducs();
   }
 
-  initProductForm(){
+  initProductForm() {
     this.productForm = this.fb.group({
-      name:[null,Validators.required],
-      brand:[null,Validators.required],
-      category:[null,Validators.required],
-      subCategory:[null,Validators.required],
-      description:[null,Validators.required],
-      price:[null,Validators.required],
-      imagePath:[null,Validators.required],
-      count:1
+      name: [null, Validators.required],
+      brand: [null, Validators.required],
+      category: [null, Validators.required],
+      subCategory: [null],
+      description: [null, Validators.required],
+      price: [null, Validators.required],
+      imagePath: [null, Validators.required],
+      width: null,
+      height: null,
+      size: null,
+      count: 1
     })
   }
 
   loadCategory() {
-    this.categoryService.loadCategory().subscribe(data =>{
+    this.categoryService.loadCategory().subscribe(data => {
       this.category = data;
     })
   }
-  loadSubCategory(path:any) {
+  loadSubCategory() {
     this.subCategoryService.loadSubCategoryNameFB(this.name.path).then(data => {
-      this.subCategory =[];
-     data.forEach(elem =>{
-      this.subCategory.push(elem.data() as ISubCategoryResponce) 
-      
-     })
-      
+      this.subCategory = [];
+      data.forEach(elem => {
+        this.subCategory.push(elem.data() as ISubCategoryResponce)
+      })
+    }).catch(err => {
+      this.toast.error(err)
     })
   }
 
-  loadProducs(){
-    this.productService.loadproductFB().subscribe(data =>{
+  loadProducs() {
+    this.productService.loadproductFB().subscribe(data => {
       this.product = data;
-      console.log(data);
+      this.totalLength = data.length;
     })
   }
-  saveProducts(){
-    this.productService.createProductFB(this.productForm.value).then(()=>{
-      this.loadCategory();
-      this.initProductForm();
-      this.modalOpen = {'display': 'none'};
-    })
+  saveProducts() {
+    if (this.editStatus) {
+      this.productService.editProducts(this.productID, this.productForm.value).then(() => {
+        this.loadProducs();
+        this.initProductForm()
+        this.size = false;
+        this.editStatus = false;
+        this.toast.success('Edit success');
+        this.modalOpen = { 'display': 'none' };
+      }).catch(err => {
+        this.toast.error(err)
+      })
+    } else {
+      this.productService.createProductFB(this.productForm.value).then(() => {
+        this.loadCategory();
+        this.initProductForm();
+        this.modalOpen = { 'display': 'none' };
+        this.size = false;
+        this.toast.success('Product created')
+      })
+    }
   }
-  deleteProducts(product:IProductResponce){
-    this.productService.deleteProductFB(product).then(()=>{
+  editProduct(products: IProductResponce) {
+    this.productForm.patchValue({
+      name: products.name,
+      brand: products.brand,
+      category: products.category,
+      subCategory: products.subCategory,
+      description: products.description,
+      price: products.price,
+      imagePath: products.imagePath,
+      width: products.width,
+      height: products.heigth,
+      size: products.size,
+    })
+    this.editStatus = true;
+    this.productID = products.id;
+    console.log(this.productID);
+
+    this.modalOpen = { 'display': 'block' };
+  }
+  deleteProducts(product: IProductResponce) {
+    this.productService.deleteProductFB(product).then(() => {
       this.loadProducs();
+      this.toast.success('Delete success')
+    }).catch(err => {
+      this.toast.error(err)
     })
   }
   upload(event: any): void {
     const file = event.target.files[0];
     this.uploadFile('products', file.name, file)
       .then(data => {
-        if(!this.productForm.controls['imagePath'].value){
+        if (!this.productForm.controls['imagePath'].value) {
           this.productForm.patchValue({
             imagePath: data
-          })
-        } else if(!this.productForm.controls['imagePath1'].value){
-          this.productForm.patchValue({
-            imagePath1: data
-          })
-        } else if(!this.productForm.controls['imagePath2'].value){
-          this.productForm.patchValue({
-            imagePath2: data
-          })
-        } else if(!this.productForm.controls['imagePath3'].value){
-          this.productForm.patchValue({
-            imagePath3: data
-          })
-        } else if(!this.productForm.controls['imagePath4'].value){
-          this.productForm.patchValue({
-            imagePath4: data
           })
         }
       })
@@ -125,12 +161,20 @@ export class AdminProductsComponent implements OnInit {
     return Promise.resolve(url);
   }
 
-  openModal(status:any){
-    if(status){
-     this.modalOpen = {'display': 'block'};
-    }else{
-     this.modalOpen = {'display': 'none'};
+  loadSize() {
+    if (this.subCategoryName.name == 'Tire') {
+      this.size = true;
+    } else {
+      this.size = false;
     }
-   }
+  }
+
+  openModal(status: any) {
+    if (status) {
+      this.modalOpen = { 'display': 'block' };
+    } else {
+      this.modalOpen = { 'display': 'none' };
+    }
+  }
 
 }

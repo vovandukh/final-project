@@ -7,7 +7,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th></th>
+                    <th class="for-image"></th>
                     <th class="product-name">Product</th>
                     <th class="product-price">Price</th>
                     <th class="product-quantity">Qvantity</th>
@@ -16,8 +16,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of basket">
-                    <td style="text-align: center;"><i class="uil uil-times" (click)="removeProduct(item.id)"></i></td>
-                    <td>
+                    <td style="text-align: center;" class="remove-product"><i class="uil uil-times" (click)="removeProduct(item.id)"></i></td>
+                    <td class="image-wrrap">
                         <div class="image">
                             <img [src]="item.product.imagePath" width="50px" height="50px">
                         </div>
@@ -29,7 +29,13 @@
                                 <p>Year: {{ item.year }}</p>
                                 <p>Make: {{ item.brand }}</p>
                                 <p>Model: {{ item.model }}</p>
-                                <p>Size: {{ item.size }}</p>
+                                <ng-container *ngIf="item.size">
+                                    <p>Size: {{ item.size }}</p>
+                                </ng-container>
+                                <ng-container *ngIf="item.color">
+                                    <p>Color: {{ item.color }}</p>
+                                </ng-container>
+                                
                             </div>
                         </div>
                     </td>

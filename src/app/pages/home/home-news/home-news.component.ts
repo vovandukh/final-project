@@ -20,9 +20,7 @@ export class HomeNewsComponent implements OnInit {
       data.forEach(elem =>{
         let news = {id:elem.id,...elem.data() }
         this.news.push(news as INewsResponce);
-      })
-      console.log(this.news);
-      
+      })      
     })
   }
 }

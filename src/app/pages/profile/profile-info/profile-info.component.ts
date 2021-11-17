@@ -16,8 +16,8 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   loadUser(){
-    if(localStorage.length > 0 && localStorage.getItem('user')){
-      let user = JSON.parse(localStorage.getItem('user') as string);
+    if(localStorage.length > 0 && localStorage.getItem('users')){
+      let user = JSON.parse(localStorage.getItem('users') as string);
       if(user.role == 'USER'){
         this.user = user;
       }

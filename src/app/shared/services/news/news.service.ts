@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, DocumentData, DocumentSnapshot, Firestore, getDoc, getDocs, query, where,collectionData, doc } from '@angular/fire/firestore';
-import { INewsRequest } from '../../interfaces/news/news.inteface';
+import { addDoc, collection, DocumentData, DocumentSnapshot, Firestore, getDoc, getDocs, query, where,collectionData, doc, setDoc } from '@angular/fire/firestore';
+import { deleteDoc } from '@firebase/firestore';
+import { INewsRequest, INewsResponce } from '../../interfaces/news/news.inteface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,14 @@ export class NewsService {
 
   loadNews(){
     return collectionData(collection(this.firestore, 'news'),{idField: 'id'})
+  }
+
+  editNews(id:string,news:INewsResponce){
+   return setDoc(doc(this.firestore,'news',id),news)
+  }
+
+  deleteNews(id:string){
+    return deleteDoc(doc(this.firestore , 'news', id))
   }
 
   createNews(news:INewsRequest){

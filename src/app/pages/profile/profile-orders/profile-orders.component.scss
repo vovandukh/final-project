@@ -1,58 +1,121 @@
 @import "../../../shared/styles/variables";
 @import "../../../shared/styles/mixin";
-.orders{
-    margin: 20px auto;
-    width: 80%;
-    height: 150px;
-    background-color: #e6e6e6;
-    .image{
-        height: 100%;
-        width: 20%;
-    }
-    .name{
-        width: 20%;
-        padding: 20px 20px;
-        font-family: 18px;
-        font-family: $monserat-regular;
-        text-align: center;
-        h3{
-            font-family: $secondary-font;
-            margin: 0 0 10px;
-            text-transform: uppercase;
+.container{
+    min-height: 450px;
+    .orders{
+        margin: 20px auto;
+        width: 80%;
+        background-color: #e6e6e6;
+        .image{
+            height: 100%;
+            width: 20%;
         }
-        
-    }
-    .model-info{
-        h3{
-            font-family: $secondary-font;
-            margin: 0 0 10px;
-            text-transform: uppercase;
+        .name{
+            width: 20%;
+            padding: 20px 20px;
+            font-family: 18px;
+            font-family: $monserat-regular;
+            text-align: center;
+            h3{
+                font-family: $secondary-font;
+                margin: 0 0 10px;
+                text-transform: uppercase;
+            }
+            @media screen and (max-width: $media-xl) {
+               font-size: 14px;
+               padding: 10px 10px;
+            }
+            @media screen and (max-width: $media-sm) {
+                font-size: 12px;
+                padding: 5px 5px;
+             }
+            
         }
-        width: 20%;
-        height: 100%;
-        padding: 20px 0 ;
-        text-align: center;
-        font-family: $monserat-regular ;
-    }
-    .status{
-        width: 25%;
-        h3{
-            font-family: $secondary-font;
-            margin: 0 0 10px;
-            text-transform: uppercase;
+        .model-info{
+            h3{
+                font-family: $secondary-font;
+                margin: 0 0 10px;
+                text-transform: uppercase;
+            }
+            width: 20%;
+            height: 100%;
+            padding: 20px 0 ;
+            text-align: center;
+            font-family: $monserat-regular ;
+            @media screen and (max-width: $media-xl) {
+                font-size: 14px;
+                padding: 10px 10px;
+             }
+             @media screen and (max-width: $media-sm) {
+                font-size: 12px;
+                padding: 5px 5px;
+             }
         }
-        padding: 20px 0 ;
-        text-align: center;
-        font-family: $monserat-regular ;
-    }
-    .total{
-        h3{
-            font-family: $secondary-font;
-            margin: 0 0 10px;
-            text-transform: uppercase;
+        .status{
+            width: 25%;
+            h3{
+                font-family: $secondary-font;
+                margin: 0 0 10px;
+                text-transform: uppercase;
+            }
+            padding: 20px 0 ;
+            text-align: center;
+            font-family: $monserat-regular ;
+            @media screen and (max-width: $media-xl) {
+                font-size: 14px;
+                padding: 10px 10px;
+             }
+             @media screen and (max-width: $media-sm) {
+                font-size: 12px;
+                padding: 5px 5px;
+             }
         }
-        padding: 20px 0 ;
-        text-align: center;
-        font-family: $monserat-regular ;
+        .total{
+            h3{
+                font-family: $secondary-font;
+                margin: 0 0 10px;
+                text-transform: uppercase;
+            }
+            padding: 20px 0 ;
+            text-align: center;
+            font-family: $monserat-regular ;
+            @media screen and (max-width: $media-xl) {
+                font-size: 14px;
+                padding: 10px 10px;
+             }
+            @media screen and (max-width: $media-sm) {
+                font-size: 10px;
+                padding: 5px 5px;
+             }
+        }
+        @media screen and (max-width: $media-md) {
+            width: 100%;
+         }
+    }
+}
+
+::ng-deep{
+    .container{
+        .my-pagination{
+            font-family: $primary-font;
+            width: 100%;
+            .ngx-pagination{
+              text-align: center;
+            }
+            .current{
+                margin: 20px;
+                border-radius: 50%; 
+                background-color: $secondary-color;
+            }
+            .pagination-previous {
+                
+                    display: none;
+                
+               
+            }
+            .pagination-next{
+                display: none;
+            }
+        }
     }
 }

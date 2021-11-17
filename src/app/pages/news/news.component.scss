@@ -23,6 +23,12 @@
             position: absolute;
             top: 30%;
         }
+        @media screen and (max-width: $media-sm) {
+            top: 10%;
+        }
+    }
+    @media screen and (max-width: $media-sm) {
+        height: 180px;
     }
 }
 
@@ -109,5 +115,27 @@
     }
     @media screen and (max-width: $media-lg) {
         width: 90%;
+    }
+}
+
+
+::ng-deep{
+    .container{
+        .my-pagination{
+            font-family: $primary-font;
+            .current{
+                border-radius: 50%; 
+                background-color: $secondary-color;
+            }
+            .pagination-previous {
+                
+                    display: none;
+                
+               
+            }
+            .pagination-next{
+                display: none;
+            }
+        }
     }
 }

@@ -20,8 +20,8 @@ export class EditProfileComponent implements OnInit {
     this.initFormUser()
   }
   loadUser(){
-    if(localStorage.length > 0 && localStorage.getItem('user')){
-      let user = JSON.parse(localStorage.getItem('user') as string)
+    if(localStorage.length > 0 && localStorage.getItem('users')){
+      let user = JSON.parse(localStorage.getItem('users') as string)
       if(user.role === "USER"){
         this.user = user;
       }
@@ -29,13 +29,15 @@ export class EditProfileComponent implements OnInit {
   }
   initFormUser(){
     this.formUser = this.fb.group({
+      id: this.user.id,
       name:[null,Validators.required],
       email:this.user.email,
       phoneNumber:[null,Validators.required],
       country:[null,Validators.required],
       city:[null,Validators.required],
       address:[null,Validators.required],
-      orders:[],
+      photoURL:null,
+      orders:null,
       role:'USER'
     })
     if(this.user.name){
@@ -43,11 +45,19 @@ export class EditProfileComponent implements OnInit {
         name:this.user.name
       })
     }
+    if(this.user.photoURL){
+      this.formUser.patchValue({
+        photoURL:this.user.photoURL
+      })
+    }
   }
 
   updateUser(){
-    localStorage.setItem('user', JSON.stringify(this.formUser.value))
-     setDoc(doc(this.firestore,"users",this.user.uid ),this.formUser.value).then(()=>{
+    this.formUser.patchValue({
+      orders: []
+    })
+    localStorage.setItem('users', JSON.stringify(this.formUser.value))
+     setDoc(doc(this.firestore,"users",this.user.id ),this.formUser.value).then(()=>{
       this.toast.success('Update success');
       this.initFormUser();
     })

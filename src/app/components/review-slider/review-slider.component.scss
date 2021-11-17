@@ -58,6 +58,19 @@
                    font-size: 50px;
                }
             }
+            @media screen and (max-width: $media-sm) {
+                width: 100%;
+                .layer-1 {
+                    font-size: 180px;
+                }
+                .layer-2 {
+                    font-size: 45px;
+                }
+                .layer-3 {
+                    margin: 10px 0 0 ;
+                    font-size: 40px;
+                }
+            }
         }
     }
     .slider-wrapper {

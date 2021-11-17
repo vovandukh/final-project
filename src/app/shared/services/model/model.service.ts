@@ -18,4 +18,7 @@ export class ModelService {
   loadModelFB():Observable<any>{
     return collectionData(collection(this.firestore,'model'),{idField:'id'})
   }
+  deleteModel(id:string){
+    return deleteDoc(doc(this.firestore,'model',id))
+  }
 }

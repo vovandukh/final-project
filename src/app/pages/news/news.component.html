@@ -4,7 +4,8 @@
     </div>
     <div class="container">
         <div class="news-wrapper">
-            <div class="news-item" *ngFor="let item of news">
+            <div class="news-item" *ngFor="let item of news | 
+            paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength }">
                 <div class="image-wrapper">
                     <img [src]="item.imagePath">
                 </div>
@@ -15,7 +16,9 @@
                     <button type="button" [routerLink]="[ '/news-detail', item.id ]">READ MORE</button>
                 </div>
             </div>
+            <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
         </div>
         <app-right-menu-news></app-right-menu-news>
     </div>
+    
 </section>
