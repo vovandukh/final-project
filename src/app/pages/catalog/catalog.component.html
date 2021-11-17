@@ -102,7 +102,7 @@
         <div class="products">
             <div class="product-item" *ngFor="let item of product | 
             paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLength }">
-                <img [src]=" item.imagePath" width="85%" height="200">
+                <img [src]=" item.imagePath" width="90%" height="200">
                 <p class="title" [routerLink]="[ '/products-detail', item.id ]">{{ item.name }}</p>
                 <div class="rating">
                     <span class="active"></span>

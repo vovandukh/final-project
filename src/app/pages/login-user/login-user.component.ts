@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { doc, setDoc, Firestore, docData } from '@angular/fire/firestore';
+import { doc, setDoc, Firestore, docData, getDoc } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/shared/services/login/login.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,157 +13,176 @@ import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from '@fire
   templateUrl: './login-user.component.html',
   styleUrls: ['./login-user.component.scss']
 })
-export class LoginUserComponent implements OnInit ,OnDestroy {
+export class LoginUserComponent implements OnInit, OnDestroy {
   public container = {}
-  public registerForm!:FormGroup;
-  public authForm!:FormGroup;
-  public loginSubscription!:Subscription;
-  public openLogup:any = {'width': '0'};
-  public errorEmail ={}
-  public errorPassword ={}
+  public registerForm!: FormGroup;
+  public authForm!: FormGroup;
+  public loginSubscription!: Subscription;
+  public openLogup: any = { 'width': '0' };
+  public errorEmail = {}
+  public errorPassword = {}
 
-  constructor(public authService : LoginService,private fb:FormBuilder,private auth:Auth,private firestore:Firestore,private toast:ToastrService,private router:Router) { }
+  constructor(public authService: LoginService, private fb: FormBuilder, private auth: Auth, private firestore: Firestore, private toast: ToastrService, private router: Router) { }
 
-  OpenLogup(status:boolean){
-    if(status){
-      this.openLogup = {'width': '100%'};
-    }else{
-      this.openLogup = {'width': '0'};
+  OpenLogup(status: boolean) {
+    if (status) {
+      this.openLogup = { 'width': '100%' };
+    } else {
+      this.openLogup = { 'width': '0' };
     }
   }
 
   ngOnInit(): void {
-   this.initRegisterForm() 
-   this.initAuthForm()
+    this.initRegisterForm()
+    this.initAuthForm()
   }
 
-  initAuthForm(){
+  initAuthForm() {
     this.authForm = this.fb.group({
-      email:[null,Validators.required],
-      password:[null,Validators.required]
+      email: [null, Validators.required],
+      password: [null, Validators.required]
     })
   }
 
-  initRegisterForm(){
+  initRegisterForm() {
     this.registerForm = this.fb.group({
-      email:[null,Validators.required],
-      password:[null,Validators.required]
+      email: [null, Validators.required],
+      password: [null, Validators.required]
     })
   }
 
-  registerUser(){
-    const {email,password} = this.registerForm.value;
-       this.signUp(email,password).then(()=>{
-        this.initRegisterForm();
-        this.toast.success('Thanks for signing up');
-        this.authService.$checkLogin.next(false)
-       }).catch(err =>{
-         if (err.code as string == 'auth/invalid-email') {
-          this.toast.error('Incorect Email')
-          this.errorEmail = { 'border': '2px solid red' };
-        }
-        if (err.code as string == 'auth/wrong-password') {
-          this.toast.error('Invalid Email or Password');
-          this.errorPassword = { 'border': '2px solid red' };
-          this.errorEmail = { 'border': '2px solid red' };
-        }
-  
-       })
-    }
-    async signUp(email:string,password:string):Promise<any>{
-      const credential = await createUserWithEmailAndPassword(this.auth,email,password);
-      const user = {
-        email: credential.user.email,
-        name: '',
-        photoURL: null,
-        phoneNumber: '',
-        address: '',
-        counry: '',
-        city: '',
-        orders: [],
-        role: 'USER'
+  registerUser() {
+    const { email, password } = this.registerForm.value;
+    this.signUp(email, password).then(() => {
+      this.initRegisterForm();
+      this.toast.success('Thanks for signing up');
+      this.authService.$checkLogin.next(false)
+    }).catch(err => {
+      if (err.code as string == 'auth/invalid-email') {
+        this.toast.error('Incorect Email')
+        this.errorEmail = { 'border': '2px solid red' };
       }
-      let data = await setDoc(doc(this.firestore, "users", credential.user.uid), user).then();
-      this.authService.getUser(credential.user.uid).then(data=>{
-        let user = {id:data.id,...data.data() }
-        localStorage.setItem('users',JSON.stringify(user));
+      if (err.code as string == 'auth/wrong-password') {
+        this.toast.error('Invalid Email or Password');
+        this.errorPassword = { 'border': '2px solid red' };
+        this.errorEmail = { 'border': '2px solid red' };
+      }
+
+    })
+  }
+  async signUp(email: string, password: string): Promise<any> {
+    const credential = await createUserWithEmailAndPassword(this.auth, email, password);
+    const user = {
+      email: credential.user.email,
+      name: '',
+      photoURL: null,
+      phoneNumber: '',
+      address: '',
+      counry: '',
+      city: '',
+      orders: [],
+      role: 'USER'
+    }
+    let data = await setDoc(doc(this.firestore, "users", credential.user.uid), user).then();
+    this.authService.getUser(credential.user.uid).then(data => {
+      let user = { id: data.id, ...data.data() }
+      localStorage.setItem('users', JSON.stringify(user));
+      this.router.navigate(['profile']);
+    })
+    return data;
+  }
+
+
+  loginUser(): void {
+    const { email, password } = this.authForm.value;
+    this.login(email, password).then(() => {
+      this.toast.success('User successfully login!');
+    }).catch(err => {
+      if (err.code as string == 'auth/invalid-email') {
+        this.toast.error('Incorect Email')
+        this.errorEmail = { 'border': '2px solid red' };
+      }
+      if (err.code as string == 'auth/wrong-password') {
+        this.toast.error('Invalid Email or Password');
+        this.errorPassword = { 'border': '2px solid red' };
+        this.errorEmail = { 'border': '2px solid red' };
+      }
+      if (err.code as string == 'auth/user-not-found') {
+        this.toast.error('User Not Found');
+      }
+
+    });
+  }
+  async login(email: string, password: string): Promise<any> {
+    const credential = await signInWithEmailAndPassword(this.auth, email, password);
+    this.loginSubscription = docData(doc(this.firestore, 'users', credential.user.uid), { idField: "id" }).subscribe(user => {
+      localStorage.setItem('users', JSON.stringify(user));
+      if (user && user.role === 'USER') {
         this.router.navigate(['profile']);
+        this.authService.$checkLogin.next(true)
+      }
+    });
+  }
+
+  faceBookAuth() {
+    this.socialLoginUP(new FacebookAuthProvider())
+  }
+
+  googleAuth() {
+    this.socialLoginUP(new GoogleAuthProvider())
+  }
+  socialLoginUP(provider: any) {
+    const auth = getAuth()
+    signInWithPopup(auth, provider).then(result => {
+      let user: any;
+      let userId = result.user.uid
+      getDoc(doc(this.firestore, 'users', result.user.uid)).then(data => {
+        user = data.data()
+        if (user != undefined) {
+          this.loginSubscription = docData(doc(this.firestore, 'users', result.user.uid), { idField: "id" }).subscribe(user => {
+            localStorage.setItem('users', JSON.stringify(user));
+            if (user && user.role === 'USER') {
+              this.router.navigate(['profile']);
+              this.toast.success('User successfully login!');
+              this.authService.$checkLogin.next(false)
+            }
+          })
+        } else {
+          let newUser = {
+            id: result.user.uid,
+            email: result.user.email,
+            name: result.user.displayName,
+            photoURL: result.user.photoURL,
+            phoneNumber: '',
+            address: '',
+            counry: '',
+            city: '',
+            orders: [],
+            role: 'USER'
+          }
+          setDoc(doc(this.firestore, "users", userId), newUser);
+          this.authService.getUser(result.user.uid).then(user => {
+            localStorage.setItem('users', JSON.stringify(user.data()));
+            this.router.navigate(['/profile']);
+            this.authService.$checkLogin.next(true);
+            this.toast.success('Thanks for signing up');
+          })
+
+        }
       })
-      return data;
-    }
-
-
-    loginUser(): void {
-      const { email, password } = this.authForm.value;
-      this.login(email, password).then(() => {
-        this.toast.success('User successfully login!');
-      }).catch(err => {    
-        if (err.code as string == 'auth/invalid-email') {
-          this.toast.error('Incorect Email')
-          this.errorEmail = { 'border': '2px solid red' };
-        }
-        if (err.code as string == 'auth/wrong-password') {
-          this.toast.error('Invalid Email or Password');
-          this.errorPassword = { 'border': '2px solid red' };
-          this.errorEmail = { 'border': '2px solid red' };
-        }
-        if (err.code as string == 'auth/user-not-found') {
-          this.toast.error('User Not Found');
-        }
-        
-      });
-    }
-    async login(email: string, password: string): Promise<any> {
-      const credential = await signInWithEmailAndPassword(this.auth, email, password);
-      this.loginSubscription = docData(doc(this.firestore, 'users', credential.user.uid),{idField: "id"}).subscribe(user => {
-        localStorage.setItem('users', JSON.stringify(user));
-         if(user && user.role === 'USER'){
-          this.router.navigate(['profile']);
-          this.authService.$checkLogin.next(true)
-        }
-      });
-    }
-
-  async loginUserGoogle(){
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider()
-    const credential = await signInWithPopup(auth , provider);
-    this.loginSubscription = docData(doc(this.firestore,'users', credential.user.uid),{idField:"id"}).subscribe(user=>{
-      localStorage.setItem('users', JSON.stringify(user));
-         if(user && user.role === 'USER'){
-          this.router.navigate(['profile']);
-          this.toast.success('User successfully login!');
-          this.authService.$checkLogin.next(false)
-        }
     })
   }
-  async loginUserFacebook(){
-    const auth = getAuth();
-    const provider = new FacebookAuthProvider()
-    const credential = await signInWithPopup(auth , provider);
-    this.loginSubscription = docData(doc(this.firestore,'users', credential.user.uid),{idField:"id"}).subscribe(user=>{
-      localStorage.setItem('users', JSON.stringify(user));
-         if(user && user.role === 'USER'){
-          this.router.navigate(['profile']);
-          this.toast.success('User successfully login!');
-          this.authService.$checkLogin.next(false)
-        }
-    })
-  }
-
-
-
-  signIn(status:boolean){
-    if(status){
-      this.container ={'right-panel-active': false}
-    } else{
-      this.container ={'right-panel-active': true}
+  signIn(status: boolean) {
+    if (status) {
+      this.container = { 'right-panel-active': false }
+    } else {
+      this.container = { 'right-panel-active': true }
     }
   }
-
-  ngOnDestroy(){
-    if(this.loginSubscription){
+  ngOnDestroy(): void {
+    if (this.loginSubscription) {
       this.loginSubscription.unsubscribe()
     }
   }
+
 }

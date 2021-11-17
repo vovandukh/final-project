@@ -8,7 +8,7 @@ import { NewsService } from 'src/app/shared/services/news/news.service';
   styleUrls: ['./news-detail.component.scss']
 })
 export class NewsDetailComponent implements OnInit {
-  public news:any;
+  public news:any = {};
   public newsID = this.activatedRoute.snapshot.paramMap.get('id');
   constructor(private newsService:NewsService, private activatedRoute:ActivatedRoute) { }
 

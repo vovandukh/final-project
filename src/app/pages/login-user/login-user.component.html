@@ -14,9 +14,9 @@
                     <button type="submit"  [disabled]='authForm.invalid'>Submit</button>
                     <div class="col-md-12">
                         <ul class="social-network social-circle">
-                            <li><a (click)="loginUserFacebook()" class="icoFacebook" title="Facebook"><i class="uil uil-facebook-f"></i></a>
+                            <li><a (click)="faceBookAuth()" class="icoFacebook" title="Facebook"><i class="uil uil-facebook-f"></i></a>
                             </li>
-                            <li><a (click)="loginUserGoogle()" class="icoGoogle" title="Google +"><i class="uil uil-google"></i></a></li>
+                            <li><a (click)="googleAuth()" class="icoGoogle" title="Google"><i class="uil uil-google"></i></a></li>
                         </ul>
                     </div>
                 </form>
@@ -34,9 +34,9 @@
                         <button type="submit" [disabled]='registerForm.invalid'>Submit</button>
                         <div class="col-md-12">
                             <ul class="social-network social-circle">
-                                <li><a (click)="authService.faceBookAuth()" class="icoFacebook" title="Facebook"><i
+                                <li><a (click)="faceBookAuth()" class="icoFacebook" title="Facebook"><i
                                             class="uil uil-facebook-f"></i></a></li>
-                                <li><a (click)="authService.googleAuth()" class="icoGoogle" title="Google +"><i
+                                <li><a (click)="googleAuth()" class="icoGoogle" title="Google +"><i
                                             class="uil uil-google"></i></a></li>
                             </ul>
                         </div>
