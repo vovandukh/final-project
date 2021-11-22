@@ -12,10 +12,7 @@
                 <iframe class="img" [src]="news.videoPath | safe" frameborder="0" webkitallowfullscreen
                     mozallowfullscreen allowfullscreen></iframe>
             </div>
-            <p class="text">{{ news.description | slice:0:82 }}</p>
-            <p class="text">{{ news.description | slice:82:428 }}</p>
-            <p class="text">{{ news.description | slice:428:793 }}</p>
-            <p class="text">{{ news.description | slice:793: -1 }}</p>
+            <div class="text-wrrap" [innerHTML]="news.description | newsText"></div>
             <div>
                 <p class="tags">TAGS: <a class="tag">{{news.tags}}</a> </p>
             </div>

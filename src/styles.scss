@@ -2,6 +2,7 @@
 @import './app/shared/styles/variables';
 @import './app/shared/styles/mixin';
 
+
 @font-face {
     font-family: Montserrat-Light;
     src: url(./assets/fonts/Montserrat/Montserrat-Light.ttf);
@@ -17,4 +18,5 @@
 @import '~ngx-toastr/toastr';
 body{
   background-color:#e7e7e7;
+  cursor: pointer;
 }

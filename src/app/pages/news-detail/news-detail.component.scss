@@ -6,7 +6,7 @@
     background-position: center;
     background-size: cover;
     padding: 10% 0 0 10%;
-    h1{
+    h1 {
         color: #ffffff;
         font-size: 63px;
         font-family: $secondary-font;
@@ -23,7 +23,7 @@
             position: absolute;
             top: 30%;
         }
-        
+
         @media screen and (max-width: $media-sm) {
             top: 10%;
         }
@@ -33,79 +33,96 @@
     }
 }
 
-.container{
+.container {
     width: 90%;
     max-width: 1170px;
     margin: 90px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    .news-wrapper{
+    .news-wrapper {
         width: 65%;
-        .image-wrapper{
+        .image-wrapper {
             height: 30vw;
-            img{
+            img {
                 width: 100%;
                 height: 100%;
             }
             @media screen and (max-width: $media-lg) {
                 height: 30vw;
-              } 
+            }
             @media screen and (max-width: $media-md) {
                 height: 50vw;
-              } 
+            }
         }
-        .date{
+        .date {
             margin: 50px 0 80px 0;
             font-size: 13px;
             color: #b5b5b5;
             font-family: $secondary-font;
             @media screen and (max-width: $media-xl) {
                 margin: 20px 0;
-            } 
+            }
         }
-        .video{
+        .video {
             margin: 0 0 80px;
             height: 270px;
-            iframe{
+            iframe {
                 width: 100%;
                 height: 100%;
             }
         }
-        .text{
-            
-            font-size: 14px;
-            font-family: $primary-font;
-            margin: 0 0 26px;
-            @media screen and (max-width: $media-xl) {
-                margin: 10px 0;
+        .text-wrrap {
+            .text {
+                font-size: 14px !important;
+                font-family: $primary-font !important;
+                margin: 0 0 26px;
+                @media screen and (max-width: $media-xl) {
+                    margin: 10px 0;
+                }
             }
         }
-        .tags{
+        .tags {
             font-size: 14px;
             font-family: $secondary-font;
-            .tag{
+            .tag {
                 margin: 0 0 0 10px;
                 text-transform: uppercase;
                 display: inline-block;
                 padding: 15px;
                 color: #ffffff;
                 background-color: $secondary-text-color;
-                border-radius: 50px
+                border-radius: 50px;
             }
         }
         @media screen and (max-width: $media-xxl) {
             width: 59vw;
-        } 
+        }
         @media screen and (max-width: $media-xl) {
             width: 53vw;
-        } 
+        }
         @media screen and (max-width: $media-lg) {
             width: 57vw;
-        } 
+        }
         @media screen and (max-width: $media-md) {
             width: 100%;
             margin: 0 0 30px;
-        } 
-    } 
+        }
+    }
+}
+
+::ng-deep {
+    .text-wrrap{
+        .text {
+            font-size: 14px !important;
+            font-family: $primary-font !important;
+            margin: 26px 0 0 0;
+            @media screen and (max-width: $media-xl) {
+                margin: 10px 0;
+            }
+            &:last-child{
+             margin: 0 0 26px;
+            }
+        }
+    }
 }

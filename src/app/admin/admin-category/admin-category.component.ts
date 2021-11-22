@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
-import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
+import { deleteObject, getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import {  ICategoryResponce } from 'src/app/shared/interfaces/category/category.interface';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -25,6 +25,7 @@ export class AdminCategoryComponent implements OnInit{
   public categoryID: string = '';
   public modalOpen = { 'display': 'none' };
   public authSubscription!: Subscription;
+  public isUploaded = false
 
   constructor(
     private fb: FormBuilder,
@@ -86,6 +87,7 @@ export class AdminCategoryComponent implements OnInit{
     })
     this.editStatus = true;
     this.categoryID = category.id;
+    this.isUploaded = true;
     this.modalOpen = { 'display': 'block' };
   }
   deleteCategory(category: ICategoryResponce) {
@@ -104,7 +106,7 @@ export class AdminCategoryComponent implements OnInit{
         this.categoryForm.patchValue({
           imagePath: data
         });
-        console.log(this.categoryForm);
+        this.isUploaded =true;
       })
       .catch(err => {
         this.toast.error(err)
@@ -128,6 +130,21 @@ export class AdminCategoryComponent implements OnInit{
       this.toast.error('Wrong format')
     }
     return Promise.resolve(url);
+  }
+  deleteImage(imagePath?: string): void {
+    imagePath = imagePath ? imagePath : this.valueByControl('imagePath')
+    this.isUploaded = false;
+    const task = ref(this.storage, imagePath);
+    deleteObject(task).then(() => {
+      this.toast.success('File deleted successfully')
+      this.categoryForm.patchValue({
+        imagePath: null
+      })
+    })
+  }
+
+  valueByControl(control:string):string{
+      return this.categoryForm.get(control)?.value;
   }
 
   openModal(status: any) {

@@ -10,10 +10,6 @@ import { MassegeService } from 'src/app/shared/services/massege/massege.service'
 })
 export class ContactsComponent implements OnInit {
   public messageForm!:FormGroup;
-  public invalidName ={}
-  public invalidEmail ={}
-  public invalidSubject ={}
-  public invalidMessage ={}
   constructor(private fb:FormBuilder,private messageService:MassegeService,private toast:ToastrService) { }
 
   ngOnInit(): void {
@@ -29,34 +25,24 @@ export class ContactsComponent implements OnInit {
     })
   }
   
-  setMessage(event:any){
-    console.log(event.target);
-    console.log(this.messageForm.controls.email);
-    
-    if(this.messageForm.controls.name.errors != null){
-       this.toast.error('Please enter Name')
-       this.invalidName = {'border': "1px solid red"}
-    } else if(this.messageForm.controls.email.errors != null){
-      this.toast.error('Invalid Email')
-      this.invalidEmail = {'border': "1px solid red"}
-    } else if(this.messageForm.controls.email.value == null){
-      this.toast.error('Please enter Email')
-      this.invalidEmail = {'border': "1px solid red"}
-    }else if(this.messageForm.controls.subject.errors != null){
-      this.toast.error('Please enter subject')
-      this.invalidSubject = {'border': "1px solid red"}
-    } else if(this.messageForm.controls.message.errors != null){
-      this.toast.error('Please enter message')
-      this.invalidMessage = {'border': "1px solid red"}
-    }else{
+  setMessage(){
+    let status = false
+    for (const key in this.messageForm.value) {
+      if(this.messageForm.controls[key].errors || !this.messageForm.controls[key].value){
+        document.getElementById(key)?.classList.add('invalid')
+        this.toast.error('Invalid', key.toUpperCase());
+        status = false;
+        break;
+      }else{
+        document.getElementById(key)?.classList.remove('invalid');
+        status = true;
+      }
+    }
+     if(status){
       this.messageService.createMessage(this.messageForm.value).then(()=>{
         this.toast.success('Message sent')
-        this.invalidEmail={}
-        this.invalidName={}
-        this.invalidSubject={}
-        this.invalidMessage={}
       })
-    }
+     }
   }
 
 }

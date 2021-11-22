@@ -66,7 +66,9 @@
                         <option [ngValue]="subCategory" *ngFor="let subCategory of subCategory">{{ subCategory.name }}
                         </option>
                     </select>
+                    <button type="submit">Submit</button>
                 </div>
+
                 <div class="block-2">
                     <ng-container *ngIf="size">
                         <h1>Width</h1>
@@ -79,11 +81,16 @@
                     
                     <h1>Description</h1>
                     <textarea placeholder="Text here.." formControlName='description'></textarea>
-                    <h1>Image</h1>
-                    <input type="file" (change)="upload($event)">
-                    <button type="submit" [disabled]='productForm.invalid'>Submit</button>
+                    <div style="display: flex; align-items: flex-start; flex-direction: column;">
+                        <h1>Image</h1>
+                        <input type="file" (change)="upload($event)">
+                        <div *ngIf="isUploaded" style="display: flex;">
+                            <img [src]="valueByControl('imagePath')" width="50" height="50"
+                                style="display: block; margin: 10px 0 ;">
+                            <button type="button" style="width: 50px; height: 30px; margin: 0;" (click)="deleteImage()">X</button>
+                        </div>
+                    </div>
                 </div>
-
             </form>
         </div>
     </div>

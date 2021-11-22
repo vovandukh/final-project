@@ -9,7 +9,7 @@
         width: 90%;
         height: 700px;
       .form-wrapper{
-          padding-top: 40px;
+          // padding-top: 40px;
           width: 100%;
         form{
             padding: 0 60px;
@@ -17,6 +17,9 @@
             width: inherit;
             display: flex;
             justify-content: space-between;
+        }
+        button{
+          margin: 20px 0 0 0 !important;
         }
       }
      }

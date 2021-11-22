@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
+import { deleteObject, getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IProductResponce } from 'src/app/shared/interfaces/products/product.interface';
@@ -23,6 +23,7 @@ export class AdminProductsComponent implements OnInit {
   public product: IProductResponce[] = [];
   public modalOpen = {};
   public editStatus = false;
+  public isUploaded = false
   public productID!: string;
   public name!: any;
   public subCategoryName: any;
@@ -85,6 +86,7 @@ export class AdminProductsComponent implements OnInit {
         this.initProductForm()
         this.size = false;
         this.editStatus = false;
+        this.isUploaded = false;
         this.toast.success('Edit success');
         this.modalOpen = { 'display': 'none' };
       }).catch(err => {
@@ -95,6 +97,7 @@ export class AdminProductsComponent implements OnInit {
         this.loadCategory();
         this.initProductForm();
         this.modalOpen = { 'display': 'none' };
+        this.isUploaded = false;
         this.size = false;
         this.toast.success('Product created')
       })
@@ -110,10 +113,11 @@ export class AdminProductsComponent implements OnInit {
       price: products.price,
       imagePath: products.imagePath,
       width: products.width,
-      height: products.heigth,
+      height: products.height,
       size: products.size,
     })
     this.editStatus = true;
+    this.isUploaded = true;
     this.productID = products.id;
     console.log(this.productID);
 
@@ -135,6 +139,7 @@ export class AdminProductsComponent implements OnInit {
           this.productForm.patchValue({
             imagePath: data
           })
+          this.isUploaded = true;
         }
       })
       .catch(err => {
@@ -167,6 +172,21 @@ export class AdminProductsComponent implements OnInit {
     } else {
       this.size = false;
     }
+  }
+  deleteImage(imagePath?: string): void {
+    imagePath = imagePath ? imagePath : this.valueByControl('imagePath')
+    this.isUploaded = false;
+    const task = ref(this.storage, imagePath);
+    deleteObject(task).then(() => {
+      this.toast.success('File deleted successfully')
+      this.productForm.patchValue({
+        imagePath: null
+      })
+    })
+  }
+
+  valueByControl(control:string):string{
+      return this.productForm.get(control)?.value;
   }
 
   openModal(status: any) {

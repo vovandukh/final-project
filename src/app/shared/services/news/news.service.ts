@@ -25,10 +25,6 @@ export class NewsService {
   createNews(news:INewsRequest){
     return addDoc(collection(this.firestore, 'news'),news)
   }
-  loadNewsByTag(tag:string){
-    let data = query(collection(this.firestore, "news"), where("tags", "==", tag));
-    return getDocs(data)
-  }
   getNewsById(id:string):Promise<DocumentSnapshot<DocumentData>>{
     return getDoc(doc(this.firestore,'news',id))
   }

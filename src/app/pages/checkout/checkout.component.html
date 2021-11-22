@@ -7,17 +7,17 @@
             <h1>BILLING DETAILS</h1>
             <form [formGroup]="orderForm" (ngSubmit)='createOrder()' >
                 <h1>Name</h1>
-                <input type="text" formControlName='name' [ngStyle]="nameInvalid">
+                <input type="text" id="name" formControlName='name'>
                 <h1>Street address</h1>
-                <input type="text" formControlName='streetAddress' [ngStyle]="addressInvalid">
+                <input type="text" id="streetAddress" formControlName='streetAddress'>
                 <h1>City</h1>
-                <input type="text" formControlName='city' [ngStyle]="cityInvalid">
+                <input type="text" id="city" formControlName='city'>
                 <h1>Country</h1>
-                <input type="text" formControlName='country' [ngStyle]="countryInvalid">
+                <input type="text" id="country" formControlName='country'>
                 <h1>Phone</h1>
-                <input type="text" formControlName='phone' [ngStyle]="phoneInvalid">
+                <input type="text" id="phone" formControlName='phone'>
                 <h1>Email address</h1>
-                <input type="text" formControlName='email' [ngStyle]="emailInvalid">
+                <input type="text" id="email" formControlName='email'>
                 <h1>YOUR ORDER</h1>
                 <div class="order-wrapper">
                     <table>

@@ -34,18 +34,18 @@
                 <div class="message-wrapper">
                     <h1>CONTACT US RIGHT NOW</h1>
                     <div class="form-wrapper">
-                        <form [formGroup]="messageForm" (ngSubmit)="setMessage($event)">
+                        <form [formGroup]="messageForm" (ngSubmit)="setMessage()">
                            <div class="colums-wrap">
-                               <input class="colums_1_2" type="text" placeholder="NAME" formControlName="name" [ngStyle]="invalidName">
-                               <input class="colums_1_2" type="text" placeholder="EMAIL"formControlName="email"[ngStyle]="invalidEmail">
+                               <input class="colums_1_2" id="name" type="text" placeholder="NAME" formControlName="name" >
+                               <input class="colums_1_2" id="email" type="text" placeholder="EMAIL"formControlName="email">
                            </div>
                            <div class="colums-wrap">
-                               <input class="colums_1_1" type="text" placeholder="SUBJECT" formControlName="subject"
-                               [ngStyle]="invalidSubject">
+                               <input class="colums_1_1" id="subject" type="text" placeholder="SUBJECT" formControlName="subject"
+                               >
                            </div>
                            <div class="colums-wrap">
-                            <textarea class="textarea-massege" placeholder="MESSAGE" formControlName="message"
-                            [ngStyle]="invalidMessage"></textarea>
+                            <textarea class="textarea-massege" id="message" placeholder="MESSAGE" formControlName="message"
+                            ></textarea>
                            </div>
                            <button type="submit">SEND MESSAGE</button>
                         </form>

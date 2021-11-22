@@ -23,9 +23,6 @@ export class SubCategoryService {
     let data = query(collection(this.firestore, "sub-categories"), where("category.path", "==", name)); 
     return getDocs(data)
   }
-  loadSubCategory(name:any):any{
-   
-  }
   deleteSubCategoryFB(subCategory:ISubCategoryResponce):Promise<void>{
     return deleteDoc(doc(this.firestore,"sub-categories",subCategory.id))
   }

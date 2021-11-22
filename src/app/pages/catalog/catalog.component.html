@@ -11,7 +11,7 @@
                         <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
                     </div>
                     <div class="price-info">
-                        <button (click)="loadProductByPrice()">Filter</button>
+                        <button (click)="filterProductByPrice()">Filter</button>
                         <span class="price">Prise: ${{minValue}}—${{maxValue}}</span>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <ul *ngIf="subCategoryTitle; else category">
                         <h1>Filter by sub category</h1>
                         <li *ngFor="let item of subCategory">
-                            <a [routerLink]="[ '/catalog',item.path]" (click)="loadProductsBysubCategory(item.path)"><i
+                            <a [routerLink]="[ '/catalog',item.path]"><i
                                     class="uil uil-angle-right-b"></i>{{item.name}}</a>
                         </li>
                     </ul>
@@ -28,7 +28,7 @@
                         <ul>
                             <h1>Filter by category</h1>
                             <li *ngFor="let item of subCategory">
-                                <a [routerLink]="[ '/catalog',item.path]" (click)="checkChange(item.path)"><i
+                                <a [routerLink]="[ '/catalog',item.path]" ><i
                                         class="uil uil-angle-right-b"></i>{{item.name}}</a>
                             </li>
                         </ul>
@@ -42,54 +42,21 @@
                             <div class="select">
                                 <i class="uil uil-angle-down"></i>
                                 <select name="" id="" formControlName="width">
-                                    <option value="155">155</option>
-                                    <option value="165">165</option>
-                                    <option value="175">175</option>
-                                    <option value="185">185</option>
-                                    <option value="195">195</option>
-                                    <option value="205">205</option>
-                                    <option value="215">215</option>
-                                    <option value="225">225</option>
-                                    <option value="235">235</option>
-                                    <option value="245">245</option>
-                                    <option value="255">255</option>
-                                    <option value="265">265</option>
-                                    <option value="275">275</option>
-                                    <option value="285">285</option>
-                                    <option value="295">295</option>
-                                    <option value="315">315</option>
+                                    <option *ngFor="let item of width" [value]="item">{{ item }}</option>
                                 </select>
                             </div>
                             <h3>Height</h3>
                             <div class="select" size=5>
                                 <i class="uil uil-angle-down" ></i>
                                 <select name="" formControlName="height">
-                                    <option value="40">40</option>
-                                    <option value="45">45</option>
-                                    <option value="50">50</option>
-                                    <option value="55">55</option>
-                                    <option value="60">60</option>
-                                    <option value="65">65</option>
-                                    <option value="70">70</option>
-                                    <option value="75">75</option>
-                                    <option value="80">80</option>
+                                    <option *ngFor="let item of height" [value]="item">{{ item }}</option>
                                 </select>
                             </div>
                             <h3>Size</h3>
                             <div class="select">
                                 <i class="uil uil-angle-down"></i>
                                 <select name="" id="" formControlName="size">
-                                    <option value="13">R13</option>
-                                    <option value="14">R14</option>
-                                    <option value="15">R15</option>
-                                    <option value="16">R16</option>
-                                    <option value="17">R17</option>
-                                    <option value="18">R18</option>
-                                    <option value="19">R19</option>
-                                    <option value="20">R20</option>
-                                    <option value="21">R21</option>
-                                    <option value="22">R22</option>
-
+                                    <option *ngFor="let item of Size" [value]="item">R{{ item }}</option>
                                 </select>
                             </div>
                             <button type="submit">Filter</button>

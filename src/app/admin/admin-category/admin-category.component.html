@@ -17,7 +17,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let category of category  | 
-                paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength}, let i = index"  class="row-wrapper" >
+                paginate: { itemsPerPage: 3, currentPage: page, totalItems: totalLength}, let i = index"
+                    class="row-wrapper">
                     <td>{{ i+1 }}</td>
                     <td> {{ category.name }} </td>
                     <td> {{ category.description }}</td>
@@ -38,7 +39,7 @@
 
 <!--Modal-->
 <div class="modal-wrapper" [ngStyle]="modalOpen">
-    <div class="modal" >
+    <div class="modal">
         <div class="wrapper-title">
             <h1 class="title">Category</h1>
             <div><i class="uil uil-times" (click)="openModal(false)"></i></div>
@@ -51,9 +52,18 @@
                 <input type="text" placeholder="Path here.." formControlName="path">
                 <h1>Description</h1>
                 <textarea placeholder="Text here.." formControlName="description"></textarea>
-                <h1>Image</h1>
-                <input type="file" (change)="upload($event)">
-                <button type="submit" [disabled]="categoryForm.invalid">Submit</button>
+                <div style="display: flex; align-items: flex-end ; height: 200px;">
+                    <div style="display: flex; align-items: flex-start; flex-direction: column;">
+                        <h1>Image</h1>
+                        <input type="file" (change)="upload($event)">
+                        <div *ngIf="isUploaded">
+                            <img [src]="valueByControl('imagePath')" width="120" height="120"
+                                style="display: block; margin: 10px 0 ;">
+                            <button type="button" style="width: 50px; height: 30px; margin: 0;" (click)="deleteImage()">X</button>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="categoryForm.invalid">Submit</button>
+                </div>
             </form>
         </div>
     </div>

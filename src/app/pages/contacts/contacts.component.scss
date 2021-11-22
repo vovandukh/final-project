@@ -184,6 +184,7 @@
                             flex-direction: column;
                             padding: 0 0 10px;
                         }
+
                     }
                     button {
                         width: 150px;
@@ -198,6 +199,9 @@
                             background-color: $secondary-color;
                             transition: all 0.2s;
                         }
+                    }
+                    .invalid{
+                        border: 1px solid red !important;
                     }
                 }
                 @media screen and (max-width: $media-xxl) {

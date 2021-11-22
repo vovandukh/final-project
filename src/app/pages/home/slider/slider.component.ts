@@ -59,10 +59,10 @@ export class SliderComponent implements OnInit {
   }
 
   getSubscribe(event: any) {
-    if (this.subscribeForm.valid == false) {
+    if (this.subscribeForm.valid == false || !this.subscribeForm.controls.email.value ) {
       this.toast.error('Invalid Email');
       event.target.children[0].style = 'border: 1px solid red';
-    } if (this.subscribeForm.valid == true) {
+    } else {
       this.subscribeService.createSubscribers(this.subscribeForm.value).then(() => {
         this.toast.success('Thanks for subscribing')
         event.target.children[0].style = '1px solid rgb(222, 222, 222)';

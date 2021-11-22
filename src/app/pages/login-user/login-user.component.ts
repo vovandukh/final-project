@@ -130,16 +130,18 @@ export class LoginUserComponent implements OnInit, OnDestroy {
 
   googleAuth() {
     this.socialLoginUP(new GoogleAuthProvider())
+    
   }
+
   socialLoginUP(provider: any) {
-    const auth = getAuth()
-    signInWithPopup(auth, provider).then(result => {
+    signInWithPopup(this.auth, provider).then(result => {
       let user: any;
       let userId = result.user.uid
-      getDoc(doc(this.firestore, 'users', result.user.uid)).then(data => {
+      result.user.uid
+       getDoc(doc(this.firestore, 'users', result.user.uid)).then(data => {
         user = data.data()
-        if (user != undefined) {
-          this.loginSubscription = docData(doc(this.firestore, 'users', result.user.uid), { idField: "id" }).subscribe(user => {
+        if (user) {
+         this.loginSubscription =  docData(doc(this.firestore, 'users', result.user.uid), { idField: "id" }).subscribe(user => {
             localStorage.setItem('users', JSON.stringify(user));
             if (user && user.role === 'USER') {
               this.router.navigate(['profile']);
@@ -172,6 +174,7 @@ export class LoginUserComponent implements OnInit, OnDestroy {
       })
     })
   }
+
   signIn(status: boolean) {
     if (status) {
       this.container = { 'right-panel-active': false }

@@ -91,13 +91,13 @@
     background-color: rgba(0, 0, 0, 0.459);
     .modal {
         width: 600px;
-        height: 600px;
+        height: 700px;
         padding: 50px;
         z-index: 280;
         background-color: rgb(44, 36, 36);
         border-radius: 20px;
         position: absolute;
-        top: 5%;
+        top: 0;
         left: 30%;
         .wrapper-title {
             display: flex;

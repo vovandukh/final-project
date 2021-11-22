@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ISubCategoryRequest, ISubCategoryResponce } from 'src/app/shared/interfaces/sub-category/sub-category.interface';
 import { SubCategoryService } from 'src/app/shared/services/sub-category/sub-category.service';
@@ -7,20 +7,25 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
 import { IProductResponce } from 'src/app/shared/interfaces/products/product.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
+  public width: any = ['155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285', '295', '315'];
+  public height: any = ['40', '45', '50', '55', '60', '65', '70', '75', '80'];
+  public Size: any = ['15', '16', '17', '18', '19', '20', '21', '22'];
   public size = false;
   public page: number = 1;
   public totalLength!: number;
   public minValue: number = 200;
   public maxValue: number = 800;
   public filterSizeForm!: FormGroup;
+  public routerSubscription!: Subscription;
+  public productSubscription!: Subscription;
   public options: Options = {
     floor: 0,
     ceil: 1000,
@@ -30,19 +35,63 @@ export class CatalogComponent implements OnInit {
   public product: IProductResponce[] = [];
   public subCategoryTitle = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private subCategoryService: SubCategoryService, private categoryService: CategoryService, private productService: ProductService, private fb: FormBuilder, private toast: ToastrService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productService: ProductService,
+    private categoryService: CategoryService,
+    private subCategoryService: SubCategoryService,
+    private fb: FormBuilder,
+  ) { }
 
   ngOnInit(): void {
-    const name = this.activatedRoute.snapshot.paramMap.get('name');
     this.initSizeForm();
+    this.subscribeRouter();
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    let name = this.activatedRoute.snapshot.paramMap.get('name');
     if (name == 'all') {
-      this.loadCategory();
-      this.loadAllProducts();
+      this.productSubscription = this.productService.loadproductFB().subscribe(data => {
+        this.product = [];
+        this.product = data;
+        this.categoryService.loadCategory().subscribe(data => {
+          this.subCategory = [];
+          this.subCategory = data;
+        })
+      })
     } else {
-      this.loadSubCategory(name)
-      this.loadProductsByCategory(name)
-      this.subCategoryTitle = true;
+      this.productSubscription = this.productService.loadproductFB().subscribe(data => {
+        this.product = [];
+        let path;
+        data.forEach((elem: any) => {
+          if (elem.category.path == name || elem.subCategory.path == name || elem.brand == name) {
+            this.product.push(elem)
+            path = elem.category.path
+          }
+        });
+        this.subCategoryService.loadSubCategoryNameFB(path).then(data => {
+          this.subCategory = [];
+          data.forEach(elem => {
+            this.subCategory.push(elem.data() as ISubCategoryResponce)
+          })
+
+        })
+      })
     }
+  }
+
+  subscribeRouter() {
+    this.routerSubscription = this.activatedRoute.params.subscribe(() => {
+      let name = this.activatedRoute.snapshot.paramMap.get('name');
+      this.loadProducts()
+      this.size = false;
+      if (name == 'tire') {
+        this.size = true;
+      } else {
+        this.size = false
+      }
+    })
   }
 
   initSizeForm() {
@@ -54,114 +103,47 @@ export class CatalogComponent implements OnInit {
   }
 
   filterBySize() {
-    if (this.filterSizeForm.value.size && this.filterSizeForm.value.width && this.filterSizeForm.value.height) {
-      this.productService.filterProductBySizeAll(this.filterSizeForm.value.size, this.filterSizeForm.value.height, this.filterSizeForm.value.width).then(data => {
+    console.log(this.filterSizeForm.value);
+    
+    if (this.filterSizeForm.value.width && this.filterSizeForm.value.height || this.filterSizeForm.value.size) {
+      this.productSubscription = this.productService.loadproductFB().subscribe(data => {
+        this.product = [];
+        data.forEach((elem: IProductResponce) => {
+          if (elem.width == this.filterSizeForm.value.width &&
+            elem.height == this.filterSizeForm.value.height ||
+            elem.size == this.filterSizeForm.value.size) {
+            this.product.push(elem)
+          }
+        });
+      })
+    }
+  }
+  filterProductByPrice() {
+    let name = this.activatedRoute.snapshot.paramMap.get('name');
+    this.productSubscription = this.productService.loadproductFB().subscribe(data => {
+      if (name == 'all') {
         this.product = []
-        data.forEach(elem => {
-          this.product.push(elem.data() as IProductResponce)
+        data.forEach((elem: IProductResponce) => {
+          if (elem.price > this.minValue && elem.price < this.maxValue) {
+            this.product.push(elem)
+          }
         })
-      })
-    } else if (this.filterSizeForm.value.width && this.filterSizeForm.value.height) {
-      this.productService.filterProductByWidthandHeight(this.filterSizeForm.value.height,this.filterSizeForm.value.width).then(data=>{
-        this.product = []
-        data.forEach(elem => {
-          this.product.push(elem.data() as IProductResponce)
-        })
-      })
-      this.initSizeForm()
-    } else {
-      if (this.filterSizeForm.value.width) {
-        this.toast.error('Please choose height')
-      } else if (this.filterSizeForm.value.height) {
-        this.toast.error('Please choose width')
-      }
-    }
-    if (this.filterSizeForm.value.size) {
-      this.productService.filterProductBySize(this.filterSizeForm.value.size).then(data =>{
-        this.product = []
-        data.forEach(elem => {
-          this.product.push(elem.data() as IProductResponce)
-        })
-      })
-    }
-  }
-
-
-  loadProductByPrice() {
-    this.productService.filterProductByPrice(this.minValue, this.maxValue).then(data => {
-      this.product = []
-      data.forEach(elem => {
-        this.product.push(elem.data() as IProductResponce)
-      })
-    })
-  }
-
-  checkChange(path: string) {
-    this.loadSubCategory(path)
-    this.loadProductsByCategory(path)
-    this.subCategoryTitle = true;
-    if (path == 'tire') {
-      this.size = true;
-    }
-  }
-
-  loadCategory() {
-    this.categoryService.loadCategory().subscribe(data => {
-      this.subCategory = data;
-    })
-  }
-  loadSubCategory(name: any) {
-    if (name == 'tire') {
-      this.size = true;
-    }
-    this.subCategoryService.loadSubCategoryNameFB(name).then(data => {
-      this.subCategory = [];
-      data.forEach(doc => {
-        let subCategory = { ...doc.data() as ISubCategoryResponce }
-        this.subCategory.push(subCategory)
-      })
-      this.loadProductsBysubCategory(name)
-
-      if (this.subCategory.length == 0) {
-       
+      } else {
+        this.product = [];
+        data.forEach((elem: IProductResponce) => {
+          if (elem.subCategory.path == name || elem.category.path == name || elem.brand == name) {
+            if (elem.price > this.minValue && elem.price < this.maxValue) {
+              this.product.push(elem)
+            }
+          }
+        });
       }
     })
   }
-  loadAllProducts() {
-    this.productService.loadproductFB().subscribe(data => {
-      this.product = data;
-      this.totalLength = data.lenght
-    })
-  }
-  loadProductsByCategory(name: any) {
-    this.productService.getProductCategory(name).then(data => {
-      this.product = [];
-      data.forEach(elem => {
-        let product = { id: elem.id, ...elem.data() }
-        this.product.push(product as IProductResponce);
-      });
-      this.totalLength = this.product.length
-    })
-
-  }
-  loadProductsBysubCategory(name: any) {
-    this.productService.getProductSubCategory(name).then(data => {
-      console.log(name);
-      if (name == 'tire') {
-        this.size = true;
-      }
-      this.product = [];
-      data.forEach(elem => {
-        let product = { id: elem.id, ...elem.data() }
-        this.product.push(product as IProductResponce);
-      })
-      this.totalLength = this.product.length
-    })
-  }
-  loadSubCategoryALL() {
-    this.subCategoryService.loadSubCategoryFB().subscribe(data => {
-      this.subCategory = [];
-      this.subCategory = data;
-    })
+  ngOnDestroy() {
+    if (this.routerSubscription || this.productSubscription) {
+      this.routerSubscription.unsubscribe()
+      this.productSubscription.unsubscribe()
+    }
   }
 }

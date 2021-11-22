@@ -54,9 +54,15 @@
                 <textarea placeholder="Text here.." formControlName="description"></textarea>
                 <h1>Tags</h1>
                 <input type="text" placeholder="Text here.." formControlName="tags">
-                <h1>Image</h1>
-                <input type="file" (change)="upload($event)">
-                <button type="submit" [disabled]="newsForm.invalid">Submit</button>
+                <div style="display: flex; align-items: flex-start; flex-direction: column;">
+                    <h1>Image</h1>
+                    <input type="file" (change)="upload($event)">
+                    <div *ngIf="isUploaded">
+                        <img [src]="valueByControl('imagePath')" width="120" height="120"
+                            style="display: block; margin: 10px 0 ;">
+                        <button type="button" style="width: 50px; height: 30px; margin: 0;" (click)="deleteImage()">X</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IModelresponce } from 'src/app/shared/interfaces/model/model.interface';
+import { IProductResponce } from 'src/app/shared/interfaces/products/product.interface';
 import { ISubModelResponce } from 'src/app/shared/interfaces/sub-model/sub-model.inteface';
 import { ModelService } from 'src/app/shared/services/model/model.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
@@ -14,18 +15,27 @@ import { SubModelService } from 'src/app/shared/services/sub-model/sub-model.ser
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
+  public year = ['2020','2019','2018','2017','2016','2015','2014','2013','2012','2011','2010']
+  public product: any | IProductResponce = {};
   public color = false
   public size = false
   public orderDetail!: FormGroup;
   public modelCar: ISubModelResponce[] = []
   public modelBrand: IModelresponce[] = []
   public productID = this.activatedRoute.snapshot.paramMap.get('id');
-  constructor(private activatedRoute: ActivatedRoute, private peroductService: ProductService, private fb: FormBuilder, private modelService: ModelService, private orderService: OrderService, private subModelService: SubModelService) { }
-  public product: any = {};
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private peroductService: ProductService, 
+    private fb: FormBuilder, 
+    private modelService: ModelService, 
+    private orderService: OrderService, 
+    private subModelService: SubModelService
+    ) { }
   ngOnInit(): void {
     this.getProduct(this.productID);
     this.initOrderDetail();
     this.loadModel();
+    
   }
 
   initOrderDetail() {

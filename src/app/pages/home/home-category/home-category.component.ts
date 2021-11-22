@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ICategoryRequest, ICategoryResponce } from 'src/app/shared/interfaces/category/category.interface';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 
@@ -7,8 +8,9 @@ import { CategoryService } from 'src/app/shared/services/category/category.servi
   templateUrl: './home-category.component.html',
   styleUrls: ['./home-category.component.scss']
 })
-export class HomeCategoryComponent implements OnInit {
-  public category: ICategoryResponce[] = []
+export class HomeCategoryComponent implements OnInit , OnDestroy {
+  public category: ICategoryResponce[] = [];
+  public categorySubscription!:Subscription;
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void {
@@ -16,9 +18,13 @@ export class HomeCategoryComponent implements OnInit {
   }
  
   loadCategory(){
-    this.categoryService.loadCategory().subscribe(category =>{
+    this.categorySubscription = this.categoryService.loadCategory().subscribe(category =>{
       this.category = category;   
     })
+  }
+
+  ngOnDestroy(){
+    this.categorySubscription.unsubscribe()
   }
 
 }

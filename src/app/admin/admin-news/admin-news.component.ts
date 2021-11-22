@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getDownloadURL, ref, uploadBytesResumable, Storage } from '@angular/fire/storage';
+import { getDownloadURL, ref, uploadBytesResumable, Storage, deleteObject } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { INewsResponce } from 'src/app/shared/interfaces/news/news.inteface';
@@ -18,6 +18,7 @@ export class AdminNewsComponent implements OnInit {
   public newsForm!: FormGroup;
   public news: INewsResponce[] = [];
   public modalOpen = { 'display': 'none' };
+  public isUploaded = false;
   public date = new Date
   public months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   constructor(
@@ -48,6 +49,7 @@ export class AdminNewsComponent implements OnInit {
       date: news.date
     })
     this.editStatus = true;
+    this.isUploaded = true
     this.newsID = news.id;
     this.modalOpen = { 'display': 'block' };
   }
@@ -102,7 +104,7 @@ export class AdminNewsComponent implements OnInit {
         this.newsForm.patchValue({
           imagePath: data
         });
-        console.log(this.newsForm);
+        this.isUploaded = true;
       })
       .catch(err => {
         console.log(err);
@@ -126,6 +128,21 @@ export class AdminNewsComponent implements OnInit {
       console.log('wrong format')
     }
     return Promise.resolve(url);
+  }
+  deleteImage(imagePath?: string): void {
+    imagePath = imagePath ? imagePath : this.valueByControl('imagePath')
+    this.isUploaded = false;
+    const task = ref(this.storage, imagePath);
+    deleteObject(task).then(() => {
+      this.toast.success('File deleted successfully')
+      this.newsForm.patchValue({
+        imagePath: null
+      })
+    })
+  }
+
+  valueByControl(control:string):string{
+      return this.newsForm.get(control)?.value;
   }
   openModal(status: any) {
     if (status) {

@@ -11,12 +11,6 @@ import { OrderService } from 'src/app/shared/services/order/order.service';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  public nameInvalid = {}
-  public addressInvalid = {}
-  public cityInvalid = {}
-  public countryInvalid = {}
-  public phoneInvalid = {}
-  public emailInvalid = {}
   public basket: any = [];
   public total = 0;
   public orderForm!: FormGroup;
@@ -74,53 +68,38 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.basket = [];
     }
-    console.log(this.basket);
-
   }
 
   createOrder() {
+    let status = false;
     this.orderForm.patchValue({
       basket: this.basket,
       total: this.total,
     })
-    if (this.orderForm.controls.email.errors != null || this.orderForm.controls.email.value == null) {
-      this.emailInvalid = { 'border': '1px solid red' }
-      this.toast.error('Invalid email')
-    } else if (this.orderForm.controls.name.value == null) {
-      this.nameInvalid = { 'border': '1px solid red' }
-      this.toast.error('Plase enter name')
-    } else if (this.orderForm.controls.streetAddress.value == null) {
-      this.addressInvalid = { 'border': '1px solid red' };
-      this.toast.error('Plase enter address')
-    } else if (this.orderForm.controls.city.value == null) {
-      this.cityInvalid = { 'border': '1px solid red' };
-      this.toast.error('Plase enter city')
-    } else if (this.orderForm.controls.country.value == null) {
-      this.countryInvalid = { 'border': '1px solid red' };
-      this.toast.error('Plase enter country')
-    } else if (this.orderForm.controls.phone.errors != null || this.orderForm.controls.phone.value == null) {
-      this.countryInvalid = { 'border': '1px solid red' };
-      this.toast.error('Ivalid phone number')
-    } else if (this.orderForm.controls.paymet.value == null) {
-      this.toast.error('Plase check payment')
-    } else {
+    for (const key in this.orderForm.value) {
+      if (!this.orderForm.controls[key].value || this.orderForm.controls[key].errors) {
+        this.toast.error('Invalid', key);
+        document.getElementById(key)?.classList.add('invalid');
+        status = false;
+        break
+      } else {
+        document.getElementById(key)?.classList.remove('invalid');
+        status = true;
+      }
+    }
+    if (status) {
       this.orderService.createOrder(this.orderForm.value).then((data) => {
         if (localStorage.length > 0 && localStorage.getItem('users')) {
-          const user = JSON.parse(localStorage.getItem('users') as string)
-          user.orders.push(data.id)
-          setDoc(doc(this.firestore, 'users', user.id), user)
-          localStorage.setItem('users', JSON.stringify(user))
+          const user = JSON.parse(localStorage.getItem('users') as string);
+          user.orders.push(data.id);
+          setDoc(doc(this.firestore, 'users', user.id), user);
+          localStorage.setItem('users', JSON.stringify(user));
         }
         localStorage.removeItem('basket');
-        this.router.navigate(['home']);
+        this.router.navigate(['']);
         this.orderService.checkBasket.next(true);
-        this.toast.success('success order');
-        this.nameInvalid = {}
-        this.addressInvalid = {}
-        this.cityInvalid = {}
-        this.countryInvalid = {}
-        this.phoneInvalid = {}
-        this.emailInvalid = {}
+        this.toast.success('Success order');
+
       })
     }
   }

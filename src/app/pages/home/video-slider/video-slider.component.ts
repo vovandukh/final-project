@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { Subscription } from 'rxjs';
 import { INewsResponce } from 'src/app/shared/interfaces/news/news.inteface';
 import { NewsService } from 'src/app/shared/services/news/news.service';
 
@@ -8,9 +9,10 @@ import { NewsService } from 'src/app/shared/services/news/news.service';
   templateUrl: './video-slider.component.html',
   styleUrls: ['./video-slider.component.scss']
 })
-export class VideoSliderComponent implements OnInit {
-  public news:INewsResponce[] = [];
-  constructor(private newsService:NewsService) { }
+export class VideoSliderComponent implements OnInit, OnDestroy {
+  public news: INewsResponce[] = [];
+  public newsSubscription!: Subscription;
+  constructor(private newsService: NewsService) { }
 
   @ViewChild('slickModal') slickModal!: SlickCarouselComponent;
 
@@ -18,12 +20,13 @@ export class VideoSliderComponent implements OnInit {
     this.loadNews();
   }
 
-  loadNews(){
-    let tag  ="perfomance";
-    this.newsService.loadNewsByTag(tag).then(data =>{
-      data.forEach(elem =>{
-        let news = {id:elem.id,...elem.data() }
-        this.news.push(news as INewsResponce);
+  loadNews() {
+    let tag = "perfomance";
+    this.newsSubscription = this.newsService.loadNews().subscribe(data => {
+      data.forEach((elem) => {
+        if (elem.tags == tag) {
+          this.news.push(elem as INewsResponce)
+        }
       })
     })
   }
@@ -33,10 +36,10 @@ export class VideoSliderComponent implements OnInit {
     "slidesToScroll": 1,
     "swipeToSlide": false,
     "dots": true,
-    "speed":500,
-    "arrows":false,
+    "speed": 500,
+    "arrows": false,
     "infinite": true,
-    "autoplay":true,
+    "autoplay": true,
     "responsive": [
       {
         breakpoint: 1024,
@@ -66,21 +69,25 @@ export class VideoSliderComponent implements OnInit {
     ]
   };
 
-  
+
   slickInit(e: any) {
 
   }
   breakpoint(e: any) {
 
   }
-afterChange(e: any) {
+  afterChange(e: any) {
 
   }
- beforeChange(e: any) {
+  beforeChange(e: any) {
 
   }
 
-  playVideo(event:any) {
+  ngOnDestroy() {
+   this.newsSubscription.unsubscribe()
+  }
+
+  playVideo(event: any) {
     event.target.parentNode.parentNode.parentNode.children[1].style.display = 'block';
     event.target.parentNode.parentNode.parentNode.children[0].style.display = 'none';
   }

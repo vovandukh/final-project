@@ -4,12 +4,12 @@ export interface IProductRequest{
     brand:string;
     subCategory:any;
     description:string;
-    price:string;
+    price:number;
     imagePath:string;
-    color?:string;
-    size?:string;
-    width?:string;
-    heigth?:string;
+    color:string;
+    size:string;
+    width:string;
+    height:string;
     count:number;
 }
 export interface IProductResponce{
@@ -19,11 +19,11 @@ export interface IProductResponce{
     category:any;
     subCategory:any;
     description:string;
-    price:string;
+    price:number;
     imagePath:string;
-    color?:string;
-    size?:string;
-    width?:string;
-    heigth?:string;
+    color:string;
+    size:string;
+    width:string;
+    height:string;
     count:number;
 }

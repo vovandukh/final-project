@@ -58,6 +58,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminSubscribersComponent } from './admin/admin-subscribers/admin-subscribers.component';
 import { AdminCallbackComponent } from './admin/admin-callback/admin-callback.component';
 import { AdminMessageComponent } from './admin/admin-message/admin-message.component';
+import { NewsTextPipe } from './shared/pipes/text-news/newsText.pipe';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 
 
@@ -103,6 +105,7 @@ import { AdminMessageComponent } from './admin/admin-message/admin-message.compo
     AdminSubscribersComponent,
     AdminCallbackComponent,
     AdminMessageComponent,
+    NewsTextPipe,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +122,8 @@ import { AdminMessageComponent } from './admin/admin-message/admin-message.compo
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     SlickCarouselModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxStarRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

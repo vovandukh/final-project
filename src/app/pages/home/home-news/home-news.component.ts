@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { INewsResponce } from 'src/app/shared/interfaces/news/news.inteface';
 import { NewsService } from 'src/app/shared/services/news/news.service';
 
@@ -7,8 +8,9 @@ import { NewsService } from 'src/app/shared/services/news/news.service';
   templateUrl: './home-news.component.html',
   styleUrls: ['./home-news.component.scss']
 })
-export class HomeNewsComponent implements OnInit {
+export class HomeNewsComponent implements OnInit, OnDestroy {
   public news:INewsResponce[] = []
+  public newsSubscription!:Subscription;
   constructor(private newsService:NewsService) { }
 
   ngOnInit(): void {
@@ -16,11 +18,15 @@ export class HomeNewsComponent implements OnInit {
   }
   loadNews(){
     let tag  ="other";
-    this.newsService.loadNewsByTag(tag).then(data =>{
+    this.newsSubscription = this.newsService.loadNews().subscribe(data =>{
       data.forEach(elem =>{
-        let news = {id:elem.id,...elem.data() }
-        this.news.push(news as INewsResponce);
-      })      
+        if(elem.tags == tag){
+          this.news.push(elem as INewsResponce)
+        }
+      })
     })
+  }
+  ngOnDestroy(){
+    this.newsSubscription.unsubscribe()
   }
 }
